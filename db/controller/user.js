@@ -3,79 +3,159 @@
  */
 var User = require('../model/user.js');
 
-
 module.exports = {
 
+
     GetAll: function (req, res) {
-        var result = User.find();
-        // res.send(result);
-        res.send('get all');
-    },
+        var number = 999; // set max return numbers
 
-    Get: function (req, res) {
-        if (req.params && req.params.cell) {
-            var result = User.find({cell: req.params.cell, apply: true});
-            res.send(result);
-        }
-    },
-
-    GetById: function (req, res) {
-        if (req.params && req.params.uid) {
-            User.find({_id: req.params.uid, apply: true})
-                .exec(function(err, users) {
-                    if (err) {
-                        return res.send('error');
-                    }
-                    if (!users || users.length < 1) {
-                        return res.send('null');
-                    }
-                    res.send(users[0]);
-                });
-
-        }
-    },
-
-    Add: function(req, res){
-        // 获取user数据（json）
-        var user = req.body;
-        if (!user) return res.sendStatus(400);
-
-        //验证手机号码
-        if (!user.cell){
-            res.send('error');
-            return;
+        if (req.params && req.params.number) {
+            number = _.parseInt(req.params.number);
+            //console.log(number);
         }
 
-        User.find({cell: user.cell, apply: true}) // check if registered
+        User.find({apply: true}).limit(number)
             .exec(function(err, users){
                 if (err) {
-                    res.send('error');
-                    return;
-                }
-                if (users && users.length > 0){
-                    res.send('existed');
-                    return;
+                    return Status.returnStatus(res, Status.ERROR);
                 }
 
-                User.create({cell: user.cell, name: user.name, password: user.password}, function (err, raw) {
-                    if (err) return console.error(err);
-                    res.send(raw);
-                });
+                if (!users || users.length < 1) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
 
+                res.json(users);
             });
     },
 
-    Update: function(req, res){
-        var user = req.body;
+    // 根据微信号获取用户信息
+    GetByLinkId: function (req, res) {
 
-        var conditions = {cell :user.cell};
-        var fields     = {name : user.name, gender: user.gender};
-        var options    = {};
+        if (req.params && req.params.id) {
 
-        User.update(conditions, fields, options, function (err, raw) {
-            if (err) return console.error(err);
-            res.send('update user success: ', raw);
-        });
+            var result = User.findOne({link_id: req.params.id, apply: true})
+                .exec(function(err, users) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR);
+                    }
+
+                    if (!users || users.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(users);
+                });
+        }
+    },
+
+    // 根据手机号码获取用户信息
+    GetByCell: function (req, res) {
+
+        if (req.params && req.params.cell) {
+            User.find({cell: req.params.cell, apply: true})
+                .exec(function(err, users) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR);
+                    }
+
+                    if (!users || users.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(users);
+                    //res.json(users[0]);
+                });
+
+        }
+    },
+
+    // 根据微信号创建用户
+    AddByLinkId: function(req, res){
+        if (req.params && req.params.id) { // params.id is WeChat ID
+            var linkId = req.params.id;
+
+            if (!linkId) return Status.returnStatus(res, Status.NO_ID);
+
+            // 获取user数据（json）
+            var user = req.body;
+            if (!user) return res.sendStatus(400);
+
+            // 用户参数验证
+
+            //验证手机号码
+            if (!user.cell) {
+                return Status.returnStatus(res, Status.NO_CELL);
+            }
+
+            // name
+            if (!user.name) {
+                return Status.returnStatus(res, Status.NO_NAME);
+            }
+
+            // gender
+
+            // birth date
+
+            // sin
+
+            User.find({link_id: linkId}) // check if registered
+                .exec(function (err, users) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR);
+                    }
+
+                    if (users && users.length > 0) {
+                        return Status.returnStatus(res, Status.EXISTED);
+                    }
+
+                    User.create({link_id: linkId, cell: user.cell, name: user.name, password: user.password, gender: user.gender, birthdate: user.birthdate, sin: user.sin}, function (err, raw) {
+                        if (err) {
+                            return Status.returnStatus(res, Status.ERROR);
+                        }
+
+                        return res.send(raw);
+                    });
+
+                });
+        }
+    },
+
+    UpdateByLinkId: function(req, res){
+        if (req.params && req.params.id) { // params.id is WeChat ID
+            var linkId = req.params.id;
+
+            // 获取user数据（json）
+            var user = req.body;
+            if (!user) return res.sendStatus(400);
+
+            User.findOne({link_id: linkId}, function (err, item) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR);
+                }
+
+                if (user.name)
+                    item.name = user.name;
+                if (user.cell)
+                    item.cell = user.cell;
+                if (user.gender)
+                    item.gender = user.gender;
+                if (user.birthdate)
+                    item.birthdate = user.birthdate;
+                if (user.sin)
+                    item.sin = user.sin;
+
+                //console.log(JSON.stringify(item));
+
+                //
+                item.save(function(err, raw){
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR);
+                    }
+                    res.send('update user success: ', raw);
+                });
+
+            });
+        }
     },
 
     UpdateIcon: function (req, res) {
@@ -86,10 +166,14 @@ module.exports = {
 
             var result = User.findOneAndUpdate(query, update, options,
                 function(err, usr){
-                    if (err) return console.error(err);
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR);
+                    }
+
                     res.json(usr);
                 });
         }
     },
+
 }
 

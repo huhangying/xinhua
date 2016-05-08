@@ -5,26 +5,29 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-
+// 公用库
+global._ = require('lodash');
+global.Util = require('./util/util.js');
+global.Status = require('./util/status.js');
 global.mongoose = require('mongoose');
-require('express-mongoose');
-global.mongoose.connect('mongodb://127.0.0.1:27017/xinhua');
+//require('express-mongoose');
+global.mongoose.connect('mongodb://127.0.0.1:27017/eyao');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+//var users = require('./routes/users');
 
 var app = express();
 
 //设置跨域访问
 
-// app.all('*', function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-//   res.header("X-Powered-By",' Harry')
-//   res.header("Content-Type", "application/json;charset=utf-8");
-//   next();
-// });
+ app.all('*', function(req, res, next) {
+   res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS,PATCH");
+   res.header("X-Powered-By",' Harry')
+   res.header("Content-Type", "application/json;charset=utf-8");
+   next();
+ });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,7 +44,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+//app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
