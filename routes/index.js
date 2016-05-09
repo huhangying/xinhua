@@ -37,6 +37,7 @@ router.route('/doctors/:number')
 
 router.route('/doctor/:id')
     .get(Doctor.GetByUserId)
+    .delete(Doctor.DeleteByUserId)
     .post(urlencodedParser, Doctor.AddByUserId)
     .patch(urlencodedParser, Doctor.UpdateByUserId);
 
@@ -45,6 +46,37 @@ router.route('/doctor/cell/:cell')
 
 router.route('/login')
     .patch(urlencodedParser, Doctor.Login);
+
+
+//---------------- 医院科室
+var Department = require('../db/controller/department');
+
+router.route('/departments')
+    .get(Department.GetAll);
+
+router.route('/department')
+    .post(urlencodedParser, Department.Add);
+
+router.route('/department/:id')
+    .get(Department.GetById)
+    .delete(Department.DeleteById)
+    .patch(urlencodedParser, Department.UpdateById);
+
+
+//---------------- 疾病类别
+var Disease = require('../db/controller/disease');
+
+router.route('/diseases')
+    .get(Disease.GetAll);
+
+router.route('/disease')
+    .post(urlencodedParser, Disease.Add);
+
+router.route('/disease/:id')
+    .get(Disease.GetById)
+    .delete(Disease.DeleteById)
+    .patch(urlencodedParser, Disease.UpdateById);
+
 
 
 

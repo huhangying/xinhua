@@ -15,6 +15,7 @@ module.exports =  {
     NO_NAME: 'no_name',
     NO_ID: 'no_id',
     NO_PASSWORD: 'no_password',
+    MISSING_PARAM: 'missing_param',
     NOT_REGISTERED: 'not_register',
     WRONG_PASSWORD: 'WRONG_PASSWORD',
     PASS:　'PASS',
