@@ -9,7 +9,7 @@ var _Disease = new Schema({
     department: {type: Schema.Types.ObjectId, ref: 'department' },
     name: String,
     desc: String,
-    symptoms:[{type: Schema.Types.ObjectId, ref: 'symptom' }],
+    symptoms:[{symptom: {type: Schema.Types.ObjectId, ref: 'symptom' }}],
     order: Number,
     //created: {type : Date, default: Date.now},
     //updated: {type : Date, default: Date.now},

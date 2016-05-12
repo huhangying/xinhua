@@ -95,6 +95,10 @@ module.exports = {
                     return Status.returnStatus(res, Status.ERROR);
                 }
 
+                if (!item){
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
                 if (department.name)
                     item.name = department.name;
                 if (department.desc)
@@ -125,6 +129,11 @@ module.exports = {
                     return Status.returnStatus(res, Status.ERROR);
                 }
 
+                if (!item){
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                //console.log(JSON.stringify(item))
                 //
                 item.remove(function (err, raw) {
                     if (err) {

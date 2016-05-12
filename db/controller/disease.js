@@ -3,8 +3,10 @@
  */
 
 var Disease = require('../model/disease.js');
+var Symptom = require('../model/symptom');
+var Q = require('q');
 
-module.exports = {
+var self = module.exports = {
 
 
     //todo: order by
@@ -48,7 +50,14 @@ module.exports = {
     Add: function (req, res) {
 
         // 获取department请求数据（json）
+        // Note: symptom的格式
+        //      [
+        //          symptom 名称   : string
+        //      ]
         var disease = req.body;
+
+        console.log(JSON.stringify(disease));
+
         if (!disease) return res.sendStatus(400);
 
         // name
@@ -83,33 +92,54 @@ module.exports = {
             if (!disease) return res.sendStatus(400);
 
 
-            Disease.findById(id, function (err, item) {
-                if (err) {
-                    return Status.returnStatus(res, Status.ERROR);
-                }
-
-                if (disease.department)
-                    item.department = disease.department;
-                if (disease.name)
-                    item.name = disease.name;
-                if (disease.desc)
-                    item.desc = disease.desc;
-                if (disease.order)
-                    item.order = disease.order;
-
-                //console.log(JSON.stringify(item));
-
-                //
-                item.save(function (err, raw) {
+            Disease.findById(id)
+                .populate('symptom')
+                //.distinct('')
+                .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR);
                     }
-                    res.send('updated disease: ', raw);
 
-                    //todo: symptoms
+                    if (!item){
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    if (disease.department)
+                        item.department = disease.department;
+                    if (disease.name)
+                        item.name = disease.name;
+                    if (disease.desc)
+                        item.desc = disease.desc;
+                    if (disease.order)
+                        item.order = disease.order;
+                    item.symptoms.length = 0;
+
+
+                    self.CheckSymptomsForUpdate(item, disease.symptoms)
+                        .then(function (_item){
+                            console.log(JSON.stringify(_item));
+
+                            _item.save();
+                            Disease.update({_id: _item._id},
+                                {$set: {symptoms: _item.symptoms}},
+                                {upsert:true},
+                                function (err, raw) {
+                                console.log(JSON.stringify(raw));
+                                if (err) {
+                                    return Status.returnStatus(res, Status.ERROR);
+                                }
+                                res.send('updated disease: ', raw);
+                            });
+                            //_item.update(function (err, raw) {
+                            //    console.log(JSON.stringify(raw));
+                            //    if (err) {
+                            //        return Status.returnStatus(res, Status.ERROR);
+                            //    }
+                            //    res.send('updated disease: ', raw);
+                            //});
+                        });
+
                 });
-
-            });
         }
     },
 
@@ -120,6 +150,10 @@ module.exports = {
             Disease.findById(id, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR);
+                }
+
+                if (!item){
+                    return Status.returnStatus(res, Status.NULL);
                 }
 
                 //
@@ -134,5 +168,82 @@ module.exports = {
             });
         }
     },
+
+    CheckSymptomsForUpdate: function (item, symptomsStr){
+        var _deferred = Q.defer();
+        var promises = [];
+
+        if (symptomsStr && symptomsStr.length > 0){ // symptomsStr is a string containing symptoms.
+
+            var symptoms = symptomsStr.split('|');
+
+            symptoms.forEach(function(symptom){
+                var deferred = Q.defer();
+
+                self.FindAndUpdateSymptomByName(symptom)//;     // sym is symptom object
+                    .then(function(sym){
+                        if (sym){
+                            //console.log(JSON.stringify(sym));
+                            item.symptoms.push(sym._id);
+                            deferred.resolve(sym);
+                        }
+                    });
+
+                promises.push(deferred.promise);
+            });
+
+        }
+
+        Q.all(promises).then(
+            // success
+            // results: an array of data objects from each deferred.resolve(data) call
+            function(results) {
+
+                _deferred.resolve(item);
+            },
+            // error
+            function(response) {
+                _deferred.resolve(item);
+            }
+        );
+
+        return _deferred.promise;
+    },
+
+    //
+    FindAndUpdateSymptomByName: function(sym_name) {
+        var deferred = Q.defer();
+
+        // 先check这个symptom是不是存在，如果存在，直接使用，如果不存在，创建一个新的，然后使用。
+        Symptom.findOne({name: sym_name}, function(err, sym){
+            if (err){
+                deferred.reject(err);
+            }
+
+            // no record, create one
+            if (!sym) {
+                sym = self.CreateSymptom(sym_name);
+                //console.log('create: ' + JSON.stringify(sym));
+            }
+
+            deferred.resolve(sym);
+        });
+
+        return deferred.promise;
+    },
+
+    CreateSymptom: function (symptom_name){
+        var deferred = Q.defer();
+
+        Symptom.create({name: symptom_name}, function(err, symptom){
+            if (err){
+                deferred.reject(err);
+            }
+
+            deferred.resolve(symptom);
+        });
+
+        return deferred.promise;
+    }
 
 }

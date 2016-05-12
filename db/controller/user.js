@@ -133,6 +133,10 @@ module.exports = {
                     return Status.returnStatus(res, Status.ERROR);
                 }
 
+                if (!item){
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
                 if (user.name)
                     item.name = user.name;
                 if (user.cell)

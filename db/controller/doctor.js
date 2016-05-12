@@ -154,6 +154,10 @@ module.exports = {
                     return Status.returnStatus(res, Status.ERROR);
                 }
 
+                if (!item){
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
                 if (doctor.password)
                     item.password = Util.encrypt(doctor.password);
                 if (doctor.name)
@@ -200,6 +204,10 @@ module.exports = {
             Doctor.findOne({user_id: uid}, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR);
+                }
+
+                if (!item){
+                    return Status.returnStatus(res, Status.NULL);
                 }
 
                 //
