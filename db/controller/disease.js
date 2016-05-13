@@ -12,9 +12,10 @@ var self = module.exports = {
     //todo: order by
     GetAll: function (req, res) {
 
-        Disease.find({apply: true}, function (err, items) {
+        //Disease.find({apply: true}, function (err, items) {
+        Disease.find( function (err, items) {
             if (err) {
-                return Status.returnStatus(res, Status.ERROR);
+                return Status.returnStatus(res, Status.ERROR, err);
             }
 
             if (!items || items.length < 1) {
@@ -25,15 +26,14 @@ var self = module.exports = {
         });
     },
 
-    // 根据ID获取详细信息
-    GetById: function (req, res) {
+    // 获得科室下的疾病类别
+    GetByDepartmentId: function(req, res){
 
-        if (req.params && req.params.id) {
-
-            var result = Disease.findOne({_id: req.params.id, apply: true})
+        if (req.params && req.params.did) {
+            Disease.find({apply: true, department: req.params.did})
                 .exec(function (err, items) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     if (!items || items.length < 1) {
@@ -45,19 +45,39 @@ var self = module.exports = {
         }
     },
 
+    // 根据ID获取详细信息
+    GetById: function (req, res) {
+
+        if (req.params && req.params.id) {
+
+            var result = Disease.findOne({_id: req.params.id, apply: true})
+                .populate('department')
+                .populate('symptoms')
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    console.log(JSON.stringify(items));
+                    res.json(items);
+                });
+        }
+    },
+
 
     // 创建疾病类别
     Add: function (req, res) {
 
         // 获取department请求数据（json）
         // Note: symptom的格式
-        //      [
-        //          symptom 名称   : string
-        //      ]
+        //          symptom 名称1|symptom 名称2
         var disease = req.body;
 
-        console.log(JSON.stringify(disease));
-
+        //console.log(JSON.stringify(disease));
         if (!disease) return res.sendStatus(400);
 
         // name
@@ -65,21 +85,40 @@ var self = module.exports = {
             return Status.returnStatus(res, Status.NO_NAME);
         }
 
-        Disease.create({
-            department: disease.department,
-            name: disease.name,
-            desc: disease.desc,
-            order: disease.order
-        }, function (err, raw) {
-            if (err) {
-                return Status.returnStatus(res, Status.ERROR);
-            }
+        var item = {};
 
-            res.send(raw);
+        if (disease.department)
+            item.department = disease.department;
+        if (disease.name)
+            item.name = disease.name;
+        if (disease.desc)
+            item.desc = disease.desc;
+        if (disease.order)
+            item.order = disease.order;
 
-            //todo: symptom list
+        item.symptoms = [];
+        item.symptoms.length = 0;
 
-        });
+        console.log(JSON.stringify(item));
+
+        self.CheckSymptomsForUpdate(item, disease.symptoms)
+            .then(function (_item){
+                //console.log(JSON.stringify(_item));
+
+                //_item.save();
+                Disease.create(
+                    {symptoms: _item.symptoms, name: _item.name, desc: _item.desc, order: _item.order,
+                        department: _item.department},
+                    function (err, raw) {
+                        console.log(JSON.stringify(raw));
+                        if (err) {
+                            return Status.returnStatus(res, Status.ERROR, err);
+                        }
+                        res.send('create disease: ', raw);
+                    });
+
+            });
+
 
     },
 
@@ -97,7 +136,7 @@ var self = module.exports = {
                 //.distinct('')
                 .exec(function (err, item) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     if (!item){
@@ -112,31 +151,29 @@ var self = module.exports = {
                         item.desc = disease.desc;
                     if (disease.order)
                         item.order = disease.order;
+                    if (disease.apply != null)
+                        item.apply = disease.apply;
+
                     item.symptoms.length = 0;
 
 
                     self.CheckSymptomsForUpdate(item, disease.symptoms)
                         .then(function (_item){
-                            console.log(JSON.stringify(_item));
+                            //console.log(JSON.stringify(_item));
 
-                            _item.save();
+                            //_item.save();
                             Disease.update({_id: _item._id},
-                                {$set: {symptoms: _item.symptoms}},
+                                {$set: {symptoms: _item.symptoms, name: _item.name, desc: _item.desc, order: _item.order,
+                                    apply: _item.apply}},
                                 {upsert:true},
                                 function (err, raw) {
                                 console.log(JSON.stringify(raw));
                                 if (err) {
-                                    return Status.returnStatus(res, Status.ERROR);
+                                    return Status.returnStatus(res, Status.ERROR, err);
                                 }
                                 res.send('updated disease: ', raw);
                             });
-                            //_item.update(function (err, raw) {
-                            //    console.log(JSON.stringify(raw));
-                            //    if (err) {
-                            //        return Status.returnStatus(res, Status.ERROR);
-                            //    }
-                            //    res.send('updated disease: ', raw);
-                            //});
+
                         });
 
                 });
@@ -149,7 +186,7 @@ var self = module.exports = {
 
             Disease.findById(id, function (err, item) {
                 if (err) {
-                    return Status.returnStatus(res, Status.ERROR);
+                    return Status.returnStatus(res, Status.ERROR, err);
                 }
 
                 if (!item){
@@ -159,7 +196,7 @@ var self = module.exports = {
                 //
                 item.remove(function (err, raw) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     res.send('deleted disease: ', raw);

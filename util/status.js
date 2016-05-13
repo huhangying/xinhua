@@ -21,8 +21,9 @@ module.exports =  {
     PASS:　'PASS',
 
 
-    returnStatus: function(res, status){
-        res.send({return: status});
+    returnStatus: function(res, status, err){
+        var ret  = _.extend({return: status}, err);
+        res.send(ret);
     },
 
 }

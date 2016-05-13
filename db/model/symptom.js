@@ -4,12 +4,11 @@
 
 var _Symptom = new global.mongoose.Schema({
 
-    name: String,
-    desc: String,
-    order: Number,
-    //created: {type : Date, default: Date.now},
-    //updated: {type : Date, default: Date.now},
-    apply: {type : Boolean, default: true}
-});
+        name: String,
+        desc: {type : String, select: false},
+        //created: {type : Date, default: Date.now},
+        //updated: {type : Date, default: Date.now},
+        apply: {type : Boolean, default: true, select: false}
+    });
 
 module.exports =  mongoose.model('symptom',_Symptom);

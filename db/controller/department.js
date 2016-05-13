@@ -11,7 +11,7 @@ module.exports = {
 
         Department.find({apply: true}, function (err, items) {
             if (err) {
-                return Status.returnStatus(res, Status.ERROR);
+                return Status.returnStatus(res, Status.ERROR, err);
             }
 
             if (!items || items.length < 1) {
@@ -30,7 +30,7 @@ module.exports = {
             var result = Department.findOne({_id: req.params.id, apply: true})
                 .exec(function (err, items) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     if (!items || items.length < 1) {
@@ -59,7 +59,7 @@ module.exports = {
         Department.find({name: department.name}) // check if existed
             .exec(function (err, items) {
                 if (err) {
-                    return Status.returnStatus(res, Status.ERROR);
+                    return Status.returnStatus(res, Status.ERROR, err);
                 }
 
                 if (items && items.length > 0) {
@@ -73,7 +73,7 @@ module.exports = {
                     order: department.order
                 }, function (err, raw) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     return res.send(raw);
@@ -92,7 +92,7 @@ module.exports = {
 
             Department.findById(id, function (err, item) {
                 if (err) {
-                    return Status.returnStatus(res, Status.ERROR);
+                    return Status.returnStatus(res, Status.ERROR, err);
                 }
 
                 if (!item){
@@ -111,7 +111,7 @@ module.exports = {
                 //
                 item.save(function (err, raw) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
                     res.send('update department success: ', raw);
                 });
@@ -126,7 +126,7 @@ module.exports = {
 
             Department.findById(id, function (err, item) {
                 if (err) {
-                    return Status.returnStatus(res, Status.ERROR);
+                    return Status.returnStatus(res, Status.ERROR, err);
                 }
 
                 if (!item){
@@ -137,7 +137,7 @@ module.exports = {
                 //
                 item.remove(function (err, raw) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     res.send('deleted department: ', raw);

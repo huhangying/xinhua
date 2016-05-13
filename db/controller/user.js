@@ -17,7 +17,7 @@ module.exports = {
         User.find({apply: true}).limit(number)
             .exec(function(err, users){
                 if (err) {
-                    return Status.returnStatus(res, Status.ERROR);
+                    return Status.returnStatus(res, Status.ERROR, err);
                 }
 
                 if (!users || users.length < 1) {
@@ -36,7 +36,7 @@ module.exports = {
             var result = User.findOne({link_id: req.params.id, apply: true})
                 .exec(function(err, users) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     if (!users || users.length < 1) {
@@ -55,7 +55,7 @@ module.exports = {
             User.find({cell: req.params.cell, apply: true})
                 .exec(function(err, users) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     if (!users || users.length < 1) {
@@ -101,7 +101,7 @@ module.exports = {
             User.find({link_id: linkId}) // check if registered
                 .exec(function (err, users) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     if (users && users.length > 0) {
@@ -110,7 +110,7 @@ module.exports = {
 
                     User.create({link_id: linkId, cell: user.cell, name: user.name, password: user.password, gender: user.gender, birthdate: user.birthdate, sin: user.sin}, function (err, raw) {
                         if (err) {
-                            return Status.returnStatus(res, Status.ERROR);
+                            return Status.returnStatus(res, Status.ERROR, err);
                         }
 
                         return res.send(raw);
@@ -130,7 +130,7 @@ module.exports = {
 
             User.findOne({link_id: linkId}, function (err, item) {
                 if (err) {
-                    return Status.returnStatus(res, Status.ERROR);
+                    return Status.returnStatus(res, Status.ERROR, err);
                 }
 
                 if (!item){
@@ -153,7 +153,7 @@ module.exports = {
                 //
                 item.save(function(err, raw){
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
                     res.send('update user success: ', raw);
                 });
@@ -171,7 +171,7 @@ module.exports = {
             var result = User.findOneAndUpdate(query, update, options,
                 function(err, usr){
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     res.json(usr);

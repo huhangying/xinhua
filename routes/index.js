@@ -69,6 +69,9 @@ var Disease = require('../db/controller/disease');
 router.route('/diseases')
     .get(Disease.GetAll);
 
+router.route('/diseases/:did') // 获得科室下的疾病类别
+    .get(Disease.GetByDepartmentId);
+
 router.route('/disease')
     .post(urlencodedParser, Disease.Add);
 
@@ -76,6 +79,8 @@ router.route('/disease/:id')
     .get(Disease.GetById)
     .delete(Disease.DeleteById)
     .patch(urlencodedParser, Disease.UpdateById);
+
+
 
 
 

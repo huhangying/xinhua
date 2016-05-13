@@ -17,7 +17,7 @@ module.exports = {
         Doctor.find({apply: true}).limit(number)
             .exec(function (err, items) {
                 if (err) {
-                    return Status.returnStatus(res, Status.ERROR);
+                    return Status.returnStatus(res, Status.ERROR, err);
                 }
 
                 if (!items || items.length < 1) {
@@ -36,7 +36,7 @@ module.exports = {
             var result = Doctor.findOne({user_id: req.params.id, apply: true})
                 .exec(function (err, items) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     if (!items || items.length < 1) {
@@ -55,7 +55,7 @@ module.exports = {
             Doctor.find({cell: req.params.cell, apply: true})
                 .exec(function (err, items) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     if (!items || items.length < 1) {
@@ -109,7 +109,7 @@ module.exports = {
             Doctor.find({user_id: uid}) // check if registered
                 .exec(function (err, items) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     if (items && items.length > 0) {
@@ -131,7 +131,7 @@ module.exports = {
                         icon: doctor.icon
                     }, function (err, raw) {
                         if (err) {
-                            return Status.returnStatus(res, Status.ERROR);
+                            return Status.returnStatus(res, Status.ERROR, err);
                         }
 
                         return res.send(raw);
@@ -151,7 +151,7 @@ module.exports = {
 
             Doctor.findOne({user_id: uid}, function (err, item) {
                 if (err) {
-                    return Status.returnStatus(res, Status.ERROR);
+                    return Status.returnStatus(res, Status.ERROR, err);
                 }
 
                 if (!item){
@@ -184,7 +184,7 @@ module.exports = {
                 //
                 item.save(function(err, raw){
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
                     res.send('update doctor success: ', raw);
                 });
@@ -203,7 +203,7 @@ module.exports = {
 
             Doctor.findOne({user_id: uid}, function (err, item) {
                 if (err) {
-                    return Status.returnStatus(res, Status.ERROR);
+                    return Status.returnStatus(res, Status.ERROR, err);
                 }
 
                 if (!item){
@@ -213,7 +213,7 @@ module.exports = {
                 //
                 item.remove(function(err, raw){
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
                     res.send('remove doctor success: ', raw);
                 });
@@ -231,7 +231,7 @@ module.exports = {
             var result = Doctor.findOneAndUpdate(query, update, options,
                 function (err, usr) {
                     if (err) {
-                        return Status.returnStatus(res, Status.ERROR);
+                        return Status.returnStatus(res, Status.ERROR, err);
                     }
 
                     res.json(usr);
@@ -258,7 +258,7 @@ module.exports = {
 
         Doctor.find({user_id: login.user_id}, function(err, items){
             if (err) {
-                return Status.returnStatus(res, Status.ERROR);
+                return Status.returnStatus(res, Status.ERROR, err);
             }
 
             if (!items || items.length < 1) {
