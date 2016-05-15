@@ -68,6 +68,27 @@ module.exports = {
         }
     },
 
+    // 根据用戶ID获取药师用户信息（用戶ID是唯一的，註冊前必須驗證）
+    GetByUserId: function (req, res) {
+
+        if (req.params && req.params.userid) {
+            Doctor.findOne({user_id: req.params.userid, apply: true})
+                .exec(function (err, item) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!item) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(item);
+                });
+        }
+    },
+
+
+
     // 创建药师用户
     AddByUserId: function (req, res) {
 

@@ -43,6 +43,8 @@ router.route('/doctor/:id')
 
 router.route('/doctor/cell/:cell')
     .get(Doctor.GetByCell);
+router.route('/doctor/userid/:userid')
+    .get(Doctor.GetByUserId);
 
 router.route('/login')
     .patch(urlencodedParser, Doctor.Login);
@@ -81,6 +83,38 @@ router.route('/disease/:id')
     .patch(urlencodedParser, Disease.UpdateById);
 
 
+//---------------- 聊天室
+var Chatroom = require('../db/controller/chatroom');
+
+router.route('/chatrooms')
+    .get(Chatroom.GetAll);
+
+router.route('/chatrooms/doctor/:id')
+    .get(Chatroom.GetByDoctorId);
+router.route('/chatrooms/user/:id')
+    .get(Chatroom.GetByUserId);
+
+router.route('/chatroom')
+    .post(urlencodedParser, Chatroom.FindOrAdd);
+
+router.route('/chatroom/:id')
+    .patch(urlencodedParser, Chatroom.UpdateById)
+    .delete(Chatroom.DeleteById);
+
+
+
+//---------------- 聊天 chat
+var Chat = require('../db/controller/chat');
+
+router.route('/chats')
+    .get(Chat.GetAll);
+
+router.route('/chat/:id')
+    .get(Chat.GetById)
+    .delete(Chat.DeleteById);;
+
+router.route('/chat')
+    .post(urlencodedParser, Chat.Add);
 
 
 

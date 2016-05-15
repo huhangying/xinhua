@@ -28,16 +28,16 @@ module.exports = {
         if (req.params && req.params.id) {
 
             var result = Department.findOne({_id: req.params.id, apply: true})
-                .exec(function (err, items) {
+                .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
 
-                    if (!items || items.length < 1) {
+                    if (!item) {
                         return Status.returnStatus(res, Status.NULL);
                     }
 
-                    res.json(items);
+                    res.json(item);
                 });
         }
     },
