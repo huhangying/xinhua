@@ -8,6 +8,7 @@ module.exports = {
     GetAll: function (req, res) {
 
         Chatroom.find({})
+            .sort({created: -1})
             .exec(function (err, items) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
@@ -27,6 +28,7 @@ module.exports = {
         if (req.params && req.params.id) {
 
             Chatroom.find({doctor: req.params.id})
+                .sort({created: -1})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -47,6 +49,7 @@ module.exports = {
         if (req.params && req.params.id) {
 
             Chatroom.find({user: req.params.id})
+                .sort({created: -1})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);

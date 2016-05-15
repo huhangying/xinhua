@@ -14,7 +14,9 @@ module.exports = {
             //console.log(number);
         }
 
-        Doctor.find({apply: true}).limit(number)
+        Doctor.find({apply: true})
+            .sort({updated: -1})
+            .limit(number)
             .exec(function (err, items) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);

@@ -14,7 +14,9 @@ module.exports = {
             //console.log(number);
         }
 
-        User.find({apply: true}).limit(number)
+        User.find({apply: true})
+            .sort({updated: -1})
+            .limit(number)
             .exec(function(err, users){
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);

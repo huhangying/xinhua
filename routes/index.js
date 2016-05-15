@@ -111,7 +111,7 @@ router.route('/chats')
 
 router.route('/chat/:id')
     .get(Chat.GetById)
-    .delete(Chat.DeleteById);;
+    .delete(Chat.DeleteById);
 
 router.route('/chat')
     .post(urlencodedParser, Chat.Add);

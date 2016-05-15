@@ -9,6 +9,7 @@ module.exports = {
     GetAll: function (req, res) {
 
         Chat.find({})
+            .sort({created: -1})
             .exec(function (err, items) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);

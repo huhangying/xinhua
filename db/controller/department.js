@@ -9,7 +9,9 @@ module.exports = {
 
     GetAll: function (req, res) {
 
-        Department.find({apply: true}, function (err, items) {
+        Department.find({apply: true})
+            .sort({order: 1})
+            .exec( function (err, items) {
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);
             }

@@ -13,7 +13,9 @@ var self = module.exports = {
     GetAll: function (req, res) {
 
         //Disease.find({apply: true}, function (err, items) {
-        Disease.find( function (err, items) {
+        Disease.find()
+            .sort({order: 1})
+            .exec( function (err, items) {
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);
             }
@@ -31,6 +33,7 @@ var self = module.exports = {
 
         if (req.params && req.params.did) {
             Disease.find({apply: true, department: req.params.did})
+                .sort({order: 1})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -51,6 +54,7 @@ var self = module.exports = {
         if (req.params && req.params.id) {
 
             var result = Disease.findOne({_id: req.params.id, apply: true})
+                .sort({order: 1})
                 .populate('department')
                 .populate('symptoms')
                 .exec(function (err, items) {
