@@ -218,13 +218,8 @@ module.exports = {
 
     DeleteByUserId: function (req, res) {
         if (req.params && req.params.id) { // params.id is doctor's user ID
-            var uid = req.params.id;
-            // 获取user数据（json）
-            var doctor = req.body;
-            if (!doctor) return res.sendStatus(400);
 
-
-            Doctor.findOne({user_id: uid}, function (err, item) {
+            Doctor.findOne({user_id: req.params.id}, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }

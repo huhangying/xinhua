@@ -50,6 +50,44 @@ router.route('/login')
     .patch(urlencodedParser, Doctor.Login);
 
 
+//---------------- 医患关系组
+var Group = require('../db/controller/group');
+
+router.route('/groups')
+    .get(Group.GetAll);
+
+router.route('/groups/doctor/:id')
+    .get(Group.GetByDoctorId);
+
+router.route('/group/:id')
+    .get(Group.GetById)
+    .patch(urlencodedParser, Group.UpdateById)
+    .delete(Group.DeleteById);
+
+router.route('/group')
+    .post(urlencodedParser, Group.FindOrAdd);
+
+
+//---------------- 医患关系
+var Relationship = require('../db/controller/relationshiop');
+
+router.route('/relationships')
+    .get(Relationship.GetAll);
+
+router.route('/relationships/doctor/:id')
+    .get(Relationship.GetByDoctorId);
+router.route('/relationships/user/:id')
+    .get(Relationship.GetByUserId);
+
+router.route('/relationship/:id')
+    .get(Relationship.GetById)
+    .patch(urlencodedParser, Relationship.UpdateById)
+    .delete(Relationship.DeleteById);
+
+router.route('/relationship')
+    .post(urlencodedParser, Relationship.FindOrAdd);
+
+
 //---------------- 医院科室
 var Department = require('../db/controller/department');
 

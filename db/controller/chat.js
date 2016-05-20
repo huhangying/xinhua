@@ -77,13 +77,8 @@ module.exports = {
 
     DeleteById: function (req, res) {
         if (req.params && req.params.id) { // params.id is chat ID
-            var id = req.params.id;
-            // 获取数据（json）
-            var doctor = req.body;
-            if (!doctor) return res.sendStatus(400);
 
-
-            Chat.findOne({_id: id}, function (err, item) {
+            Chat.findOne({_id: req.params.id}, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }

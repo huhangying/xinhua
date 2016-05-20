@@ -15,6 +15,8 @@ module.exports =  {
     NO_NAME: 'no_name',
     NO_ID: 'no_id',
     NO_PASSWORD: 'no_password',
+    NO_USER: 'no_user',
+    NO_DOCTOR: 'no_doctor',
     MISSING_PARAM: 'missing_param',
     NOT_REGISTERED: 'not_register',
     WRONG_PASSWORD: 'WRONG_PASSWORD',
