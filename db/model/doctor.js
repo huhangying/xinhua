@@ -14,8 +14,10 @@ var _Doctor = new Schema({
     tel: String,
     cell: String,
     gender: String,
+    hours: String,
     expertise:  String,
     bulletin: String,
+    honor: String,
     icon: String,
 
     created: {type : Date, default: Date.now},

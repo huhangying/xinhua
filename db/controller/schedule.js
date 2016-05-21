@@ -170,7 +170,7 @@ module.exports = {
 
 
     DeleteById: function (req, res) {
-        if (req.params && req.params.id) { // params.id is chatroom ID
+        if (req.params && req.params.id) { // params.id is schedule ID
 
             Schedule.findOne({_id: req.params.id}, function (err, item) {
                 if (err) {

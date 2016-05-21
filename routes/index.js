@@ -174,5 +174,26 @@ router.route('/schedule/:id')
     .patch(urlencodedParser, Schedule.UpdateById)
     .delete(Schedule.DeleteById);
 
+//---------------- 预约
+var Booking = require('../db/controller/booking');
+
+router.route('/bookings')
+    .get(Booking.GetAll);
+
+router.route('/schedules/user/:did')
+    .get(Booking.GetByUserId);
+
+router.route('/schedules/doctor/:did')
+    .get(Booking.GetByDoctorId);
+router.route('/schedules/doctor/:did/:date')
+    .get(Booking.GetByDoctorIdAndDate);
+
+router.route('/schedule')
+    .post(urlencodedParser, Booking.Add);
+
+router.route('/schedule/:id')
+    .get(Booking.GetById)
+    .delete(Booking.DeleteById);
+
 
 module.exports = router;
