@@ -2,7 +2,9 @@
  * Created by hhu on 2016/5/7.
  */
 
-var _Doctor = new global.mongoose.Schema({
+var Schema = global.mongoose.Schema;
+
+var _Doctor = new Schema({
 
     user_id: String,
     password: String,

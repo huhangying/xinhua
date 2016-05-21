@@ -155,6 +155,24 @@ router.route('/chat')
     .post(urlencodedParser, Chat.Add);
 
 
+//---------------- 门诊
+var Schedule = require('../db/controller/schedule');
+
+router.route('/schedules')
+    .get(Schedule.GetAll);
+
+router.route('/schedules/:did')
+    .get(Schedule.GetByDoctorId);
+router.route('/schedules/:did/:date')
+    .get(Schedule.GetByDoctorIdAndDate);
+
+router.route('/schedule')
+    .post(urlencodedParser, Schedule.Add);
+
+router.route('/schedule/:id')
+    .get(Schedule.GetById)
+    .patch(urlencodedParser, Schedule.UpdateById)
+    .delete(Schedule.DeleteById);
 
 
 module.exports = router;

@@ -2,7 +2,9 @@
  * Created by hhu on 2016/5/20.
  */
 
-var _Group = new global.mongoose.Schema({
+var Schema = global.mongoose.Schema;
+
+var _Group = new Schema({
 
     doctor: {type: Schema.Types.ObjectId, ref: 'doctor' },
     name: String,
