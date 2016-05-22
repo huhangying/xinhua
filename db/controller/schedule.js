@@ -28,7 +28,7 @@ module.exports = {
 
         if (req.params && req.params.did) {
 
-            Schedule.find({doctor: req.params.did, from: {$gte: (new Date())}})
+            Schedule.find({doctor: req.params.did, from: {$gte: (+new Date())}})
                 .sort({created: 1})
                 .exec(function (err, items) {
                     if (err) {
@@ -49,8 +49,8 @@ module.exports = {
 
         if (req.params && req.params.did && req.params.date) {
 
-            var _date = req.params.date.split('-'); // date format: YYYY-MM-DD
-            Schedule.find({doctor: req.params.did, from: (new Date(_date[0], _date[1], _date[2]))})
+            var _date = +new Date(req.params.date);
+            Schedule.find({doctor: req.params.did, from: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }}) // select the selected day
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -100,18 +100,14 @@ module.exports = {
         if (!schedule.from) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
-        var dateArray = schedule.from.split('-');
-        var _date_from = new Date(dateArray[0], dateArray[1], dateArray[2]);
-        dateArray = schedule.to.split('-');
-        var _date_to = new Date(dateArray[0], dateArray[1], dateArray[2]);
 
         // 不存在，创建
         Schedule.create({
 
             name: schedule.name,
             doctor: schedule.doctor,
-            from: _date_from,
-            to: _date_to,
+            from: schedule.from,
+            to: schedule.to,
             limit: schedule.limit
         }, function (err, raw) {
             if (err) {

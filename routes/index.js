@@ -69,7 +69,7 @@ router.route('/group')
 
 
 //---------------- 医患关系
-var Relationship = require('../db/controller/relationshiop');
+var Relationship = require('../db/controller/relationship');
 
 router.route('/relationships')
     .get(Relationship.GetAll);
@@ -180,18 +180,18 @@ var Booking = require('../db/controller/booking');
 router.route('/bookings')
     .get(Booking.GetAll);
 
-router.route('/schedules/user/:did')
+router.route('/bookings/user/:uid')
     .get(Booking.GetByUserId);
 
-router.route('/schedules/doctor/:did')
+router.route('/bookings/doctor/:did')
     .get(Booking.GetByDoctorId);
-router.route('/schedules/doctor/:did/:date')
+router.route('/bookings/doctor/:did/:date')
     .get(Booking.GetByDoctorIdAndDate);
 
-router.route('/schedule')
+router.route('/booking')
     .post(urlencodedParser, Booking.Add);
 
-router.route('/schedule/:id')
+router.route('/booking/:id')
     .get(Booking.GetById)
     .delete(Booking.DeleteById);
 

@@ -6,8 +6,8 @@ var Schema = global.mongoose.Schema;
 
 var _Group = new Schema({
 
-    doctor: {type: Schema.Types.ObjectId, ref: 'doctor' },
-    name: String,
+    doctor: {type: Schema.Types.ObjectId, ref: 'doctor', required: true },
+    name: {type: String, required: true},
     apply: {type : Boolean, default: true}
 });
 

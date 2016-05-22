@@ -150,7 +150,7 @@ module.exports = {
                     return Status.returnStatus(res, Status.NULL);
                 }
 
-                item.group = relatioship.group;
+                item.group = relationship.group;
 
                 //console.log(JSON.stringify(item));
 
@@ -170,7 +170,7 @@ module.exports = {
     DeleteById: function (req, res) {
         if (req.params && req.params.id) { // params.id is chatroom ID
 
-            Chatroom.findOne({_id: req.params.id}, function (err, item) {
+            Relationship.findOne({_id: req.params.id}, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }

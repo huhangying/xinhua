@@ -8,7 +8,7 @@ module.exports = {
 
     GetAll: function (req, res) {
 
-        Booking.find({from: {$gte: (new Date())}})
+        Booking.find()
             .sort({created: 1})
             .exec(function (err, items) {
                 if (err) {
@@ -49,7 +49,7 @@ module.exports = {
 
         if (req.params && req.params.uid) {
 
-            Booking.find({user: req.params.uid, from: {$gte: (new Date())}})
+            Booking.find({user: req.params.uid})
                 .sort({created: 1})
                 .exec(function (err, items) {
                     if (err) {
@@ -70,7 +70,7 @@ module.exports = {
 
         if (req.params && req.params.did) {
 
-            Booking.find({doctor: req.params.did, from: {$gte: (new Date())}})
+            Booking.find({doctor: req.params.did})
                 .sort({created: 1})
                 .exec(function (err, items) {
                     if (err) {
@@ -86,13 +86,17 @@ module.exports = {
         }
     },
 
+    //TODO: not working
     // 根据药师ID和日期 获取相关的预约
     GetByDoctorIdAndDate: function (req, res) {
 
         if (req.params && req.params.did && req.params.date) {
 
-            var _date = req.params.date.split('-'); // date format: YYYY-MM-DD
-            Booking.find({doctor: req.params.did, from: (new Date(_date[0], _date[1], _date[2]))})
+            var _date = +new Date(req.params.date);
+
+            Booking.find({doctor: req.params.did }) //from: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }}
+                .populate('schedule')
+                //.where({from: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -127,13 +131,15 @@ module.exports = {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
 
+
+
         // 不存在，创建
         Booking.create({
 
             doctor: booking.doctor,
             user: booking.user,
             schedule: booking.schedule,
-            status: 0 // 0: 创建
+            status: booking.status | 0 // 0: 创建
         }, function (err, raw) {
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);

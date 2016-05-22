@@ -10,6 +10,7 @@ global._ = require('lodash');
 global.Util = require('./util/util.js');
 global.Status = require('./util/status.js');
 global.mongoose = require('mongoose');
+global.moment = require('moment');
 //require('express-mongoose');
 global.mongoose.connect('mongodb://127.0.0.1:27017/eyao');
 
