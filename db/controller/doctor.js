@@ -30,12 +30,12 @@ module.exports = {
             });
     },
 
-    // 根据药师用户ID获取用户信息
-    GetByUserId: function (req, res) {
+    // 根据药师ID获取用户信息
+    GetById: function (req, res) {
 
         if (req.params && req.params.id) {
 
-            var result = Doctor.findOne({user_id: req.params.id, apply: true})
+            var result = Doctor.findOne({_id: req.params.id, apply: true})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);

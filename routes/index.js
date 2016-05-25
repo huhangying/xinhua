@@ -36,7 +36,7 @@ router.route('/doctors/:number')
     .get(Doctor.GetAll);//
 
 router.route('/doctor/:id')
-    .get(Doctor.GetByUserId)
+    .get(Doctor.GetById)
     .delete(Doctor.DeleteByUserId)
     .post(urlencodedParser, Doctor.AddByUserId)
     .patch(urlencodedParser, Doctor.UpdateByUserId);
@@ -46,7 +46,7 @@ router.route('/doctor/cell/:cell')
 router.route('/doctor/userid/:userid')
     .get(Doctor.GetByUserId);
 
-router.route('/login')
+router.route('/doctor/login')
     .patch(urlencodedParser, Doctor.Login);
 
 
