@@ -46,7 +46,7 @@ router.route('/doctor/cell/:cell')
 router.route('/doctor/userid/:userid')
     .get(Doctor.GetByUserId);
 
-router.route('/doctor/login')
+router.route('/login/doctor')
     .patch(urlencodedParser, Doctor.Login);
 
 

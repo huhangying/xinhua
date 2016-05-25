@@ -273,7 +273,6 @@ module.exports = {
         if (!login.password) {
             return Status.returnStatus(res, Status.NO_PASSWORD);
         }
-
         Doctor.find({user_id: login.user_id}, function(err, items){
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);
@@ -283,8 +282,9 @@ module.exports = {
                 return Status.returnStatus(res, Status.NOT_REGISTERED);
             }
 
+
             //console.log(Util.decrypt(items[0].password));
-            //console.log(Util.encrypt(login.password) + ' : ' + items[0].password);
+            console.log(Util.encrypt(login.password) + ' : ' + items[0].password);
             // check password
             if (login.password != Util.decrypt(items[0].password)){
                 return Status.returnStatus(res, Status.WRONG_PASSWORD);
