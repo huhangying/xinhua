@@ -129,7 +129,7 @@ module.exports = {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
-                    res.send('update group name success: ', raw);
+                    res.json(raw);
                 });
 
             });
@@ -154,7 +154,7 @@ module.exports = {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
-                    res.send('remove group success: ', raw);
+                    res.json(raw);
                 });
 
             });

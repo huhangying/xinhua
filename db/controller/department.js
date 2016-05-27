@@ -115,7 +115,7 @@ module.exports = {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
-                    res.send('update department success: ', raw);
+                    res.json(raw);
                 });
 
             });

@@ -118,7 +118,7 @@ var self = module.exports = {
                         if (err) {
                             return Status.returnStatus(res, Status.ERROR, err);
                         }
-                        res.send('create disease: ', raw);
+                        res.send(raw);
                     });
 
             });
@@ -171,11 +171,11 @@ var self = module.exports = {
                                     apply: _item.apply}},
                                 {upsert:true},
                                 function (err, raw) {
-                                console.log(JSON.stringify(raw));
+                                //console.log(JSON.stringify(raw));
                                 if (err) {
                                     return Status.returnStatus(res, Status.ERROR, err);
                                 }
-                                res.send('updated disease: ', raw);
+                                res.send(raw);
                             });
 
                         });
@@ -203,7 +203,7 @@ var self = module.exports = {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
 
-                    res.send('deleted disease: ', raw);
+                    res.send(raw);
                 });
 
             });

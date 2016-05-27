@@ -159,7 +159,7 @@ module.exports = {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
-                    res.send('update relationship group success: ', raw);
+                    res.json(raw);
                 });
 
             });
@@ -184,7 +184,7 @@ module.exports = {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
-                    res.send('remove chatroom success: ', raw);
+                    res.json(raw);
                 });
 
             });

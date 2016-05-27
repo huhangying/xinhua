@@ -209,7 +209,7 @@ module.exports = {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
-                    res.send('update doctor success: ', raw);
+                    res.json(raw);
                 });
 
             });
@@ -233,7 +233,7 @@ module.exports = {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
-                    res.send('remove doctor success: ', raw);
+                    res.json(raw);
                 });
 
             });

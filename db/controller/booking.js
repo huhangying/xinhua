@@ -170,7 +170,7 @@ module.exports = {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
-                    res.send('remove booking success: ', raw);
+                    res.json(raw);
                 });
 
             });

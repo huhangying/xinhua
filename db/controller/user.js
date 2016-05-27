@@ -115,7 +115,7 @@ module.exports = {
                             return Status.returnStatus(res, Status.ERROR, err);
                         }
 
-                        return res.send(raw);
+                        return res.json(raw);
                     });
 
                 });
@@ -157,7 +157,7 @@ module.exports = {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
-                    res.send('update user success: ', raw);
+                    res.json(raw); //update user success
                 });
 
             });
