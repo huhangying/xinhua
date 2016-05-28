@@ -34,6 +34,8 @@ var Doctor = require('../db/controller/doctor');
 
 router.route('/doctors/:number')
     .get(Doctor.GetAll);//
+router.route('/doctors/:number/:skip')
+    .get(Doctor.GetAndSkip);//
 
 router.route('/doctor/:id')
     .get(Doctor.GetById)
@@ -45,6 +47,9 @@ router.route('/doctor/cell/:cell')
     .get(Doctor.GetByCell);
 router.route('/doctor/userid/:userid')
     .get(Doctor.GetByUserId);
+
+router.route('/doctors/department/:departmentid')
+    .get(Doctor.GetByDepartmentId);//
 
 router.route('/login/doctor')
     .patch(urlencodedParser, Doctor.Login);

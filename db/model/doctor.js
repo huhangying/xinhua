@@ -6,10 +6,11 @@ var Schema = global.mongoose.Schema;
 
 var _Doctor = new Schema({
 
-    user_id: String,
+    user_id: {type: String, required: true},
     password: String,
-    name: String,
-    department: String,
+    name: {type: String, required: true},
+    //department: String,
+    department: {type: Schema.Types.ObjectId, ref: 'department', required: true },
     title: String,
     tel: String,
     cell: String,

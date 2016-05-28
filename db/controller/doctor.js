@@ -30,6 +30,38 @@ module.exports = {
             });
     },
 
+    //
+    GetAndSkip: function (req, res) {
+
+        // validation
+        if (!req.params.number || !req.params.skip) {
+            return Status.returnStatus(res, Status.MISSING_PARAM);
+        }
+
+        var number = _.parseInt(req.params.number);
+        if (number == 0){
+            return Status.returnStatus(res, Status.INVALID_PARAM);
+        }
+        var skip = _.parseInt(req.params.skip);
+        //console.log('number: ' + number + ', skip: ' + skip);
+
+        Doctor.find({apply: true})
+            .sort({updated: -1})
+            .skip(skip)
+            .limit(number)
+            .exec(function (err, items) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!items || items.length < 1) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                res.json(items);
+            });
+    },
+
     // 根据药师ID获取用户信息
     GetById: function (req, res) {
 
@@ -54,17 +86,17 @@ module.exports = {
     GetByCell: function (req, res) {
 
         if (req.params && req.params.cell) {
-            Doctor.find({cell: req.params.cell, apply: true})
-                .exec(function (err, items) {
+            Doctor.findOne({cell: req.params.cell, apply: true})
+                .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
 
-                    if (!items || items.length < 1) {
+                    if (!item || item.length < 1) {
                         return Status.returnStatus(res, Status.NULL);
                     }
 
-                    res.json(items);
+                    res.json(item);
                 });
 
         }
@@ -89,7 +121,25 @@ module.exports = {
         }
     },
 
+    // 根据药师ID获取用户信息
+    GetByDepartmentId: function (req, res) {
 
+        if (req.params && req.params.departmentid) {
+
+            var result = Doctor.find({department: req.params.departmentid, apply: true})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
 
     // 创建药师用户
     AddByUserId: function (req, res) {
@@ -108,6 +158,11 @@ module.exports = {
             // password
             if (!doctor.password) {
                 return Status.returnStatus(res, Status.NO_PASSWORD);
+            }
+
+            // department
+            if (!doctor.department) {
+                return Status.returnStatus(res, Status.MISSING_PARAM);
             }
 
             // name
@@ -151,6 +206,8 @@ module.exports = {
                         gender: doctor.gender,
                         expertise: doctor.expertise,
                         bulletin: doctor.bulletin,
+                        hours: doctor.hours,
+                        honor: doctor.honor,
                         icon: doctor.icon
                     }, function (err, raw) {
                         if (err) {
@@ -199,6 +256,10 @@ module.exports = {
                     item.expertise = doctor.expertise;
                 if (doctor.bulletin)
                     item.bulletin = doctor.bulletin;
+                if (doctor.hours)
+                    item.hours = doctor.hours;
+                if (doctor.honor)
+                    item.honor = doctor.honor;
                 if (doctor.icon)
                     item.icon = doctor.icon;
 
