@@ -23,6 +23,9 @@ module.exports =  {
     WRONG_PASSWORD: 'WRONG_PASSWORD',
     PASS:　'PASS',
 
+    CHATROOM_ERROR: 'CHATROOM_ERROR',
+    NO_MESSAGE: 'NO_MESSAGE',
+
 
     returnStatus: function(res, status, err){
         var ret  = _.extend({return: status}, err);

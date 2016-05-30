@@ -68,16 +68,16 @@ module.exports = {
         if (req.params && req.params.id) {
 
             var result = Doctor.findOne({_id: req.params.id, apply: true})
-                .exec(function (err, items) {
+                .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
 
-                    if (!items || items.length < 1) {
+                    if (!item) {
                         return Status.returnStatus(res, Status.NULL);
                     }
 
-                    res.json(items);
+                    res.json(item);
                 });
         }
     },
@@ -354,7 +354,26 @@ module.exports = {
             return Status.returnStatus(res, Status.PASS);
         });
 
+    },
+
+    //====================================================== for service
+
+    GetNameById : function(id) {
+
+        Doctor.findOne({_id: id, apply: true})
+            .exec(function (err, item) {
+                if (err) {
+                    return '';
+                }
+
+                if (!item) {
+                    return '';
+                }
+
+                return item.name;
+            });
     }
+
 
 
 }

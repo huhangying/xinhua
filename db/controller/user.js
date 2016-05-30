@@ -181,5 +181,23 @@ module.exports = {
         }
     },
 
+    //====================================================== for service
+
+    GetNameById : function(id) {
+        User.findOne({_id: id, apply: true})
+            .exec(function (err, item) {
+                if (err) {
+                    return '';
+                }
+
+                if (!item) {
+                    return '';
+                }
+
+                return item.name;
+            });
+    }
+
+
 }
 

@@ -2,8 +2,95 @@
  * Created by hhu on 2016/5/15.
  */
 var Chatroom = require('../model/chatroom.js');
+var UserService = require('user');
+var DoctorService = require('doctor');
 
 module.exports = {
+
+    //==================== Service
+    CheckDoctorMsg: function(req, res) {
+
+        if (req.params && req.params.id) {
+
+            Chatroom.find({doctor: req.params.id, doctor_unread: { $gt: 0} })
+                .sort({updated: -1})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+
+    },
+
+    CheckUserMsg: function(req, res) {
+
+        if (req.params && req.params.id) {
+
+            Chatroom.find({user: req.params.id, user_unread: { $gt: 0} })
+                .sort({updated: -1})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+
+    },
+
+    // return:
+    //      number of unread: n;
+    //      failed: -1
+    ResetChatroom: function (id, direction) {
+        var number = 0;
+
+        Chatroom.findById(id)
+            .exec(function (err, item) {
+                if (err) {
+                    return -1;
+                }
+
+                if (!item) {
+                    return 0;
+                }
+
+                if (direction == 0) {
+                    if (item.user_unread > 0){
+                        number = item.user_unread;
+                        item.user_unread = 0;
+                        item.save();
+
+                        return number;
+                    }
+                }
+                else if (direction == 1){
+                    if (item.doctor_unread > 0){
+                        number = item.doctor_unread;
+                        item.doctor_unread = 0;
+                        item.save();
+
+                        return number;
+                    }
+                }
+                return -1;
+            })
+
+    },
+
+    // ===========================
+
 
     GetAll: function (req, res) {
 
@@ -186,5 +273,55 @@ module.exports = {
     },
 
 
+    //============================================================== Inner function
 
+    // 根据 doctor 和 user IDs 查找chatroom。 如果不存在，则创建一个。
+    // return: chatroom id;
+    GetAndUpdateChatroom: function (userid, doctorid, direction) {
+
+        Chatroom.findOne( {user: userid, doctor: doctorid})
+            .exec(function (err, item){
+                if (err) {
+                    return null;
+                }
+
+                if (!item) {
+                    // 不存在，创建
+
+                    // set chatroom name (format: user name | doctor name)
+                    var name = UserService.GetNameById(userid) + '|' + DoctorService.GetNameById(doctorid);
+                    var user_unread = direction == 0 ? 1 : 0;
+                    var doctor_unread = direction == 1 ? 1 : 0;
+
+                    // create
+                    Chatroom.create({
+
+                        name: name,
+                        doctor: doctorid,
+                        user: userid,
+                        user_unread: user_unread,
+                        doctor_unread: doctor_unread
+                    }, function (err, raw) {
+                        if (err) {
+                            return null;
+                        }
+                        return raw._id;
+                    });
+
+                }
+
+                if (direction == 0){
+                    item.user_unread++;
+                }
+                else if (direction == 1){
+                    item.doctor_unread++;
+                }
+                item.updated = Date.now();
+
+                item.save();
+
+                return item._id;
+
+            });
+    },
 }

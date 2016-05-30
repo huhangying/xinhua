@@ -6,7 +6,7 @@ var Schema = global.mongoose.Schema;
 
 var _Chat = new Schema({
 
-    room: {type: Schema.Types.ObjectId, ref: 'chatroom' }, // 聊天室
+    chatroom: {type: Schema.Types.ObjectId, ref: 'chatroom', required: true }, // 聊天室
     direction: Number, // 消息方向：   0： user->doctor;      1: doctor->user
     type: Number, // 消息類別： 0：Text；      1：圖片；      2：語音；       4：視頻；
     data: String,

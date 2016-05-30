@@ -145,6 +145,11 @@ router.route('/chatroom/:id')
     .delete(Chatroom.DeleteById);
 
 
+router.route('/chatrooms/check/doctor/:id')
+    .get(Chatroom.CheckDoctorMsg);
+router.route('/chatrooms/check/user/:id')
+    .get(Chatroom.CheckUserMsg);
+
 
 //---------------- 聊天 chat
 var Chat = require('../db/controller/chat');
@@ -158,6 +163,18 @@ router.route('/chat/:id')
 
 router.route('/chat')
     .post(urlencodedParser, Chat.Add);
+
+
+router.route('/chat/send')
+    .post(urlencodedParser, Chat.SendMsg);
+
+router.route('/chats/receive')
+    .post(urlencodedParser, Chat.ReceiveMsg);
+
+router.route('/chats/load/doctor/:chatroom')
+    .get(Chat.LoadDoctorMsg);
+router.route('/chats/load/user/:chatroom')
+    .get(Chat.LoadUserMsg);
 
 
 //---------------- 门诊

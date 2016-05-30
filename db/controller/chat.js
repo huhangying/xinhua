@@ -2,8 +2,136 @@
  * Created by hhu on 2016/5/14.
  */
 var Chat = require('../model/chat.js');
+var ChatroomService =  require('chatroom');
+
 
 module.exports = {
+
+    // for API access
+    SendMsg: function (req, res) {
+
+        var chat = req.body;
+        if (!chat) return res.sendStatus(400);
+
+
+        // check input(chatroom, direction, type, data)
+        if (!chat.user || !chat.doctor || !chat.direction || !chat.type || !chat.data) {
+            return Status.returnStatus(res, Status.MISSING_PARAM);
+        }
+
+        // find chatroom. create one if not existed.
+        var chatroom_id = ChatroomService.GetAndUpdateChatroom(chat.user, chat.doctor, chat.direction);
+
+        if (!chatroom_id){
+            return Status.returnStatus(res, Status.CHATROOM_ERROR);
+        }
+
+        Chat.create({
+
+            chatroom: chatroom_id,
+            direction: chat.direction,
+            type: chat.type,
+            data: chat.data
+        }, function (err, raw) {
+            if (err) {
+                return Status.returnStatus(res, Status.ERROR, err);
+            }
+
+            return res.send(raw);
+        });
+
+    },
+
+    LoadDoctorMsg: function (req, res) {
+        if (req.params && req.params.id) {
+            req.body = {
+                direction: 1,
+                chatroom: req.parames.id
+            };
+            return this.LoadMsgByChatroom(req, res);
+        }
+    },
+
+    LoadUserMsg: function (chatroom) {
+        if (req.params && req.params.id) {
+            req.body = {
+                direction: 0,
+                chatroom: req.parames.id
+            };
+            return this.LoadMsgByChatroom(req, res);
+        }
+    },
+
+    ReceiveMsg: function (req, res) {
+
+        var chat = req.body;
+        if (!chat) return res.sendStatus(400);
+
+        // check input(chatroom, direction)
+        if (!chat.chatroom || !chat.direction) {
+            return Status.returnStatus(res, Status.MISSING_PARAM);
+        }
+
+        // reset chatroom
+        var ret = ChatroomService.ResetChatroom(chat.chatroom, chat.direction);
+        if (ret < 0) {
+            return Status.returnStatus(res, Status.FAILED);
+        }
+        else if (ret == 0) {
+            return Status.returnStatus(res, Status.NO_MESSAGE);
+        }
+        else {
+            //todo: should not count the peers.
+            var limit = 20; // 20 is a default
+            if (chat.limit){
+                var _limit = _.parseInt(chat.limit);
+                if (_limit > limit) {
+                    limit = _limit;
+                }
+            }
+
+            Chat.find({chatroom: chat.chatroom})
+                .sort({created: -1})
+                .limit(limit)
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    return res.json(items);
+                });
+
+        }
+
+    },
+
+
+    // 根据Chatroom ID 获取聊天记录(包括自己的)
+    LoadMsgByChatroom: function (req, res) {
+        // 获取请求数据（json）
+        var chat = req.body;
+        if (!chat) return res.sendStatus(400);
+
+        Chat.find({chatroom: chat.chatroom, direction: chat.direction })
+            .sort({created: -1})
+            .limit(20)
+            .exec(function (err, items) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!items || items.length < 1) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                return res.json(items);
+            });
+    },
+
 
     // for test
     GetAll: function (req, res) {
@@ -52,7 +180,7 @@ module.exports = {
         if (!chat) return res.sendStatus(400);
 
         // check input(chatroom, direction, type, data)
-        if (!chat.chatroom | !chat.direction | !chat.type | !chat.data) {
+        if (!chat.chatroom || !chat.direction || !chat.type || !chat.data) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
 
