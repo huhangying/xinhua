@@ -18,7 +18,10 @@ var User = require('../db/controller/user');
 router.route('/users/:number')
     .get(User.GetAll);//
 
-router.route('/user/:cell')
+router.route('/user/:id')
+    .get(User.GetById);
+
+router.route('/user/cell/:cell')
     .get(User.GetByCell);
 
 router.route('/user/wechat/:id')

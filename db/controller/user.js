@@ -30,13 +30,13 @@ module.exports = {
             });
     },
 
-    // 根据微信号获取用户信息
-    GetByLinkId: function (req, res) {
+    // 根据ID获取用户信息
+    GetById: function (req, res) {
 
         if (req.params && req.params.id) {
 
-            var result = User.findOne({link_id: req.params.id, apply: true})
-                .exec(function(err, users) {
+            var result = User.findOne({_id: req.params.id})
+                .exec(function(err, user) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
@@ -46,6 +46,26 @@ module.exports = {
                     }
 
                     res.json(users);
+                });
+        }
+    },
+
+    // 根据微信号获取用户信息
+    GetByLinkId: function (req, res) {
+
+        if (req.params && req.params.id) {
+
+            var result = User.findOne({link_id: req.params.id, apply: true})
+                .exec(function(err, user) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!user) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(user);
                 });
         }
     },
