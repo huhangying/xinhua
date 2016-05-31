@@ -2,7 +2,7 @@
  * Created by hhu on 2016/5/14.
  */
 var Chat = require('../model/chat.js');
-var ChatroomService =  require('chatroom');
+var ChatroomService =  require('./chatroom.js');
 
 
 module.exports = {

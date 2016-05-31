@@ -41,11 +41,11 @@ module.exports = {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
 
-                    if (!users || users.length < 1) {
+                    if (!user) {
                         return Status.returnStatus(res, Status.NULL);
                     }
 
-                    res.json(users);
+                    res.json(user);
                 });
         }
     },

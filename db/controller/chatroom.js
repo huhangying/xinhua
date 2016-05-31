@@ -2,8 +2,8 @@
  * Created by hhu on 2016/5/15.
  */
 var Chatroom = require('../model/chatroom.js');
-var UserService = require('user');
-var DoctorService = require('doctor');
+var UserService = require('./user.js');
+var DoctorService = require('./doctor.js');
 
 module.exports = {
 
