@@ -22,9 +22,11 @@ $(function() {
 
 
     // Sends msg to doctor (direction = 0)
-    var sendMsgToDoctor = function(message) {
+    var sendMsgToDoctor = function() {
+        var message = $inputMessage.val();
+
         // populate data
-        $.get(BASE_API_URL + "/user/" + DEMO_USER_ID,
+        $.get(BASE_API_URL + "user/" + DEMO_USER_ID,
             function(result) {
                 if (!result) {
                     return console.log('get no user!');
@@ -41,30 +43,29 @@ $(function() {
 
                 sendMessage(data);
             });
-
-
-
     }
 
 
     // Sends a chat message
-    function sendMessage (data) {
-        var message = $inputMessage.val();
+    var sendMessage = function(chat) {
 
-        // if there is a non-empty message and a socket connection
-        if (message) {
-            $inputMessage.val('');
+        // if there is a non-empty message and a send request
+        if (chat.data) {
+            $inputMessage.val(''); // clean text input
             addChatMessage({
-                username: data.user_name,
-                message: data.message
+                username: chat.user_name,
+                message: chat.data
             });
+
+            console.log(JSON.stringify(chat));
+
             // tell server to execute 'new message' and send along one parameter
             $.ajax({
-                url: BASE_API_URL + "/chat/send",
-                type: "PATCH",
+                url: BASE_API_URL + "chat/send",
+                type: "POST",
                 dataType: "json", // expected format for response
                 contentType: "application/json", // send as JSON
-                data: JSON.stringify(data),
+                data: JSON.stringify(chat),
 
                 success: function(result) {
                     //called when successful
@@ -73,6 +74,7 @@ $(function() {
 
                 error: function() {
                     //called when there is an error
+                    alert('error')
                 },
             });
         }
@@ -149,12 +151,12 @@ $(function() {
     });
 
     $('#chatSend').click(function(){
-        sendMessage();
+        sendMsgToDoctor();
     });
 
     $inputMessage.keypress(function(e){
         if(e.keyCode==13)
-            sendMessage();
+            sendMsgToDoctor();
     });
 
 });
