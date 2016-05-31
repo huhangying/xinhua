@@ -15,7 +15,7 @@ module.exports = {
 
 
         // check input(chatroom, direction, type, data)
-        if (!chat.user || !chat.doctor || !chat.direction || !chat.type || !chat.data) {
+        if (!chat.user || !chat.doctor || !chat.data) {
             console.log(JSON.stringify(chat));
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
