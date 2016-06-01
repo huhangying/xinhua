@@ -286,43 +286,44 @@ module.exports = {
                     return null;
                 }
 
-                if (!item) {
-                    // 不存在，创建
+                // 存在
+                if (item) {
 
-                    // set chatroom name (format: user name | doctor name)
-                    var name = UserService.GetNameById(userid) + '|' + DoctorService.GetNameById(doctorid);
-                    var user_unread = direction == 0 ? 1 : 0;
-                    var doctor_unread = direction == 1 ? 1 : 0;
+                    if (direction == 0){
+                        item.user_unread++;
+                    }
+                    else if (direction == 1){
+                        item.doctor_unread++;
+                    }
+                    item.updated = Date.now();
 
-                    // create
-                    Chatroom.create({
+                    item.save();
 
+                    return item._id;
+                }
+
+                // 不存在，创建
+
+                // set chatroom name (format: user name | doctor name)
+                var name = UserService.GetNameById(userid) + '|' + DoctorService.GetNameById(doctorid);
+                var user_unread = direction == 0 ? 1 : 0;
+                var doctor_unread = direction == 1 ? 1 : 0;
+
+                // create
+                Chatroom.create({
                         name: name,
                         doctor: doctorid,
                         user: userid,
                         user_unread: user_unread,
                         doctor_unread: doctor_unread
-                    }, function (err, raw) {
+                    },
+                    function (err, raw) {
                         if (err) {
                             console.log('create chatroom: ' + err.message);
                             return null;
                         }
                         return raw._id;
                     });
-
-                }
-
-                if (direction == 0){
-                    item.user_unread++;
-                }
-                else if (direction == 1){
-                    item.doctor_unread++;
-                }
-                item.updated = Date.now();
-
-                item.save();
-
-                return item._id;
 
             });
     },
