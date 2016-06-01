@@ -22,7 +22,7 @@ module.exports = {
         // find chatroom. create one if not existed.
 
         ChatroomService.GetAndUpdateChatroom(chat.user, chat.doctor, chat.direction, chat.username)
-            .then(function(err, chatroom) {
+            .then(function(chatroom) { // promise resolved
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }
@@ -32,20 +32,23 @@ module.exports = {
                 }
 
                 console.log(JSON.stringify(chatroom));
-                
+
                 Chat.create({
+                        chatroom: chatroom._id,
+                        direction: chat.direction,
+                        type: chat.type,
+                        data: chat.data
+                    },
+                    function (_err, raw) {
+                        if (_err) {
+                            return Status.returnStatus(res, Status.ERROR, _err);
+                        }
 
-                    chatroom: chatroom._id,
-                    direction: chat.direction,
-                    type: chat.type,
-                    data: chat.data
-                }, function (_err, raw) {
-                    if (_err) {
-                        return Status.returnStatus(res, Status.ERROR, _err);
-                    }
-
-                    return res.send(raw);
-                });
+                        return res.send(raw);
+                    });
+            },
+            function(err){ // promise rejected
+                return Status.returnStatus(res, Status.ERROR, err);
             });
 
     },
