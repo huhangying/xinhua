@@ -19,8 +19,6 @@ module.exports = {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
 
-        if ()
-
         // find chatroom. create one if not existed.
 
         ChatroomService.GetAndUpdateChatroom(chat.user, chat.doctor, chat.direction, chat.username)
