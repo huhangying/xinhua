@@ -53,7 +53,8 @@ $(function() {
         if (chat.data) {
             $inputMessage.val(''); // clean text input
             addChatMessage({
-                username: chat.user_name,
+                username: chat.user_name || '',
+                //doctorname: chat.doctor_name || '',
                 message: chat.data
             });
 

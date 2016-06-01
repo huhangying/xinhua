@@ -4,6 +4,7 @@
 var Chatroom = require('../model/chatroom.js');
 var UserService = require('./user.js');
 var DoctorService = require('./doctor.js');
+var Q = require('q');
 
 module.exports = {
 
@@ -277,13 +278,13 @@ module.exports = {
 
     // 根据 doctor 和 user IDs 查找chatroom。 如果不存在，则创建一个。
     // return: chatroom id;
-    GetAndUpdateChatroom: function (userid, doctorid, direction) {
+    GetAndUpdateChatroom: function (userid, doctorid, direction, username, doctorname) {
+        var deferred = Q.defer();
 
         Chatroom.findOne( {user: userid, doctor: doctorid})
             .exec(function (err, item){
                 if (err) {
-                    console.log('find chatroom: ' + err.message);
-                    return null;
+                    deferred.reject(err);
                 }
 
                 // 存在
@@ -298,14 +299,15 @@ module.exports = {
                     item.updated = Date.now();
 
                     item.save();
-                    console.log(JSON.stringify(item));
-                    return item._id;
+                    //console.log(JSON.stringify(item));
+
+                    deferred.resolve(item);
                 }
 
                 // 不存在，创建
 
                 // set chatroom name (format: user name | doctor name)
-                var name = UserService.GetNameById(userid) + '|' + DoctorService.GetNameById(doctorid);
+                var name = username || '' + '|' + doctorname || '';
                 var user_unread = direction == 0 ? 1 : 0;
                 var doctor_unread = direction == 1 ? 1 : 0;
 
@@ -319,12 +321,13 @@ module.exports = {
                     },
                     function (err, raw) {
                         if (err) {
-                            console.log('create chatroom: ' + err.message);
-                            return null;
+                            deferred.reject(err);
                         }
-                        return raw._id;
+
+                        deferred.resolve(raw);
                     });
 
             });
+        return deferred.promise;
     },
 }

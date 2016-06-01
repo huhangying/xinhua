@@ -4,7 +4,6 @@
 var Chat = require('../model/chat.js');
 var ChatroomService =  require('./chatroom.js');
 
-
 module.exports = {
 
     // for API access
@@ -20,26 +19,34 @@ module.exports = {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
 
+        if ()
+
         // find chatroom. create one if not existed.
-        var chatroom_id = ChatroomService.GetAndUpdateChatroom(chat.user, chat.doctor, chat.direction);
-        console.log('found chatroom_id: ' +  chatroom_id || '')
-        if (chatroom_id == null){
-            return Status.returnStatus(res, Status.CHATROOM_ERROR);
-        }
 
-        Chat.create({
+        ChatroomService.GetAndUpdateChatroom(chat.user, chat.doctor, chat.direction, chat.username)
+            .then(function(err, chatroom) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
 
-            chatroom: chatroom_id,
-            direction: chat.direction,
-            type: chat.type,
-            data: chat.data
-        }, function (err, raw) {
-            if (err) {
-                return Status.returnStatus(res, Status.ERROR, err);
-            }
+                if (!chatroom){
+                    return Status.returnStatus(res, Status.CHATROOM_ERROR);
+                }
 
-            return res.send(raw);
-        });
+                Chat.create({
+
+                    chatroom: chatroom._id,
+                    direction: chat.direction,
+                    type: chat.type,
+                    data: chat.data
+                }, function (_err, raw) {
+                    if (_err) {
+                        return Status.returnStatus(res, Status.ERROR, _err);
+                    }
+
+                    return res.send(raw);
+                });
+            });
 
     },
 
