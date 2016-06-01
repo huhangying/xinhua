@@ -303,29 +303,31 @@ module.exports = {
 
                     deferred.resolve(item);
                 }
+                else {
 
-                // 不存在，创建
+                    // 不存在，创建
 
-                // set chatroom name (format: user name | doctor name)
-                var name = username || '' + '|' + doctorname || '';
-                var user_unread = direction == 0 ? 1 : 0;
-                var doctor_unread = direction == 1 ? 1 : 0;
+                    // set chatroom name (format: user name | doctor name)
+                    var name = username || '' + '|' + doctorname || '';
+                    var user_unread = direction == 0 ? 1 : 0;
+                    var doctor_unread = direction == 1 ? 1 : 0;
 
-                // create
-                Chatroom.create({
-                        name: name,
-                        doctor: doctorid,
-                        user: userid,
-                        user_unread: user_unread,
-                        doctor_unread: doctor_unread
-                    },
-                    function (err, raw) {
-                        if (err) {
-                            deferred.reject(err);
-                        }
+                    // create
+                    Chatroom.create({
+                            name: name,
+                            doctor: doctorid,
+                            user: userid,
+                            user_unread: user_unread,
+                            doctor_unread: doctor_unread
+                        },
+                        function (err, raw) {
+                            if (err) {
+                                deferred.reject(err);
+                            }
 
-                        deferred.resolve(raw);
-                    });
+                            deferred.resolve(raw);
+                        });
+                }
 
             });
         return deferred.promise;
