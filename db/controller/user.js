@@ -204,8 +204,10 @@ module.exports = {
     //====================================================== for service
 
     GetNameById : function(id) {
-        User.findOne({_id: id, apply: true})
+        User.findOne({_id: id})
             .exec(function (err, item) {
+                console.log(JSON.stringify((item)));
+
                 if (err) {
                     return '';
                 }

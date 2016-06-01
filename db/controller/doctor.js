@@ -360,7 +360,7 @@ module.exports = {
 
     GetNameById : function(id) {
 
-        Doctor.findOne({_id: id, apply: true})
+        Doctor.findOne({_id: id})
             .exec(function (err, item) {
                 if (err) {
                     return '';
