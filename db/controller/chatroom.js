@@ -282,6 +282,7 @@ module.exports = {
         Chatroom.findOne( {user: userid, doctor: doctorid})
             .exec(function (err, item){
                 if (err) {
+                    console.log('find chatroom: ' + err.message);
                     return null;
                 }
 
@@ -303,6 +304,7 @@ module.exports = {
                         doctor_unread: doctor_unread
                     }, function (err, raw) {
                         if (err) {
+                            console.log('create chatroom: ' + err.message);
                             return null;
                         }
                         return raw._id;
