@@ -286,8 +286,6 @@ module.exports = {
                     return null;
                 }
 
-                console.log(JSON.stringify(item));
-
                 // 存在
                 if (item) {
 
@@ -300,7 +298,7 @@ module.exports = {
                     item.updated = Date.now();
 
                     item.save();
-
+                    console.log(JSON.stringify(item));
                     return item._id;
                 }
 
