@@ -31,6 +31,8 @@ module.exports = {
                     return Status.returnStatus(res, Status.CHATROOM_ERROR);
                 }
 
+                console.log(JSON.stringify(chatroom));
+                
                 Chat.create({
 
                     chatroom: chatroom._id,
