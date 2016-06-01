@@ -22,7 +22,7 @@ module.exports = {
 
         // find chatroom. create one if not existed.
         var chatroom_id = ChatroomService.GetAndUpdateChatroom(chat.user, chat.doctor, chat.direction);
-        console.log('fould chatroom_id: ' +  chatroom_id || '')
+        console.log('found chatroom_id: ' +  chatroom_id || '')
         if (chatroom_id == null){
             return Status.returnStatus(res, Status.CHATROOM_ERROR);
         }
