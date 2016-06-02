@@ -102,7 +102,6 @@ module.exports = {
             Chat.find({chatroom: chat.chatroom, read: 0})
                 .sort({created: 1})
                 .limit(limit)
-                .update({$inc: { read: 1}})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -113,7 +112,8 @@ module.exports = {
                     }
 
                     return res.json(items);
-                });
+                })
+                .update({$inc: { read: 1}});
 
         }
 
