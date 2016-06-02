@@ -99,27 +99,10 @@ module.exports = {
                 }
             }
 
-            //Chat.find({chatroom: chat.chatroom, read: 0})
-            //    .sort({created: 1})
-            //    .limit(limit)
-            //    .exec(function (err, items) {
-            //        if (err) {
-            //            return Status.returnStatus(res, Status.ERROR, err);
-            //        }
-            //
-            //        if (!items || items.length < 1) {
-            //            return Status.returnStatus(res, Status.NULL);
-            //        }
-            //
-            //        return res.json(items);
-            //    });
-
-            Chat.findAndModify(
-                {chatroom: chat.chatroom, read: 0},
-                [],
-                { $inc: { read: 1 } },
-                {},
-                function (err, items) {
+            Chat.find({chatroom: chat.chatroom, read: 0})
+                .sort({created: 1})
+                .limit(limit)
+                .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
@@ -127,9 +110,26 @@ module.exports = {
                     if (!items || items.length < 1) {
                         return Status.returnStatus(res, Status.NULL);
                     }
+
                     return res.json(items);
-                }
-            );
+                });
+
+            //Chat.findAndModify(
+            //    {chatroom: chat.chatroom, read: 0},
+            //    [],
+            //    { $inc: { read: 1 } },
+            //    {},
+            //    function (err, items) {
+            //        if (err) {
+            //            return Status.returnStatus(res, Status.ERROR, err);
+            //        }
+            //
+            //        if (!items || items.length < 1) {
+            //            return Status.returnStatus(res, Status.NULL);
+            //        }
+            //        return res.json(items);
+            //    }
+            //);
 
         }
 

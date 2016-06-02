@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/chat.js" afterPath="$PROJECT_DIR$/db/controller/chat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/im/chat.js" afterPath="$PROJECT_DIR$/im/chat.js" />
     </list>
     <ignored path="Xinhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chat.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="chat.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6530249">
-              <caret line="118" column="18" selection-start-line="118" selection-start-column="18" selection-end-line="118" selection-end-column="18" />
+            <state vertical-scroll-proportion="-3.7333333">
+              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="114" selection-end-column="19" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
               </folding>
@@ -67,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chat.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="chat.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/im/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.866667">
-              <caret line="100" column="52" selection-start-line="100" selection-start-column="52" selection-end-line="100" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.63345194">
+              <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
                 <element signature="e#95#498#0" expanded="false" />
@@ -175,9 +176,9 @@
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/im/chat.html" />
         <option value="$PROJECT_DIR$/db/controller/chatroom.js" />
-        <option value="$PROJECT_DIR$/im/chat.js" />
         <option value="$PROJECT_DIR$/db/model/chat.js" />
         <option value="$PROJECT_DIR$/db/controller/chat.js" />
+        <option value="$PROJECT_DIR$/im/chat.js" />
       </list>
     </option>
   </component>
@@ -1000,17 +1001,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/im/chat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.866667">
-          <caret line="100" column="52" selection-start-line="100" selection-start-column="52" selection-end-line="100" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-            <element signature="e#95#498#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/chatroom.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.366667">
@@ -1031,10 +1021,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6530249">
-          <caret line="118" column="18" selection-start-line="118" selection-start-column="18" selection-end-line="118" selection-end-column="18" />
+        <state vertical-scroll-proportion="-3.7333333">
+          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="114" selection-end-column="19" />
           <folding>
             <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/im/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63345194">
+          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+            <element signature="e#95#498#0" expanded="false" />
           </folding>
         </state>
       </provider>
