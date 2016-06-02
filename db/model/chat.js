@@ -10,7 +10,8 @@ var _Chat = new Schema({
     direction: Number, // 消息方向：   0： user->doctor;      1: doctor->user
     type: Number, // 消息類別： 0：Text；      1：圖片；      2：語音；       4：視頻；
     data: String,
-    created: {type : Date, default: Date.now}
+    created: {type : Date, default: Date.now},
+    read: {type: Number, default: 0}
 });
 
 module.exports =  mongoose.model('chat', _Chat);

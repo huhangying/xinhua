@@ -36,6 +36,25 @@ $(function() {
     var userName = '';
     var doctorName = '';
     var direction = getUrlParameter('direction') == '1' ? 1 : 0;
+    var init = function (){
+        $.get(BASE_API_URL + "user/" + DEMO_USER_ID,
+            function(result) {
+                if (!result) {
+                    return console.log('get no user!');
+                }
+                userName = result.name;
+            });
+
+        $.get(BASE_API_URL + "doctor/" + DEMO_DOCTOR_ID,
+            function(result) {
+                if (!result) {
+                    return console.log('get no doctor!');
+                }
+                doctorName = result.name;
+            });
+    }
+    init();
+
 
     var checkReqUrl = BASE_API_URL + (direction == 1 ? 'chatrooms/check/doctor/' +  DEMO_DOCTOR_ID : 'chatrooms/check/user/' + DEMO_USER_ID);
 
@@ -51,7 +70,6 @@ $(function() {
                     _.forEach(chatrooms, function(chatroom){
                         if (chatroom.user == DEMO_USER_ID && chatroom.doctor == DEMO_DOCTOR_ID) {
                             receiveMsg(chatroom._id);
-                            return;
                         }
                     });
                 }
@@ -79,13 +97,17 @@ $(function() {
                 console.log(chats);
                 var data = {};
                 _.forEach(chats, function(chat){
-                    data = {
-                        username: userName,
-                        doctorname: doctorName,
-                        message: chat.message
+
+                    if (direction !== chat.direction){
+                        data = {
+                            username: userName,
+                            doctorname: doctorName,
+                            message: chat.data
+                        }
+
+                        receiveChatMessage(data);
                     }
 
-                    receiveChatMessage(data);
                 })
 
             },
@@ -97,69 +119,27 @@ $(function() {
         });
     }
 
-    // Sends msg to doctor (direction = 0)
-    var sendMsgToDoctor = function() {
-        var message = $inputMessage.val();
-
-        // populate data
-        $.get(BASE_API_URL + "user/" + DEMO_USER_ID,
-            function(result) {
-                if (!result) {
-                    return console.log('get no user!');
-                }
-
-                userName = result.name; // hard-code!
-
-                var data = {
-                    user_name: result.name,
-                    user: DEMO_USER_ID,
-                    doctor: DEMO_DOCTOR_ID,
-                    direction: 0,
-                    type: 0,
-                    data: message
-                };
-
-                sendMessage(data);
-            });
-    }
-
-    // Sends msg to user (direction = 1)
-    var sendMsgToUser = function() {
-        var message = $inputMessage.val();
-
-        // populate data
-        $.get(BASE_API_URL + "doctor/" + DEMO_DOCTOR_ID,
-            function(result) {
-                if (!result) {
-                    return console.log('get no doctor!');
-                }
-
-                doctorName = result.name; // hard-code!
-
-                var data = {
-                    doctor_name: result.name,
-                    user: DEMO_USER_ID,
-                    doctor: DEMO_DOCTOR_ID,
-                    direction: 1,
-                    type: 0,
-                    data: message
-                };
-
-                sendMessage(data);
-            });
-    }
-
-
     // Sends a chat message
-    var sendMessage = function(chat) {
+    var sendMessage = function() {
+
+        var message = $inputMessage.val();
+
+        // populate data
+        var chat = {
+            user: DEMO_USER_ID,
+            doctor: DEMO_DOCTOR_ID,
+            direction: direction,
+            type: 0,
+            data: message
+        };
 
         // if there is a non-empty message and a send request
         if (chat.data) {
             $inputMessage.val(''); // clean text input
 
             addChatMessage({
-                username: chat.user_name || '',
-                doctorname: chat.doctor_name || '',
+                username: userName,
+                doctorname: doctorName,
                 message: chat.data
             });
 
@@ -211,17 +191,17 @@ $(function() {
     // Adds the visual chat message to the message list
     function receiveChatMessage (data, options) {
 
-        var name = !direction == 1 ? data.doctorname : data.username;
-        var name_class = !direction == 1 ? 'name-right' : 'name-left';
+        var name = !(direction == 1) ? data.doctorname : data.username;
+        var name_class = !(direction == 1) ? 'name-right' : 'name-left';
 
-        var $usernameDiv = (!direction == 1 ? $('<span class="name-right"/>') : $('<span class="name-left"/>'))
+        var $usernameDiv = (!(direction == 1) ? $('<span class="name-right"/>') : $('<span class="name-left"/>'))
             .text(name)
             .css('color', getUsernameColor(name));
         var $messageBodyDiv = $('<span class="messageBody">')
             .text(data.message);
 
         var typingClass = data.typing ? 'typing' : '';
-        var $messageDiv = (!direction == 1 ? $('<li class="message right"/>') :  $('<li class="message"/>'))
+        var $messageDiv = (!(direction == 1) ? $('<li class="message right"/>') :  $('<li class="message"/>'))
             .data('username', name)
             .addClass(typingClass)
             .append($usernameDiv, $messageBodyDiv);
@@ -280,18 +260,12 @@ $(function() {
     });
 
     $('#chatSend').click(function(){
-        if (direction == 1)
-            sendMsgToUser();
-        else
-            sendMsgToDoctor();
+        sendMessage();
     });
 
     $inputMessage.keypress(function(e){
         if(e.keyCode==13){
-            if (direction == 1)
-                sendMsgToUser();
-            else
-                sendMsgToDoctor();
+            sendMessage();
         }
     });
 

@@ -29,7 +29,7 @@ module.exports = {
                         return Status.returnStatus(res, Status.CHATROOM_ERROR);
                     }
 
-                    console.log(JSON.stringify(chatroom));
+                    //console.log(JSON.stringify(chatroom));
 
                     Chat.create({
                             chatroom: chatroom._id,
@@ -99,8 +99,8 @@ module.exports = {
                 }
             }
 
-            Chat.find({chatroom: chat.chatroom})
-                .sort({created: -1})
+            Chat.find({chatroom: chat.chatroom, read: 0}, {$inc: { read: 1}} )
+                .sort({created: 1})
                 .limit(limit)
                 .exec(function (err, items) {
                     if (err) {
@@ -126,7 +126,7 @@ module.exports = {
         if (!chat) return res.sendStatus(400);
 
         Chat.find({chatroom: chat.chatroom, direction: chat.direction })
-            .sort({created: -1})
+            .sort({created: 1})
             .limit(20)
             .exec(function (err, items) {
                 if (err) {

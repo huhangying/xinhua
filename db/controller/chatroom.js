@@ -67,7 +67,7 @@ module.exports = {
                     return 0;
                 }
 
-                if (direction == 0) {
+                if (direction == 1) { // 医生只能读取患者的消息
                     if (item.user_unread > 0){
                         number = item.user_unread;
                         item.user_unread = 0;
@@ -76,7 +76,7 @@ module.exports = {
                         return number;
                     }
                 }
-                else if (direction == 1){
+                else if (direction == 0){  // 患者只能读取医生的消息
                     if (item.doctor_unread > 0){
                         number = item.doctor_unread;
                         item.doctor_unread = 0;
