@@ -48,7 +48,7 @@ $(function() {
                     //var peer = direction == 1 ? DEMO_USER_ID : DEMO_DOCTOR_ID;
                     // receive message
                     //console.log(JSON.stringify(chatrooms));
-                    chatrooms.forEach(function(chatroom){
+                    _.forEach(chatrooms, function(chatroom){
                         if (chatroom.user == DEMO_USER_ID && chatroom.doctor == DEMO_DOCTOR_ID) {
                             receiveMsg(chatroom._id);
                             return;
