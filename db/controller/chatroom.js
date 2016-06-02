@@ -13,7 +13,7 @@ module.exports = {
 
         if (req.params && req.params.id) {
 
-            Chatroom.find({doctor: req.params.id, doctor_unread: { $gt: 0} })
+            Chatroom.find({doctor: req.params.id, doctor_unread: { $gte: 1} })
                 .sort({updated: -1})
                 .exec(function (err, items) {
                     if (err) {
@@ -34,7 +34,7 @@ module.exports = {
 
         if (req.params && req.params.id) {
 
-            Chatroom.find({user: req.params.id, user_unread: { $gt: 0} })
+            Chatroom.find({user: req.params.id, user_unread: { $gte: 1} })
                 .sort({updated: -1})
                 .exec(function (err, items) {
                     if (err) {
@@ -308,7 +308,7 @@ module.exports = {
                     // 不存在，创建
 
                     // set chatroom name (format: user name | doctor name)
-                    var name = username || '' + '|' + doctorname || '';
+                    var name = username + '|' + doctorname;
                     var user_unread = direction == 0 ? 1 : 0;
                     var doctor_unread = direction == 1 ? 1 : 0;
 

@@ -152,6 +152,8 @@ router.route('/chatrooms/check/doctor/:id')
     .get(Chatroom.CheckDoctorMsg);
 router.route('/chatrooms/check/user/:id')
     .get(Chatroom.CheckUserMsg);
+//router.route('/chatroom/:userid/:doctorid')
+//    .get(Chatroom.GetByUseIdAndDoctorId);
 
 
 //---------------- 聊天 chat

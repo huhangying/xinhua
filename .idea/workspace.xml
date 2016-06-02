@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/im/lodash.core.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/chat.js" afterPath="$PROJECT_DIR$/db/controller/chat.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/chatroom.js" afterPath="$PROJECT_DIR$/db/controller/chatroom.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/im/chat.html" afterPath="$PROJECT_DIR$/im/chat.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/im/chat.js" afterPath="$PROJECT_DIR$/im/chat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/im/style.css" afterPath="$PROJECT_DIR$/im/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
     </list>
     <ignored path="Xinhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="171" column="36" selection-start-line="171" selection-start-column="36" selection-end-line="171" selection-end-column="36" />
+              <caret line="176" column="37" selection-start-line="176" selection-start-column="37" selection-end-line="176" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -70,8 +77,8 @@
       <file leaf-file-name="chat.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0">
-              <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+            <state vertical-scroll-proportion="-7.366667">
+              <caret line="23" column="83" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="83" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
               </folding>
@@ -82,8 +89,8 @@
       <file leaf-file-name="chat.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/im/chat.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.125">
-              <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+            <state vertical-scroll-proportion="-11.875">
+              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -92,11 +99,22 @@
       <file leaf-file-name="chat.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/im/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="18" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+            <state vertical-scroll-proportion="-20.0">
+              <caret line="76" column="38" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
+                <element signature="e#95#498#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/im/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-30.458334">
+              <caret line="99" column="1" selection-start-line="99" selection-start-column="1" selection-end-line="99" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -113,23 +131,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="department.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/controller/department.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="70" column="35" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#38#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="chatroom.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/controller/chatroom.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.87194246">
-              <caret line="329" column="17" selection-start-line="329" selection-start-column="17" selection-end-line="329" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.09496403">
+              <caret line="51" column="6" selection-start-line="51" selection-start-column="6" selection-end-line="51" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -180,14 +186,15 @@
         <option value="$PROJECT_DIR$/db/model/chatroom.js" />
         <option value="$PROJECT_DIR$/db/model/chat.js" />
         <option value="$PROJECT_DIR$/util/status.js" />
-        <option value="$PROJECT_DIR$/im/chat.html" />
-        <option value="$PROJECT_DIR$/im/style.css" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/db/controller/doctor.js" />
         <option value="$PROJECT_DIR$/db/controller/user.js" />
-        <option value="$PROJECT_DIR$/im/chat.js" />
-        <option value="$PROJECT_DIR$/db/controller/chat.js" />
+        <option value="$PROJECT_DIR$/im/doctor_chat.html" />
+        <option value="$PROJECT_DIR$/im/style.css" />
         <option value="$PROJECT_DIR$/db/controller/chatroom.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/im/chat.js" />
+        <option value="$PROJECT_DIR$/im/chat.html" />
+        <option value="$PROJECT_DIR$/db/controller/chat.js" />
       </list>
     </option>
   </component>
@@ -445,6 +452,11 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\WORK\xinhua\im" />
+    </key>
+  </component>
   <component name="RunManager" selected="Node.js.bin\www">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
@@ -547,7 +559,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1932" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1932" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.120192304" sideWeight="0.49425286" order="0" side_tool="false" content_ui="combo" />
@@ -593,16 +605,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/db/model/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -935,14 +937,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/im/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-40.041668">
-          <caret line="113" column="13" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/model/chat.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -991,32 +985,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/im/chat.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.125">
-          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/im/chat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="18" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="171" column="36" selection-start-line="171" selection-start-column="36" selection-end-line="171" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/disease.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-34.033333">
@@ -1027,10 +995,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/im/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-30.458334">
+          <caret line="99" column="1" selection-start-line="99" selection-start-column="1" selection-end-line="99" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/im/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.0">
+          <caret line="76" column="38" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+            <element signature="e#95#498#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/im/chat.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.875">
+          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="176" column="37" selection-start-line="176" selection-start-column="37" selection-end-line="176" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0">
-          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+        <state vertical-scroll-proportion="-7.366667">
+          <caret line="23" column="83" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="83" />
           <folding>
             <element signature="e#0#39#0" expanded="false" />
           </folding>
@@ -1039,8 +1042,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/chatroom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.87194246">
-          <caret line="329" column="17" selection-start-line="329" selection-start-column="17" selection-end-line="329" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.09496403">
+          <caret line="51" column="6" selection-start-line="51" selection-start-column="6" selection-end-line="51" selection-end-column="6" />
           <folding />
         </state>
       </provider>

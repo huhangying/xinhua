@@ -77,7 +77,7 @@ module.exports = {
         if (!chat) return res.sendStatus(400);
 
         // check input(chatroom, direction)
-        if (!chat.chatroom || !chat.direction) {
+        if (!chat.chatroom) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
 
@@ -189,7 +189,7 @@ module.exports = {
         if (!chat) return res.sendStatus(400);
 
         // check input(chatroom, direction, type, data)
-        if (!chat.chatroom || !chat.direction || !chat.type || !chat.data) {
+        if (!chat.chatroom || !chat.data) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
 
