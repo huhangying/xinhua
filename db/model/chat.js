@@ -14,4 +14,8 @@ var _Chat = new Schema({
     read: {type: Number, default: 0}
 });
 
+_Chat.statics.findAndModify = function (query, sort, doc, options, callback) {
+    return this.collection.findAndModify(query, sort, doc, options, callback);
+};
+
 module.exports =  mongoose.model('chat', _Chat);
