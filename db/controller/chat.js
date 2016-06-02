@@ -116,7 +116,7 @@ module.exports = {
 
             Chat.findAndModify(
                 {chatroom: chat.chatroom, read: 0},
-                {created: 1},
+                [],
                 { $inc: { read: 1 } },
                 {},
                 function (err, items) {
