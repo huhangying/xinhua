@@ -98,7 +98,7 @@ $(function() {
                 var data = {};
                 _.forEach(chats, function(chat){
 
-                    if (!chat && direction !== chat.direction){
+                    if (chat && direction !== chat.direction){
                         data = {
                             username: userName,
                             doctorname: doctorName,

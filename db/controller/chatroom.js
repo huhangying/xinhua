@@ -9,11 +9,12 @@ var Q = require('q');
 module.exports = {
 
     //==================== Service
+    // 查看有没有消息 - 查看自己的聊天室里面有没有对方的新消息！
     CheckDoctorMsg: function(req, res) {
 
         if (req.params && req.params.id) {
 
-            Chatroom.find({doctor: req.params.id, doctor_unread: { $gte: 1} })
+            Chatroom.find({doctor: req.params.id, user_unread: { $gte: 1} })
                 .sort({updated: -1})
                 .exec(function (err, items) {
                     if (err) {
@@ -34,7 +35,7 @@ module.exports = {
 
         if (req.params && req.params.id) {
 
-            Chatroom.find({user: req.params.id, user_unread: { $gte: 1} })
+            Chatroom.find({user: req.params.id, doctor_unread: { $gte: 1} })
                 .sort({updated: -1})
                 .exec(function (err, items) {
                     if (err) {
