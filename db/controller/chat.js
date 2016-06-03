@@ -111,6 +111,13 @@ module.exports = {
                         return Status.returnStatus(res, Status.NULL);
                     }
 
+                    //todo: 这里的效率很差，以后改进。
+                    // read 的计数器 +1
+                    items.forEach(function(item){
+                        item.read++;
+                        item.save();
+                    });
+
                     return res.json(items);
                 });
 
