@@ -52,6 +52,9 @@ $(function() {
                 }
                 doctorName = result.name;
             });
+
+        // set page title
+        document.title = direction == 1 ? '药师端' : '患者端';
     }
     init();
 
