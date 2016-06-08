@@ -142,7 +142,7 @@ module.exports = {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
 
-                    res.send('deleted department: ', raw);
+                    res.json(raw);
                 });
 
             });
