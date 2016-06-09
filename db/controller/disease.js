@@ -167,7 +167,7 @@ var self = module.exports = {
 
                             //_item.save();
                             Disease.update({_id: _item._id},
-                                {$set: {symptoms: _item.symptoms, name: _item.name, desc: _item.desc, order: _item.order,
+                                {$set: {symptoms: _item.symptoms, department: _item.department, name: _item.name, desc: _item.desc, order: _item.order,
                                     apply: _item.apply}},
                                 {upsert:true},
                                 function (err, raw) {
