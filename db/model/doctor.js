@@ -9,7 +9,7 @@ var _Doctor = new Schema({
     user_id: {type: String, required: true},
     password: String,
     name: {type: String, required: true},
-    //department: String,
+    role: {type: Number, required: true, default: 0 },
     department: {type: Schema.Types.ObjectId, ref: 'department', required: true },
     title: String,
     tel: String,

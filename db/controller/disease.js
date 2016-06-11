@@ -155,8 +155,11 @@ var self = module.exports = {
                         item.desc = disease.desc;
                     if (disease.order)
                         item.order = disease.order;
-                    if (disease.apply != null)
+                    if (disease.apply != null){
                         item.apply = disease.apply;
+                    }else{
+                        item.apply = false;
+                    }
 
                     item.symptoms.length = 0;
 
@@ -167,9 +170,13 @@ var self = module.exports = {
 
                             //_item.save();
                             Disease.update({_id: _item._id},
-                                {$set: {symptoms: _item.symptoms, department: _item.department, name: _item.name, desc: _item.desc, order: _item.order,
+                                {$set: {symptoms: _item.symptoms,
+                                    department: _item.department,
+                                    name: _item.name,
+                                    desc: _item.desc,
+                                    order: _item.order,
                                     apply: _item.apply}},
-                                {upsert:true},
+                                {upsert: true},
                                 function (err, raw) {
                                 //console.log(JSON.stringify(raw));
                                 if (err) {

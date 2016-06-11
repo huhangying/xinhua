@@ -9,7 +9,7 @@ module.exports = {
 
     GetAll: function (req, res) {
 
-        Department.find({apply: true})
+        Department.find()
             .sort({order: 1})
             .exec( function (err, items) {
             if (err) {
@@ -107,8 +107,12 @@ module.exports = {
                     item.desc = department.desc;
                 if (department.order)
                     item.order = department.order;
-
-                //console.log(JSON.stringify(item));
+                if (department.apply != null){
+                    item.apply = department.apply;
+                }else{
+                    item.apply = false;
+                }
+                console.log(JSON.stringify(item));
 
                 //
                 item.save(function (err, raw) {
