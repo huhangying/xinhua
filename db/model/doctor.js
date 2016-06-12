@@ -7,7 +7,7 @@ var Schema = global.mongoose.Schema;
 var _Doctor = new Schema({
 
     user_id: {type: String, required: true},
-    password: String,
+    password: {type: String, required: true},
     name: {type: String, required: true},
     role: {type: Number, required: true, default: 0 },
     department: {type: Schema.Types.ObjectId, ref: 'department', required: true },

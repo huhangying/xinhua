@@ -19,7 +19,7 @@ module.exports =  {
     NO_DOCTOR: 'no_doctor',
     MISSING_PARAM: 'missing_param',
     INVALID_PARAM: 'invalid_param',
-    NOT_REGISTERED: 'not_register',
+    NOT_REGISTERED: 'not_registered',
     WRONG_PASSWORD: 'WRONG_PASSWORD',
     PASS:　'PASS',
 

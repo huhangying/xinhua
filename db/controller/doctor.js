@@ -334,25 +334,28 @@ module.exports = {
         if (!login.password) {
             return Status.returnStatus(res, Status.NO_PASSWORD);
         }
-        Doctor.find({user_id: login.user_id}, function(err, items){
-            if (err) {
-                return Status.returnStatus(res, Status.ERROR, err);
-            }
+        Doctor.find({user_id: login.user_id, apply: true},
+            {_id: 1, user_id: 1, password: 1, name: 1, icon: 1, department: 1, role: 1}, // select fields
+            function(err, items){
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
 
-            if (!items || items.length < 1) {
-                return Status.returnStatus(res, Status.NOT_REGISTERED);
-            }
+                if (!items || items.length < 1) {
+                    return Status.returnStatus(res, Status.NOT_REGISTERED);
+                }
+                var item = items[0];
 
+                //console.log(Util.decrypt(items[0].password));
+                //console.log(Util.encrypt(login.password) + ' : ' + items[0].password);
+                // check password
+                if (login.password != Util.decrypt(item.password)){
+                    return Status.returnStatus(res, Status.WRONG_PASSWORD);
+                }
 
-            //console.log(Util.decrypt(items[0].password));
-            console.log(Util.encrypt(login.password) + ' : ' + items[0].password);
-            // check password
-            if (login.password != Util.decrypt(items[0].password)){
-                return Status.returnStatus(res, Status.WRONG_PASSWORD);
-            }
-
-            return Status.returnStatus(res, Status.PASS);
-        });
+                item.password = undefined; // delete it!
+                return res.json(item);
+            });
 
     },
 
