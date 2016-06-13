@@ -184,6 +184,31 @@ module.exports = {
         }
     },
 
+    // for test
+    DeleteById: function (req, res) {
+        if (req.params && req.params.id) { // params.id is ID
+
+            User.findOne({_id: req.params.id}, function (err, item) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!item){
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                //
+                item.remove(function(err, raw){
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+                    res.json(raw);
+                });
+
+            });
+        }
+    },
+
     UpdateIcon: function (req, res) {
         if (req.params && req.params.cell) {
             var query = {cell: req.params.cell};

@@ -19,7 +19,8 @@ router.route('/users/:number')
     .get(User.GetAll);//
 
 router.route('/user/:id')
-    .get(User.GetById);
+    .get(User.GetById)
+    .delete(User.DeleteById); // for test
 
 router.route('/user/cell/:cell')
     .get(User.GetByCell);
