@@ -3,6 +3,7 @@
  */
 
 var Booking = require('../model/booking.js');
+var Schedule = require('../model/schedule.js');
 
 module.exports = {
 
@@ -148,6 +149,13 @@ module.exports = {
                 return Status.returnStatus(res, Status.ERROR, err);
             }
 
+            // limit-- in schedule
+            Schedule.findById(booking.schedule)
+                .exec( function (err, schedule) {
+                    schedule.limit--;
+                    schedule.save();
+                });
+
             return res.send(raw);
         });
 
@@ -179,7 +187,5 @@ module.exports = {
             });
         }
     },
-
-
 
 }
