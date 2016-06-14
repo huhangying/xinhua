@@ -38,7 +38,7 @@ var Doctor = require('../db/controller/doctor');
 
 router.route('/doctors/:number')
     .get(Doctor.GetAll);//
-router.route('/doctors/:number/:skip')
+router.route('/find/:number/:skip')
     .get(Doctor.GetAndSkip);//
 
 router.route('/doctor/:id')
