@@ -126,7 +126,7 @@ module.exports = {
 
         if (req.params && req.params.departmentid) {
 
-            var result = Doctor.find({department: req.params.departmentid, apply: true})
+            var result = Doctor.find({department: ObjectId(req.params.departmentid), apply: true})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
