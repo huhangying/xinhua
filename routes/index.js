@@ -38,7 +38,7 @@ var Doctor = require('../db/controller/doctor');
 
 router.route('/doctors/:number')
     .get(Doctor.GetAll);//
-router.route('/find/:number/:skip')
+router.route('/doctors/find/:number/:skip')
     .get(Doctor.GetAndSkip);//
 
 router.route('/doctor/:id')
@@ -201,6 +201,9 @@ router.route('/schedule/:id')
     .get(Schedule.GetById)
     .patch(urlencodedParser, Schedule.UpdateById)
     .delete(Schedule.DeleteById);
+
+router.route('/schedules/department/:departmentid')
+    .get(Schedule.FindScheduleDoctorsByDepartmentId);
 
 //---------------- 预约
 var Booking = require('../db/controller/booking');

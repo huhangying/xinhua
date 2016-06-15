@@ -189,5 +189,26 @@ module.exports = {
         }
     },
 
+    //todo: enhance the performance later
+    FindScheduleDoctorsByDepartmentId: function (req, res) {
+        if (req.params && req.params.departmentid) {
+
+            var date_end = new Date();
+            date_end.setDate(date_end.getDate() + 7);
+            Schedule.find({from: {$lte: date_end, $gt: new Date()}, limit: {$gt: 0}})
+                .populate({
+                    path: 'doctor',
+                    match: {department: req.params.departmentid},
+                    select: '_id user_id name'
+                })
+                .exec(function(err, schedules){
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+                    return res.json(schedules);
+                });
+        }
+    },
+
 
 }
