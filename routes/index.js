@@ -202,7 +202,7 @@ router.route('/schedule/:id')
     .patch(urlencodedParser, Schedule.UpdateById)
     .delete(Schedule.DeleteById);
 
-router.route('/schedules/department/:departmentid')
+router.route('/schedules/find/doctors/:departmentid')
     .get(Schedule.FindScheduleDoctorsByDepartmentId);
 
 //---------------- 预约
