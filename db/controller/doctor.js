@@ -262,6 +262,11 @@ module.exports = {
                     item.honor = doctor.honor;
                 if (doctor.icon)
                     item.icon = doctor.icon;
+                if (doctor.apply)
+                    item.apply = doctor.apply;
+                if (doctor.role)
+                    item.role = doctor.role;
+
 
                 //console.log(JSON.stringify(item));
 
