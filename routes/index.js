@@ -64,6 +64,8 @@ var Group = require('../db/controller/group');
 
 router.route('/groups')
     .get(Group.GetAll);
+router.route('/groups/populated')
+    .get(Group.GetAllPopulated);
 
 router.route('/groups/doctor/:id')
     .get(Group.GetByDoctorId);

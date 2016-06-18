@@ -21,6 +21,23 @@ module.exports = {
             });
     },
 
+    GetAllPopulated: function (req, res) {
+
+        Group.find()
+            .populate('doctor')
+            .exec(function (err, items) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!items || items.length < 1) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                res.json(items);
+            });
+    },
+
     // 根据ID获取详细信息
     GetById: function (req, res) {
 
@@ -121,6 +138,8 @@ module.exports = {
 
                 if (group.name)
                     item.name = group.name;
+                if (group.doctor)
+                    item.doctor = group.doctor;
 
                 //console.log(JSON.stringify(item));
 
