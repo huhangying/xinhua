@@ -150,7 +150,14 @@ module.exports = {
                     return Status.returnStatus(res, Status.NULL);
                 }
 
-                item.group = relationship.group;
+                if (relationship.doctor)
+                    item.doctor = relationship.doctor;
+                if (relationship.group)
+                    item.group = relationship.group;
+                if (relationship.user)
+                    item.user = relationship.user;
+                if (relationship.apply)
+                    item.apply = relationship.apply;
 
                 //console.log(JSON.stringify(item));
 

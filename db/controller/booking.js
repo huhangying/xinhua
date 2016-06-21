@@ -115,6 +115,26 @@ module.exports = {
         }
     },
 
+    // 根据药师ID和日期 获取相关的预约
+    GetByScheduleId: function (req, res) {
+
+        if (req.params && req.params.sid) {
+
+            Booking.find({schedule: req.params.sid, apply: true})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
 
 
     // 创建预约
@@ -143,7 +163,7 @@ module.exports = {
             doctor: booking.doctor,
             user: booking.user,
             schedule: booking.schedule,
-            status: booking.status | 0 // 0: 创建
+            status: booking.status || 0 // 0: 创建
         }, function (err, raw) {
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);

@@ -221,6 +221,9 @@ router.route('/bookings/doctor/:did')
 router.route('/bookings/doctor/:did/:date')
     .get(Booking.GetByDoctorIdAndDate);
 
+router.route('/bookings/schedule/:sid')
+    .get(Booking.GetByScheduleId);
+
 router.route('/booking')
     .post(urlencodedParser, Booking.Add);
 

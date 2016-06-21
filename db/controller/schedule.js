@@ -93,9 +93,12 @@ module.exports = {
         var schedule = req.body;
         if (!schedule) return res.sendStatus(400);
 
-        // doctor, from
+        // doctor, from, name
         if (!schedule.doctor) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
+        }
+        if (!schedule.name) {
+            return Status.returnStatus(res, Status.NO_NAME);
         }
         if (!schedule.from) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
