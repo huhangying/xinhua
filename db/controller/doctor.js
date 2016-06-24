@@ -14,7 +14,7 @@ module.exports = {
             //console.log(number);
         }
 
-        Doctor.find({apply: true})
+        Doctor.find()
             .sort({updated: -1})
             .limit(number)
             .exec(function (err, items) {
@@ -208,7 +208,8 @@ module.exports = {
                         bulletin: doctor.bulletin,
                         hours: doctor.hours,
                         honor: doctor.honor,
-                        icon: doctor.icon
+                        icon: doctor.icon,
+                        apply: doctor.apply || false
                     }, function (err, raw) {
                         if (err) {
                             return Status.returnStatus(res, Status.ERROR, err);
@@ -262,10 +263,9 @@ module.exports = {
                     item.honor = doctor.honor;
                 if (doctor.icon)
                     item.icon = doctor.icon;
-                if (doctor.apply)
-                    item.apply = doctor.apply;
                 if (doctor.role)
                     item.role = doctor.role;
+                item.apply = doctor.apply || false;
 
 
                 //console.log(JSON.stringify(item));

@@ -107,7 +107,8 @@ module.exports = {
                 Group.create({
 
                     name: group.name,
-                    doctor: group.doctor
+                    doctor: group.doctor,
+                    apply: group.apply || false
                 }, function (err, raw) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -140,6 +141,8 @@ module.exports = {
                     item.name = group.name;
                 if (group.doctor)
                     item.doctor = group.doctor;
+                item.apply = group.apply || false;
+
 
                 //console.log(JSON.stringify(item));
 

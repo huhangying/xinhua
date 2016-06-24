@@ -130,7 +130,9 @@ module.exports = {
                         return Status.returnStatus(res, Status.EXISTED);
                     }
 
-                    User.create({link_id: linkId, cell: user.cell, name: user.name, password: user.password, gender: user.gender, birthdate: user.birthdate, sin: user.sin}, function (err, raw) {
+                    User.create({link_id: linkId, cell: user.cell, name: user.name, password: user.password, gender: user.gender,
+                        birthdate: user.birthdate, sin: user.sin,
+                        apply: user.apply || false}, function (err, raw) {
                         if (err) {
                             return Status.returnStatus(res, Status.ERROR, err);
                         }
@@ -169,6 +171,7 @@ module.exports = {
                     item.birthdate = user.birthdate;
                 if (user.sin)
                     item.sin = user.sin;
+                item.apply = user.apply || false;
 
                 //console.log(JSON.stringify(item));
 

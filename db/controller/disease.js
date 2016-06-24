@@ -53,7 +53,7 @@ var self = module.exports = {
 
         if (req.params && req.params.id) {
 
-            var result = Disease.findOne({_id: req.params.id, apply: true})
+            var result = Disease.findOne({_id: req.params.id})
                 .sort({order: 1})
                 .populate('department')
                 .populate('symptoms')
@@ -99,6 +99,7 @@ var self = module.exports = {
             item.desc = disease.desc;
         if (disease.order)
             item.order = disease.order;
+        item.apply = disease.apply || false;
 
         item.symptoms = [];
         item.symptoms.length = 0;
@@ -112,7 +113,7 @@ var self = module.exports = {
                 //_item.save();
                 Disease.create(
                     {symptoms: _item.symptoms, name: _item.name, desc: _item.desc, order: _item.order,
-                        department: _item.department},
+                        department: _item.department, apply: _item.apply},
                     function (err, raw) {
                         console.log(JSON.stringify(raw));
                         if (err) {
@@ -155,35 +156,34 @@ var self = module.exports = {
                         item.desc = disease.desc;
                     if (disease.order)
                         item.order = disease.order;
-                    if (disease.apply != null){
-                        item.apply = disease.apply;
-                    }else{
-                        item.apply = false;
-                    }
+                    item.apply = disease.apply || false;
 
                     item.symptoms.length = 0;
 
+                    console.log(JSON.stringify(item));
 
                     self.CheckSymptomsForUpdate(item, disease.symptoms)
                         .then(function (_item){
-                            //console.log(JSON.stringify(_item));
+                            console.log(JSON.stringify(_item));
 
                             //_item.save();
-                            Disease.update({_id: _item._id},
+                            Disease.update(
+                                {_id: _item._id},
                                 {$set: {symptoms: _item.symptoms,
                                     department: _item.department,
                                     name: _item.name,
                                     desc: _item.desc,
                                     order: _item.order,
-                                    apply: _item.apply}},
+                                    apply: _item.apply}
+                                },
                                 {upsert: true},
                                 function (err, raw) {
-                                //console.log(JSON.stringify(raw));
-                                if (err) {
-                                    return Status.returnStatus(res, Status.ERROR, err);
-                                }
-                                res.send(raw);
-                            });
+                                    console.log(JSON.stringify(raw));
+                                    if (err) {
+                                        return Status.returnStatus(res, Status.ERROR, err);
+                                    }
+                                    res.send(raw);
+                                });
 
                         });
 
