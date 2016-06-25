@@ -14,7 +14,7 @@ module.exports = {
             //console.log(number);
         }
 
-        User.find({apply: true})
+        User.find({})
             .sort({updated: -1})
             .limit(number)
             .exec(function(err, users){
