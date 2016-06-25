@@ -209,7 +209,7 @@ module.exports = {
                         hours: doctor.hours,
                         honor: doctor.honor,
                         icon: doctor.icon,
-                        apply: doctor.apply || false
+                        apply: doctor.apply || true
                     }, function (err, raw) {
                         if (err) {
                             return Status.returnStatus(res, Status.ERROR, err);
@@ -265,7 +265,7 @@ module.exports = {
                     item.icon = doctor.icon;
                 if (doctor.role)
                     item.role = doctor.role;
-                item.apply = doctor.apply || false;
+                item.apply = doctor.apply || true;
 
 
                 //console.log(JSON.stringify(item));

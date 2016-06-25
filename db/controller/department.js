@@ -73,7 +73,7 @@ module.exports = {
                     name: department.name,
                     desc: department.desc,
                     order: department.order,
-                    apply: department.apply || false
+                    apply: department.apply || true
                 }, function (err, raw) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -108,7 +108,7 @@ module.exports = {
                     item.desc = department.desc;
                 if (department.order)
                     item.order = department.order;
-                item.apply = department.apply || false;
+                item.apply = department.apply || true;
 
                 console.log(JSON.stringify(item));
 

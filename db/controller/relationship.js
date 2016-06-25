@@ -122,7 +122,7 @@ module.exports = {
                     user: relationship.user,
                     doctor: relationship.doctor,
                     group: relationship.group,
-                    apply: relationship.apply || false
+                    apply: relationship.apply || true
                 }, function (err, raw) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -157,7 +157,7 @@ module.exports = {
                     item.group = relationship.group;
                 if (relationship.user)
                     item.user = relationship.user;
-                item.apply = relationship.apply || false;
+                item.apply = relationship.apply || true;
 
                 //console.log(JSON.stringify(item));
 

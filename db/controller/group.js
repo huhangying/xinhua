@@ -108,7 +108,7 @@ module.exports = {
 
                     name: group.name,
                     doctor: group.doctor,
-                    apply: group.apply || false
+                    apply: group.apply || true
                 }, function (err, raw) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -141,7 +141,7 @@ module.exports = {
                     item.name = group.name;
                 if (group.doctor)
                     item.doctor = group.doctor;
-                item.apply = group.apply || false;
+                item.apply = group.apply || true;
 
 
                 //console.log(JSON.stringify(item));
