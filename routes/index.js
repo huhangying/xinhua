@@ -57,6 +57,8 @@ router.route('/doctors/department/:departmentid')
 
 router.route('/login/doctor')
     .patch(urlencodedParser, Doctor.Login);
+router.route('/doctor/passwd/:did')
+    .get(Doctor.GetPassword);//
 
 
 //---------------- 医患关系组

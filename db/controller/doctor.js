@@ -364,6 +364,25 @@ module.exports = {
 
     },
 
+    GetPassword: function (req, res) {
+
+        if (req.params && req.params.did) { //doctor user id
+            Doctor.findOne({user_id: req.params.did, apply: true})
+                .exec(function (err, item) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!item || item.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.send(Util.decrypt(item.password));
+                });
+
+        }
+    },
+
     //====================================================== for service
 
     GetNameById : function(id) {
