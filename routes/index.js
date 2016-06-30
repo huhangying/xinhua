@@ -211,6 +211,20 @@ router.route('/schedule/:id')
 router.route('/schedules/find/doctors/:departmentid')
     .get(Schedule.FindScheduleDoctorsByDepartmentId);
 
+//---------------- 门诊时间端
+var Period = require('../db/controller/period');
+
+router.route('/periods')
+    .get(Period.GetAll);
+
+router.route('/period/:id')
+    .get(Period.GetById)
+    .patch(urlencodedParser, Period.UpdateById)
+    .delete(Period.DeleteById);
+
+router.route('/period')
+    .post(urlencodedParser, Period.Add);
+
 //---------------- 预约
 var Booking = require('../db/controller/booking');
 

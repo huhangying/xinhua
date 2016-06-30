@@ -8,7 +8,7 @@ module.exports = {
 
     GetAll: function (req, res) {
 
-        Schedule.find({from: {$gte: (new Date())}})
+        Schedule.find({date: {$gte: (new Date())}})
             .sort({created: 1})
             .exec(function (err, items) {
                 if (err) {
@@ -28,7 +28,7 @@ module.exports = {
 
         if (req.params && req.params.did) {
 
-            Schedule.find({doctor: req.params.did, from: {$gte: (+new Date())}})
+            Schedule.find({doctor: req.params.did, date: {$gte: (+new Date())}})
                 .sort({created: 1})
                 .exec(function (err, items) {
                     if (err) {
@@ -50,7 +50,7 @@ module.exports = {
         if (req.params && req.params.did && req.params.date) {
 
             var _date = +new Date(req.params.date);
-            Schedule.find({doctor: req.params.did, from: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }}) // select the selected day
+            Schedule.find({doctor: req.params.did, date: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }}) // select the selected day
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -93,24 +93,23 @@ module.exports = {
         var schedule = req.body;
         if (!schedule) return res.sendStatus(400);
 
-        // doctor, from, name
+        // doctor, date, period
         if (!schedule.doctor) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
-        if (!schedule.name) {
-            return Status.returnStatus(res, Status.NO_NAME);
+        if (!schedule.period) {
+            return Status.returnStatus(res, Status.MISSING_PARAM);
         }
-        if (!schedule.from) {
+        if (!schedule.date) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
 
         // 不存在，创建
         Schedule.create({
 
-            name: schedule.name,
             doctor: schedule.doctor,
-            from: schedule.from,
-            to: schedule.to,
+            period: schedule.period,
+            date: schedule.date,
             limit: schedule.limit
         }, function (err, raw) {
             if (err) {
@@ -140,16 +139,13 @@ module.exports = {
                         return Status.returnStatus(res, Status.NULL);
                     }
 
-                    if (schedule.name)
-                        item.name = schedule.name;
+                    if (schedule.period)
+                        item.period = schedule.period;
                     if (schedule.doctor)
                         item.doctor = schedule.doctor;
 
-                    if (schedule.from){
-                        item.from = new Date(schedule.from);
-                    }
-                    if (schedule.to){
-                        item.to = new Date(schedule.to);
+                    if (schedule.date){
+                        item.date = new Date(schedule.date);
                     }
                     if (schedule.limit)
                         item.limit = schedule.limit;
@@ -198,7 +194,7 @@ module.exports = {
 
             var date_end = new Date();
             date_end.setDate(date_end.getDate() + 7);
-            Schedule.find({from: {$lte: date_end, $gt: new Date()}, limit: {$gt: 0}})
+            Schedule.find({date: {$lte: date_end, $gt: new Date()}, limit: {$gt: 0}})
                 .populate(
                     {
                     path: 'doctor',
