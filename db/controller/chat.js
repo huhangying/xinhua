@@ -51,24 +51,70 @@ module.exports = {
 
     },
 
-    LoadDoctorMsg: function (req, res) {
-        if (req.params && req.params.id) {
-            req.body = {
-                direction: 1,
-                chatroom: req.parames.id
-            };
-            return this.LoadMsgByChatroom(req, res);
+    // 根据Chatroom ID 获取聊天记录(包括自己的)
+    LoadMsg: function (req, res) {
+        if (req.params && req.params.chatroom) {
+
+            Chat.find({chatroom: req.params.chatroom})
+                .sort({created: 1})
+                .limit(20)
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    return res.json(items);
+                });
         }
+
     },
 
-    LoadUserMsg: function (chatroom) {
-        if (req.params && req.params.id) {
-            req.body = {
-                direction: 0,
-                chatroom: req.parames.id
-            };
-            return this.LoadMsgByChatroom(req, res);
+    // 根据Chatroom ID 获取聊天记录(包括自己的)
+    LoadDoctorMsg: function (req, res) {
+        if (req.params && req.params.chatroom) {
+
+            Chat.find({chatroom: req.params.chatroom, direction: 1 })
+                .sort({created: 1})
+                .limit(20)
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    return res.json(items);
+                });
         }
+
+    },
+
+    // 根据Chatroom ID 获取聊天记录(包括自己的)
+    LoadUserMsg: function (req, res) {
+        if (req.params && req.params.chatroom) {
+
+            Chat.find({chatroom: req.params.chatroom, direction: 0 })
+                .sort({created: 1})
+                .limit(20)
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    return res.json(items);
+                });
+        }
+
     },
 
     ReceiveMsg: function (req, res) {
@@ -140,29 +186,6 @@ module.exports = {
 
         }
 
-    },
-
-
-    // 根据Chatroom ID 获取聊天记录(包括自己的)
-    LoadMsgByChatroom: function (req, res) {
-        // 获取请求数据（json）
-        var chat = req.body;
-        if (!chat) return res.sendStatus(400);
-
-        Chat.find({chatroom: chat.chatroom, direction: chat.direction })
-            .sort({created: 1})
-            .limit(20)
-            .exec(function (err, items) {
-                if (err) {
-                    return Status.returnStatus(res, Status.ERROR, err);
-                }
-
-                if (!items || items.length < 1) {
-                    return Status.returnStatus(res, Status.NULL);
-                }
-
-                return res.json(items);
-            });
     },
 
 

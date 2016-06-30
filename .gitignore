@@ -39,3 +39,5 @@ jspm_packages
 # Others
 .idea
 .idea/*
+.idea/*/*
+

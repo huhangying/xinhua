@@ -185,6 +185,8 @@ router.route('/chats/load/doctor/:chatroom')
     .get(Chat.LoadDoctorMsg);
 router.route('/chats/load/user/:chatroom')
     .get(Chat.LoadUserMsg);
+router.route('/chats/load/:chatroom')
+    .get(Chat.LoadMsg);
 
 
 //---------------- 门诊
