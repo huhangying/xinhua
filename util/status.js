@@ -8,6 +8,7 @@ module.exports =  {
     ERROR: "error",
     NOT_EXISTED: 'not_existed',
     EXISTED: 'existed',
+    EXISTED_NAME: 'existed_name',
     NULL: 'null', // 记录没有找到
 
     // parameter validation

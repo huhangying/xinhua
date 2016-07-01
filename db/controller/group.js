@@ -100,7 +100,7 @@ module.exports = {
 
                 // 如果存在，直接返回
                 if (item) {
-                    return res.json(item);
+                    return Status.returnStatus(res, Status.EXISTED_NAME);
                 }
 
                 // 不存在，创建
