@@ -90,9 +90,12 @@ module.exports = {
         if (!group.name) {
             return Status.returnStatus(res, Status.NO_NAME);
         }
+        // doctor
+        if (!group.doctor) {
+            return Status.returnStatus(res, Status.NO_DOCTOR);
+        }
 
-
-        Group.findOne({name: group.name}) // check if existed
+        Group.findOne({name: group.name, doctor: group.doctor}) // check if existed
             .exec(function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
@@ -137,23 +140,35 @@ module.exports = {
                     return Status.returnStatus(res, Status.NULL);
                 }
 
-                if (group.name)
-                    item.name = group.name;
                 if (group.doctor)
                     item.doctor = group.doctor;
+                if (group.name){
+                    item.name = group.name;
+                }
                 item.apply = group.apply || true;
 
 
                 //console.log(JSON.stringify(item));
 
-                //
-                item.save(function (err, raw) {
-                    if (err) {
-                        return Status.returnStatus(res, Status.ERROR, err);
-                    }
-                    res.json(raw);
-                });
+                // check if duplication group name in a doctor
+                Group.find({name: group.name, doctor: group.doctor}) // check if existed
+                    .exec(function (err, items) {
+                        if (err) {
+                            return Status.returnStatus(res, Status.ERROR, err);
+                        }
 
+                        // 如果存在，直接返回
+                        if (items && items.length > 1) {
+                            return Status.returnStatus(res, Status.EXISTED_NAME);
+                        }
+
+                        item.save(function (err, raw) {
+                            if (err) {
+                                return Status.returnStatus(res, Status.ERROR, err);
+                            }
+                            res.json(raw);
+                        });
+                    });
             });
         }
     },
