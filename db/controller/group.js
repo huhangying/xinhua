@@ -130,6 +130,7 @@ module.exports = {
             // 获取数据（json）,只能更新关系组名
             var group = req.body;
             if (!group) return res.sendStatus(400);
+            var group_name;
 
             Group.findById(id, function (err, item) {
                 if (err) {
@@ -139,6 +140,7 @@ module.exports = {
                 if (!item) {
                     return Status.returnStatus(res, Status.NULL);
                 }
+                group_name = item.name; // 原id的group name
 
                 if (group.doctor)
                     item.doctor = group.doctor;
@@ -150,6 +152,16 @@ module.exports = {
 
                 //console.log(JSON.stringify(item));
 
+                // 如果group name 没有变,或者group name不需要更新,则不用check duplicated group name
+                if (group_name == item.name || !group.name){
+                    item.save(function (err, raw) {
+                        if (err) {
+                            return Status.returnStatus(res, Status.ERROR, err);
+                        }
+                        return res.json(raw);
+                    });
+                }
+
                 // check if duplication group name in a doctor
                 Group.find({name: group.name, doctor: group.doctor}) // check if existed
                     .exec(function (err, items) {
@@ -158,7 +170,7 @@ module.exports = {
                         }
 
                         // 如果存在，直接返回
-                        if (items && items.length > 1) {
+                        if (items && items.length > 0 && items[0].name != group_name) {
                             return Status.returnStatus(res, Status.EXISTED_NAME);
                         }
 
