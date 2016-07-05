@@ -153,8 +153,14 @@ module.exports = {
 
                 if (relationship.doctor)
                     item.doctor = relationship.doctor;
-                if (relationship.group)
-                    item.group = relationship.group;
+                if (relationship.group){
+                    if (relationship.group == '0000'){
+                        item.group = null;
+                    }
+                    else
+                        item.group = relationship.group;
+                }
+
                 if (relationship.user)
                     item.user = relationship.user;
                 item.apply = relationship.apply || true;
