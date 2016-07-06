@@ -160,6 +160,11 @@ module.exports = {
                 return Status.returnStatus(res, Status.NO_PASSWORD);
             }
 
+            // role
+            if (!doctor.role) {
+                return Status.returnStatus(res, Status.NO_ROLE);
+            }
+
             // department
             if (!doctor.department) {
                 return Status.returnStatus(res, Status.MISSING_PARAM);
@@ -197,7 +202,7 @@ module.exports = {
                     Doctor.create({
                         user_id: uid,
                         password: Util.encrypt(doctor.password),
-
+                        role: doctor.role,
                         name: doctor.name,
                         department: doctor.department,
                         title: doctor.title,
