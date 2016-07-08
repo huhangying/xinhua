@@ -67,7 +67,7 @@ module.exports = {
                         return Status.returnStatus(res, Status.NULL);
                     }
 
-                    return res.json(items);
+                    return res.json(items.reverse());
                 });
         }
 
