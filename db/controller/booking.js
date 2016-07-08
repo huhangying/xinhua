@@ -181,8 +181,43 @@ module.exports = {
 
     },
 
-    // 现不支持更新booking
+    // 更新booking
+    UpdateById: function (req, res) {
+        if (req.params && req.params.id) { // params.id is booking ID
+            var id = req.params.id;
 
+            // 获取数据（json）,只能更新status and score
+            var booking = req.body;
+            if (!booking) return res.sendStatus(400);
+
+            Booking.findById(id)
+                .exec( function (err, item) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!item) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    if (booking.status)
+                        item.status = booking.status;
+                    if (booking.score)
+                        item.score = booking.score;
+
+                    //console.log(JSON.stringify(item));
+
+                    //
+                    item.save(function (err, raw) {
+                        if (err) {
+                            return Status.returnStatus(res, Status.ERROR, err);
+                        }
+                        res.json(raw);
+                    });
+
+                });
+        }
+    },
 
     DeleteById: function (req, res) {
         if (req.params && req.params.id) { // params.id is booking ID

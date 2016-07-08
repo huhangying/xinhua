@@ -247,6 +247,7 @@ router.route('/booking')
 
 router.route('/booking/:id')
     .get(Booking.GetById)
+    .patch(urlencodedParser, Booking.UpdateById)
     .delete(Booking.DeleteById);
 
 
