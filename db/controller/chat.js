@@ -56,7 +56,7 @@ module.exports = {
         if (req.params && req.params.chatroom) {
 
             Chat.find({chatroom: req.params.chatroom})
-                .sort({created: 1})
+                .sort({created: -1}) // 取最新的消息
                 .limit(20)
                 .exec(function (err, items) {
                     if (err) {
