@@ -10,7 +10,7 @@ module.exports = {
     GetAll: function (req, res) {
 
         Booking.find()
-            .sort({created: 1})
+            .sort({created: -1})
             .exec(function (err, items) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
@@ -52,7 +52,7 @@ module.exports = {
         if (req.params && req.params.uid) {
 
             Booking.find({user: req.params.uid})
-                .sort({created: 1})
+                .sort({created: -1})
                 .populate('schedule')
                 .exec(function (err, items) {
                     if (err) {
@@ -74,7 +74,7 @@ module.exports = {
         if (req.params && req.params.did) {
 
             Booking.find({doctor: req.params.did})
-                .sort({created: 1})
+                .sort({created: -1})
                 .populate('schedule')
                 .exec(function (err, items) {
                     if (err) {

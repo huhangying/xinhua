@@ -29,7 +29,7 @@ module.exports = {
         if (req.params && req.params.did) {
 
             Schedule.find({doctor: req.params.did, date: {$gte: (+new Date())}})
-                .sort({created: 1})
+                .sort({date: 1, period: 1})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -51,6 +51,7 @@ module.exports = {
 
             var _date = +new Date(req.params.date);
             Schedule.find({doctor: req.params.did, date: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }}) // select the selected day
+                .sort({date: 1, period: 1})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
