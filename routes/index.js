@@ -197,6 +197,8 @@ router.route('/schedules')
 
 router.route('/schedules/:did')
     .get(Schedule.GetByDoctorId);
+router.route('/schedules/all/:did') // for test
+    .get(Schedule.GetAllByDoctorId);
 router.route('/schedules/:did/:date')
     .get(Schedule.GetByDoctorIdAndDate);
 

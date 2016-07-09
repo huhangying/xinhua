@@ -44,6 +44,28 @@ module.exports = {
         }
     },
 
+    // for test
+    // 根据药师ID 获取相关的门诊, 没有时间限制
+    GetAllByDoctorId: function (req, res) {
+
+        if (req.params && req.params.did) {
+
+            Schedule.find({doctor: req.params.did})
+                .sort({date: 1, period: 1})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
     // 根据药师ID和日期 获取相关的门诊
     GetByDoctorIdAndDate: function (req, res) {
 

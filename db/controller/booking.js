@@ -99,6 +99,7 @@ module.exports = {
             var _date = +new Date(req.params.date);
 
             Booking.find({doctor: req.params.did }) //from: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }}
+                .sort({created: -1})
                 .populate('schedule')
                 //.where({from: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }})
                 .exec(function (err, items) {
@@ -121,6 +122,7 @@ module.exports = {
         if (req.params && req.params.sid) {
 
             Booking.find({schedule: req.params.sid, apply: true})
+                .sort({created: -1})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
