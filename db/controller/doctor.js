@@ -2,6 +2,8 @@
  * Created by hhu on 2016/5/7.
  */
 var Doctor = require('../model/doctor.js');
+var Relationship = require('../model/relationship.js');
+var Q = require('q');
 
 module.exports = {
 
@@ -28,6 +30,54 @@ module.exports = {
 
                 res.json(items);
             });
+    },
+
+    getFocusDoctors: function(userId) {
+        var deferred = Q.defer();
+
+        Relationship.find({user: userId, apply: true})
+            .exec(function (err, items) {
+                if (err) {
+                    deferred.resolve([]);
+                }
+
+                if (!items || items.length < 1) {
+                    deferred.resolve([]);
+
+                }
+
+                var doctors = items.map(function(a) {return a.doctor;});
+                deferred.resolve(doctors);
+            });
+
+        return deferred.promise;
+    },
+    
+    // 查找未关注药师
+    GetAllNotFocus: function (req, res) {
+
+        if (req.params && req.params.user) {
+
+            this.getFocusDoctors(req.params.user).then(function(doctors) {
+                Doctor.find({ _id: { "$nin": doctors } })
+                    .sort({updated: -1})
+                    //.limit(number)
+                    .exec(function (err, items) {
+                        if (err) {
+                            return Status.returnStatus(res, Status.ERROR, err);
+                        }
+
+                        if (!items || items.length < 1) {
+                            return Status.returnStatus(res, Status.NULL);
+                        }
+
+                        res.json(items);
+                    });
+            });
+
+        }
+
+
     },
 
     //

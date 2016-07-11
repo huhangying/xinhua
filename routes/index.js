@@ -38,6 +38,10 @@ var Doctor = require('../db/controller/doctor');
 
 router.route('/doctors/:number')
     .get(Doctor.GetAll);//
+
+router.route('/doctors/notfocus/:user')
+    .get(Doctor.GetAllNotFocus);//
+
 router.route('/doctors/find/:number/:skip')
     .get(Doctor.GetAndSkip);//
 
