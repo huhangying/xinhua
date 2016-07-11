@@ -171,6 +171,9 @@ router.route('/chat/:id')
     .get(Chat.GetById)
     .delete(Chat.DeleteById);
 
+router.route('/chats/chatroom/:chatroom')
+    .delete(Chat.DeleteByChatroom);
+
 router.route('/chat')
     .post(urlencodedParser, Chat.Add);
 

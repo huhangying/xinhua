@@ -283,4 +283,22 @@ module.exports = {
         }
     },
 
+    DeleteByChatroom: function (req, res) {
+        if (req.params && req.params.chatroom) { // params.chatroom is chatroom
+
+            Chat.remove({chatroom: req.params.chatroom}, function (err, items) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!items){
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                res.json(items);
+
+            });
+        }
+    },
+
 }
