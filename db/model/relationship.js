@@ -13,7 +13,10 @@ var _Relationship = new Schema({
     apply: {type : Boolean, default: true}
 });
 
-_Relationship.getFocusDoctors = function(userId) {
+
+
+var relationship = mongoose.model('relationship', _Relationship);
+relationship.getFocusDoctors = function(userId) {
     var deferred = Q.defer();
 
     Relationship.find({user: userId, apply: true})
@@ -33,5 +36,4 @@ _Relationship.getFocusDoctors = function(userId) {
 
     return deferred.promise;
 }
-
-module.exports =  mongoose.model('relationship', _Relationship);
+module.exports =  relationship;

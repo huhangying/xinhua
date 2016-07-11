@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/doctor.js" afterPath="$PROJECT_DIR$/db/controller/doctor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/model/relationship.js" afterPath="$PROJECT_DIR$/db/model/relationship.js" />
     </list>
     <ignored path="Xinhua.iws" />
@@ -47,8 +46,8 @@
       <file leaf-file-name="relationship.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/model/relationship.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+            <state relative-caret-position="426">
+              <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -503,7 +502,7 @@
       <workItem from="1465686284976" duration="66000" />
       <workItem from="1465686466965" duration="3870000" />
       <workItem from="1466053617349" duration="32773000" />
-      <workItem from="1466883293367" duration="42164000" />
+      <workItem from="1466883293367" duration="42290000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -523,7 +522,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98050000" />
+    <option name="totallyTimeSpent" value="98176000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -972,8 +971,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/model/relationship.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+        <state relative-caret-position="426">
+          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
           <folding />
         </state>
       </provider>
