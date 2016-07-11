@@ -3,7 +3,6 @@
  */
 var Doctor = require('../model/doctor.js');
 var Relationship = require('../model/relationship.js');
-var Q = require('q');
 
 module.exports = {
 
@@ -58,7 +57,7 @@ module.exports = {
 
         if (req.params && req.params.user) {
 
-            this.getFocusDoctors(req.params.user).then(function(doctors) {
+            Relationship.getFocusDoctors(req.params.user).then(function(doctors) {
                 Doctor.find({ _id: { "$nin": doctors } })
                     .sort({updated: -1})
                     //.limit(number)
