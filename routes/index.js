@@ -173,6 +173,7 @@ router.route('/chats')
 
 router.route('/chat/:id')
     .get(Chat.GetById)
+    .patch(urlencodedParser, Chat.UpdateById)
     .delete(Chat.DeleteById);
 
 router.route('/chats/chatroom/:chatroom')

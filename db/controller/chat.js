@@ -256,6 +256,39 @@ module.exports = {
 
     },
 
+    UpdateById: function (req, res) {
+        if (req.params && req.params.id) { // params.id is chat ID
+            var id = req.params.id;
+
+            var chat = req.body;
+            if (!chat) return res.sendStatus(400);
+
+            Chat.findById(id, function (err, item) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!item) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                if (chat.type)
+                    item.type = chat.type;
+                if (chat.data){
+                    item.data = chat.data;
+                }
+
+                item.save(function (err, raw) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+                    res.json(raw);
+                });
+
+            });
+        }
+    },
+
     //todo: reverse the last one
 
 
