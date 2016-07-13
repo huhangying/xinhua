@@ -260,5 +260,20 @@ router.route('/booking/:id')
     .patch(urlencodedParser, Booking.UpdateById)
     .delete(Booking.DeleteById);
 
+//---------------- 系统全局变量
+var Const = require('../db/controller/const');
+
+router.route('/consts')
+    .get(Const.GetAll);
+
+router.route('/const')
+    .post(urlencodedParser, Const.Add);
+
+router.route('/const/:id')
+    .delete(Const.DeleteById)
+    .patch(urlencodedParser, Const.UpdateById);
+
+router.route('/const/:name')
+    .get(Const.GetByName);
 
 module.exports = router;
