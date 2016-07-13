@@ -6,6 +6,7 @@ var Schema = global.mongoose.Schema;
 var _Const = new Schema({
 
     name: {type: String, required: true},
+    desc: {type: String},
     type: {type: Number, default: 0}, // 0: string; 1: boolean; 2: number;
     value: {type: String, required: true}
 });

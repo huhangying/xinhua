@@ -75,6 +75,7 @@ module.exports = {
                 Const.create({
 
                     name: _const.name,
+                    desc: _const.desc,
                     type: _const.type,
                     value: _const.value
                 }, function (err, raw) {
@@ -88,7 +89,7 @@ module.exports = {
             });
     },
 
-    // update: type and value, but not name
+    // update: desc, type and value, but not name
     UpdateById: function (req, res) {
         if (req.params && req.params.id) {
             var id = req.params.id;
@@ -110,6 +111,8 @@ module.exports = {
                 //     item.name = _const.name;
                 if (_const.type)
                     item.type = _const.type;
+                if (_const.desc)
+                    item.desc = _const.desc;
                 if (_const.value)
                     item.value = _const.value;
 
