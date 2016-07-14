@@ -210,7 +210,7 @@ module.exports = {
             }
 
             // role
-            if (!doctor.role) {
+            if (!doctor.role && doctor.role !== 0) {
                 return Status.returnStatus(res, Status.NO_ROLE);
             }
 
