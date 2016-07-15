@@ -3,6 +3,7 @@
  */
 var Doctor = require('../model/doctor.js');
 var Relationship = require('../model/relationship.js');
+var request = require('request');
 
 module.exports = {
 
@@ -269,6 +270,16 @@ module.exports = {
                             return Status.returnStatus(res, Status.ERROR, err);
                         }
 
+                        // 同步消息给药师端 ()
+                        // http://139.224.68.92/medical/wx/addDoctor 这是同步药师的接口，需要传入的参数1、userId 2、name
+                        request.post({url:'http://139.224.68.92/medical/wx/addDoctor', formData:{userId: uid, name: doctor.name}},
+                            function optionalCallback(err, httpResponse, body) {
+                                if (err) {
+                                    return console.error('sync failed:', err);
+                                }
+                                console.log('sync successful!  Server responded with:', body);
+                            });
+
                         return res.send(raw);
                     });
 
@@ -317,7 +328,7 @@ module.exports = {
                     item.honor = doctor.honor;
                 if (doctor.icon)
                     item.icon = doctor.icon;
-                if (doctor.role)
+                if (doctor.role || doctor.role === 0)
                     item.role = doctor.role;
                 item.apply = doctor.apply || true;
 
