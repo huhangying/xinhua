@@ -153,6 +153,7 @@ router.route('/chatroom')
     .post(urlencodedParser, Chatroom.FindOrAdd);
 
 router.route('/chatroom/:id')
+    .get(Chatroom.GetById)
     .patch(urlencodedParser, Chatroom.UpdateById)
     .delete(Chatroom.DeleteById);
 

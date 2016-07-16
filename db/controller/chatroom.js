@@ -158,7 +158,7 @@ module.exports = {
 
         if (req.params && req.params.id) {
 
-            var result = Chatroom.findOne({_id: req.params.id, apply: true})
+            var result = Chatroom.findOne({_id: req.params.id})
                 .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
