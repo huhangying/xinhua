@@ -201,7 +201,7 @@ module.exports = {
                 }
 
                 // remove the related-group relationship (set group_ids to null)
-                Relationship.update({group: group_id}, { $set: {group: undefined}} ).exec();
+                Relationship.update({group: group_id}, { $set: {group: undefined}}, { multi: true } ).exec();
 
                 // delete group
                 item.remove(function(err, raw){
