@@ -204,7 +204,7 @@ module.exports = {
                 Relationship.find({group: group_id}), function(err, items) {
                     if (items && items.length > 0) {
                         items.map(function(_item) {
-                            _item.group = null;
+                            _item.group = undefined;
                             _item.save();
                         })
                     }
