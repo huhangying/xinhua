@@ -23,6 +23,24 @@ module.exports = {
             });
     },
 
+    GetAllPopulated: function (req, res) {
+
+        Schedule.find({date: {$gte: (new Date())}})
+            .populate('period')
+            .sort({created: 1})
+            .exec(function (err, items) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!items || items.length < 1) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                res.json(items);
+            });
+    },
+
     // 根据药师ID 获取相关的门诊
     GetByDoctorId: function (req, res) {
 

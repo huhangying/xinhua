@@ -208,6 +208,9 @@ var Schedule = require('../db/controller/schedule');
 
 router.route('/schedules')
     .get(Schedule.GetAll);
+router.route('/schedules/cms/populated')
+    .get(Schedule.GetAllPopulated);
+
 
 router.route('/schedules/:did')
     .get(Schedule.GetByDoctorId);
