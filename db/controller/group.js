@@ -2,6 +2,7 @@
  * Created by hhu on 2016/5/20.
  */
 var Group = require('../model/group.js');
+var Relationship = require('../model/relationship.js');
 
 module.exports = {
 
@@ -189,13 +190,24 @@ module.exports = {
     DeleteById: function (req, res) {
         if (req.params && req.params.id) { // params.id is group ID
 
-            Group.findOne({_id: req.params.id}, function (err, item) {
+            var group_id = req.params.id;
+            Group.findOne({_id: group_id}, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }
 
                 if (!item){
                     return Status.returnStatus(res, Status.NULL);
+                }
+
+                // remove the related-group relationship (set group_ids to null)
+                Relationship.find({group: group_id}), function(err, items) {
+                    if (items && items.length > 0) {
+                        items.map(function(_item) {
+                            _item.group = null;
+                            _item.save();
+                        })
+                    }
                 }
 
                 //
