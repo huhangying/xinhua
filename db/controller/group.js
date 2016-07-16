@@ -201,22 +201,15 @@ module.exports = {
                 }
 
                 // remove the related-group relationship (set group_ids to null)
-                Relationship.find({group: group_id}), function(err, items) {
-                    if (items && items.length > 0) {
-                        for (var i=0; i<items.length; i++) {
-                            items[i].group = undefined;
-                            items[i].save();
-                        }
-                    }
+                Relationship.update({group: group_id}, {group: undefined} );
 
-                    // delete group
-                    item.remove(function(err, raw){
-                        if (err) {
-                            return Status.returnStatus(res, Status.ERROR, err);
-                        }
-                        res.json(raw);
-                    });
-                }
+                // delete group
+                item.remove(function(err, raw){
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+                    res.json(raw);
+                });
 
             });
         }
