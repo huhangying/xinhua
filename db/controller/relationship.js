@@ -81,6 +81,25 @@ module.exports = {
         }
     },
 
+    // 根据Group ID 获取医患关系
+    GetByGroupId: function (req, res) {
+
+        if (req.params && req.params.group) {
+
+            Relationship.find({group: req.params.group, apply: true})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
 
     // 创建医患关系
     FindOrAdd: function (req, res) {

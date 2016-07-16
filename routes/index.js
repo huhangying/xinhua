@@ -95,6 +95,8 @@ router.route('/relationships/doctor/:id')
     .get(Relationship.GetByDoctorId);
 router.route('/relationships/user/:id')
     .get(Relationship.GetByUserId);
+router.route('/relationships/group/:group')
+    .get(Relationship.GetByGroupId);
 
 router.route('/relationship/:id')
     .get(Relationship.GetById)
