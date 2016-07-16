@@ -246,6 +246,8 @@ var Booking = require('../db/controller/booking');
 
 router.route('/bookings')
     .get(Booking.GetAll);
+router.route('/bookings/cms/populated')
+    .get(Booking.GetAllPopulated);
 
 router.route('/bookings/user/:uid')
     .get(Booking.GetByUserId);

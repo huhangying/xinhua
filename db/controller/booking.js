@@ -24,6 +24,25 @@ module.exports = {
             });
     },
 
+    // cms 用
+    GetAllPopulated: function (req, res) {
+
+        Booking.find()
+            .populate('schedule')
+            .sort({created: -1})
+            .exec(function (err, items) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!items || items.length < 1) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                res.json(items);
+            });
+    },
+
 
     // 根据ID获取详细信息
     GetById: function (req, res) {
