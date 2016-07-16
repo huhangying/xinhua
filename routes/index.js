@@ -37,6 +37,8 @@ router.route('/user/wechat/:id')
 var Doctor = require('../db/controller/doctor');
 
 router.route('/doctors/:number')
+    .get(Doctor.GetAllDoctors);//
+router.route('/doctors/:number/all')
     .get(Doctor.GetAll);//
 
 router.route('/doctors/notfocus/:user')
@@ -45,16 +47,17 @@ router.route('/doctors/notfocus/:user')
 router.route('/doctors/find/:number/:skip')
     .get(Doctor.GetAndSkip);//
 
+router.route('/doctor/cell/:cell')
+    .get(Doctor.GetByCell);
+router.route('/doctor/userid/:userid')
+    .get(Doctor.GetByUserId);
+
 router.route('/doctor/:id')
     .get(Doctor.GetById)
     .delete(Doctor.DeleteByUserId)
     .post(urlencodedParser, Doctor.AddByUserId)
     .patch(urlencodedParser, Doctor.UpdateByUserId);
 
-router.route('/doctor/cell/:cell')
-    .get(Doctor.GetByCell);
-router.route('/doctor/userid/:userid')
-    .get(Doctor.GetByUserId);
 
 router.route('/doctors/department/:departmentid')
     .get(Doctor.GetByDepartmentId);//

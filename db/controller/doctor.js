@@ -8,6 +8,30 @@ var request = require('request');
 module.exports = {
 
 
+    GetAllDoctors: function (req, res) {
+        var number = 999; // set max return numbers
+
+        if (req.params && req.params.number) {
+            number = _.parseInt(req.params.number);
+            //console.log(number);
+        }
+
+        Doctor.find({role:0})
+            .sort({updated: -1})
+            .limit(number)
+            .exec(function (err, items) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!items || items.length < 1) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                res.json(items);
+            });
+    },
+
     GetAll: function (req, res) {
         var number = 999; // set max return numbers
 
@@ -35,7 +59,7 @@ module.exports = {
     getFocusDoctors: function(userId) {
         var deferred = Q.defer();
 
-        Relationship.find({user: userId, apply: true})
+        Relationship.find({user: userId, role: 0, apply: true})
             .exec(function (err, items) {
                 if (err) {
                     deferred.resolve([]);
@@ -59,7 +83,7 @@ module.exports = {
         if (req.params && req.params.user) {
 
             Relationship.getFocusDoctors(req.params.user).then(function(doctors) {
-                Doctor.find({ _id: { "$nin": doctors } })
+                Doctor.find({ _id: { "$nin": doctors }, role: 0 })
                     .sort({updated: -1})
                     //.limit(number)
                     .exec(function (err, items) {
@@ -95,7 +119,7 @@ module.exports = {
         var skip = _.parseInt(req.params.skip);
         //console.log('number: ' + number + ', skip: ' + skip);
 
-        Doctor.find({apply: true})
+        Doctor.find({role: 0, apply: true})
             .sort({updated: -1})
             .skip(skip)
             .limit(number)
@@ -176,7 +200,7 @@ module.exports = {
 
         if (req.params && req.params.departmentid) {
 
-            var result = Doctor.find({department: req.params.departmentid, apply: true})
+            var result = Doctor.find({department: req.params.departmentid, role: 0, apply: true})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -211,8 +235,8 @@ module.exports = {
             }
 
             // role
-            if (!doctor.role && doctor.role !== 0) {
-                return Status.returnStatus(res, Status.NO_ROLE);
+            if (!doctor.role) {
+                doctor.role = 0;
             }
 
             // department
@@ -272,13 +296,15 @@ module.exports = {
 
                         // 同步消息给药师端 ()
                         // http://139.224.68.92/medical/wx/addDoctor 这是同步药师的接口，需要传入的参数1、userId 2、name
-                        request.post({url:'http://139.224.68.92/medical/wx/addDoctor', formData:{userId: uid, name: doctor.name}},
-                            function optionalCallback(err, httpResponse, body) {
-                                if (err) {
-                                    return console.error('sync failed:', err);
-                                }
-                                console.log('sync successful!  Server responded with:', body);
-                            });
+                        if (doctor.role === 0) {
+                            request.post({url:'http://139.224.68.92/medical/wx/addDoctor', formData:{userId: uid, name: doctor.name}},
+                                function optionalCallback(err, httpResponse, body) {
+                                    if (err) {
+                                        return console.error('sync failed:', err);
+                                    }
+                                    console.log('sync successful!  Server responded with:', body);
+                                });
+                        }
 
                         return res.send(raw);
                     });
