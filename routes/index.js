@@ -154,6 +154,9 @@ router.route('/chatrooms/doctor/:id')
 router.route('/chatrooms/user/:id')
     .get(Chatroom.GetByUserId);
 
+router.route('/chatroom/find/:doctorId/:userId')
+    .get(Chatroom.GetByDoctorIdUserId);
+
 router.route('/chatroom')
     .post(urlencodedParser, Chatroom.FindOrAdd);
 

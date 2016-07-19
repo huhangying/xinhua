@@ -111,6 +111,27 @@ module.exports = {
             });
     },
 
+    // 根据doctorID和用户ID获取聊天室信息
+    GetByDoctorIdUserId: function (req, res) {
+
+        if (req.params && req.params.doctorId && req.params.userId) {
+
+            Chatroom.findOne({doctor: req.params.doctorId, user: req.params.userId})
+                .sort({created: -1})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
     // 根据药师ID 获取相关的聊天室记录
     GetByDoctorId: function (req, res) {
 
