@@ -3,6 +3,7 @@
  */
 
 var Schedule = require('../model/schedule.js');
+var $q = require('q');
 
 module.exports = {
 
@@ -248,12 +249,27 @@ module.exports = {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
 
-                    res.json(schedules);
+                    var doctorsPromise = schedules
+                        .map(function(schedule){
+                            return schedule.doctor; // get only doctor field
+                        });
+
+                    $q.all(doctorsPromise)
+                        .then(function(doctors) {
+                            res.json(
+                                doctors.filter(function(doctor){
+                                    return doctor;      // remove  null
+                                }).filter(function(doctor, pos){
+                                    return doctors.indexOf(doctor) == pos; // remove duplicate ones
+                                })
+                            );
+                        });
 
                     // var doctors = schedules
                     //     .map(function(schedule){
                     //         return schedule.doctor; // get only doctor field
                     //     });
+
                     //
                     //
                     // res.json(
