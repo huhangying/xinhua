@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/chatroom.js" afterPath="$PROJECT_DIR$/db/controller/chatroom.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/model/const.js" afterPath="$PROJECT_DIR$/db/model/const.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/schedule.js" afterPath="$PROJECT_DIR$/db/controller/schedule.js" />
     </list>
     <ignored path="Xinhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schedule.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="schedule.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/controller/schedule.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1428">
-              <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+            <state relative-caret-position="353">
+              <caret line="264" column="20" selection-start-line="246" selection-start-column="23" selection-end-line="264" selection-end-column="20" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
                 <element signature="e#622#1090#0" expanded="false" />
@@ -66,16 +64,6 @@
               <folding>
                 <element signature="e#205#1661#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="schedule.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/model/schedule.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -102,10 +90,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chatroom.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="chatroom.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/controller/chatroom.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
+            <state relative-caret-position="452">
               <caret line="116" column="64" selection-start-line="116" selection-start-column="64" selection-end-line="116" selection-end-column="64" />
               <folding>
                 <element signature="e#327#884#0" expanded="false" />
@@ -131,8 +119,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="157" column="27" selection-start-line="157" selection-start-column="27" selection-end-line="157" selection-end-column="27" />
+            <state relative-caret-position="-2310">
+              <caret line="61" column="33" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -193,11 +181,11 @@
         <option value="$PROJECT_DIR$/db/controller/group.js" />
         <option value="$PROJECT_DIR$/db/controller/doctor.js" />
         <option value="$PROJECT_DIR$/db/controller/booking.js" />
-        <option value="$PROJECT_DIR$/db/controller/schedule.js" />
         <option value="$PROJECT_DIR$/db/model/schedule.js" />
         <option value="$PROJECT_DIR$/db/model/const.js" />
         <option value="$PROJECT_DIR$/db/controller/chatroom.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/db/controller/schedule.js" />
       </list>
     </option>
   </component>
@@ -511,7 +499,7 @@
       <workItem from="1465686466965" duration="3870000" />
       <workItem from="1466053617349" duration="32773000" />
       <workItem from="1466883293367" duration="46334000" />
-      <workItem from="1468377118554" duration="24454000" />
+      <workItem from="1468377118554" duration="26344000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -531,7 +519,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126674000" />
+    <option name="totallyTimeSpent" value="128564000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -914,39 +902,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2065">
-          <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
-          <folding>
-            <element signature="e#205#1661#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/controller/schedule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1428">
-          <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-            <element signature="e#622#1090#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/booking.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2295">
           <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/model/schedule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -969,14 +928,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="157" column="27" selection-start-line="157" selection-start-column="27" selection-end-line="157" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/doctor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-240">
@@ -987,12 +938,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/chatroom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
+        <state relative-caret-position="452">
           <caret line="116" column="64" selection-start-line="116" selection-start-column="64" selection-end-line="116" selection-end-column="64" />
           <folding>
             <element signature="e#327#884#0" expanded="false" />
             <element signature="e#924#1481#0" expanded="false" />
             <element signature="e#1599#2539#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/model/schedule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2065">
+          <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
+          <folding>
+            <element signature="e#205#1661#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2310">
+          <caret line="61" column="33" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/controller/schedule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="264" column="20" selection-start-line="246" selection-start-column="23" selection-end-line="264" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+            <element signature="e#622#1090#0" expanded="false" />
           </folding>
         </state>
       </provider>
