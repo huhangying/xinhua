@@ -257,11 +257,12 @@ module.exports = {
                     $q.all(doctorsPromise)
                         .then(function(doctors) {
                             res.json(
-                                doctors.filter(function(doctor){
-                                    return doctor;      // remove  null
-                                }).filter(function(doctor, pos){
-                                    return doctors.indexOf(doctor) == pos; // remove duplicate ones
-                                })
+                                doctors
+                                //     .filter(function(doctor){
+                                //     return doctor;      // remove  null
+                                // }).filter(function(doctor, pos){
+                                //     return doctors.indexOf(doctor) == pos; // remove duplicate ones
+                                // })
                             );
                         });
 
