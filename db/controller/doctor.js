@@ -297,7 +297,7 @@ module.exports = {
                         // 同步消息给药师端 ()
                         // http://139.224.68.92/medical/wx/addDoctor 这是同步药师的接口，需要传入的参数1、userId 2、name
                         if (doctor.role === 0) {
-                            request.post({url:'//http://139.224.68.92/zhaoys/wx/addDoctor', formData:{userId: uid, name: doctor.name}},
+                            request.post({url:'http://139.224.68.92/zhaoys/wx/addDoctor', formData:{userId: uid, name: doctor.name}},
                                 function optionalCallback(err, httpResponse, body) {
                                     if (err) {
                                         return console.error('sync failed:', err);
