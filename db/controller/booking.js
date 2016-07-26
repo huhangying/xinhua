@@ -221,8 +221,11 @@ module.exports = {
                         return Status.returnStatus(res, Status.NULL);
                     }
 
-                    if (booking.status)
+                    var original_status = item.status;
+                    if (booking.status) {
                         item.status = booking.status;
+                    }
+
                     if (booking.score)
                         item.score = booking.score;
 
@@ -233,6 +236,17 @@ module.exports = {
                         if (err) {
                             return Status.returnStatus(res, Status.ERROR, err);
                         }
+
+                        // if status changed from 1 to 2, or 1 to 3, limit++ in schedule table
+                        if (original_status === 1 && (item.status === 2 || item.status === 3)) {
+                            // limit++ in schedule
+                            Schedule.findById(item.schedule)
+                                .exec( function (err, schedule) {
+                                    schedule.limit++;
+                                    schedule.save();
+                                });
+                        }
+
                         res.json(raw);
                     });
 
