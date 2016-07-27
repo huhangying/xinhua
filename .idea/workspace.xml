@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/user.js" afterPath="$PROJECT_DIR$/db/controller/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
     </list>
     <ignored path="Xinhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,11 +36,9 @@
       <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/controller/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="157" column="43" selection-start-line="157" selection-start-column="43" selection-end-line="157" selection-end-column="43" />
-              <folding>
-                <element signature="e#5911#7276#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="1322">
+              <caret line="217" column="20" selection-start-line="217" selection-start-column="20" selection-end-line="217" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+              <caret line="32" column="37" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -506,7 +503,7 @@
       <workItem from="1466053617349" duration="32773000" />
       <workItem from="1466883293367" duration="46334000" />
       <workItem from="1468377118554" duration="30857000" />
-      <workItem from="1469362053874" duration="5170000" />
+      <workItem from="1469362053874" duration="6894000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -526,7 +523,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138247000" />
+    <option name="totallyTimeSpent" value="139971000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -960,18 +957,16 @@
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="157" column="43" selection-start-line="157" selection-start-column="43" selection-end-line="157" selection-end-column="43" />
-          <folding>
-            <element signature="e#5911#7276#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="1322">
+          <caret line="217" column="20" selection-start-line="217" selection-start-column="20" selection-end-line="217" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

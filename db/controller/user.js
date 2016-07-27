@@ -153,7 +153,7 @@ module.exports = {
                         _user.name = user.name;
                         //_user.password = user.password;
                         _user.gender = user.gender;
-                        //_user.icon = user.icon;
+                        _user.icon = user.icon;
                         _user.birthdate = user.birthdate;
                         _user.apply = true;
                         
@@ -174,19 +174,7 @@ module.exports = {
 
             if (!linkId) return Status.returnStatus(res, Status.NO_ID);
 
-            // 获取user数据（json）
-            var user = req.body;
-            if (!user) return res.sendStatus(400);
-
-            // 用户参数验证
-
-            //icon
-            if (!user.icon) {
-                return Status.returnStatus(res, Status.MISSING_PARAM);
-            }
-
             User.create({link_id: linkId,
-                    icon: user.icon,
                     apply: false},
                 function (err, raw) {
                     if (err) {
@@ -226,7 +214,8 @@ module.exports = {
                     item.birthdate = user.birthdate;
                 if (user.sin)
                     item.sin = user.sin;
-                item.icon = user.icon || '';
+                if (user.icon)
+                    item.icon = user.icon || '';
                 item.apply = user.apply || true;
 
                 //console.log(JSON.stringify(item));
