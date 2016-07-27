@@ -120,32 +120,80 @@ module.exports = {
 
             // sin
 
-            User.find({link_id: linkId}) // check if registered
-                .exec(function (err, users) {
+            User.findOne({link_id: linkId}) // check if registered
+                .exec(function (err, _user) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
 
-                    if (users && users.length > 0) {
+                    if (_user && _user.apply) {
                         return Status.returnStatus(res, Status.EXISTED);
                     }
 
-                    User.create({link_id: linkId,
-                        cell: user.cell,
-                        name: user.name,
-                        password: user.password,
-                        gender: user.gender,
-                        icon: user.icon,
-                        birthdate: user.birthdate,
-                        sin: user.sin,
-                        apply: user.apply || true},
-                        function (err, raw) {
-                        if (err) {
-                            return Status.returnStatus(res, Status.ERROR, err);
-                        }
+                    if (!_user) {
+                        User.create({link_id: linkId,
+                                cell: user.cell,
+                                name: user.name,
+                                password: user.password,
+                                gender: user.gender,
+                                icon: user.icon,
+                                birthdate: user.birthdate,
+                                sin: user.sin,
+                                apply: user.apply || true},
+                            function (err, raw) {
+                                if (err) {
+                                    return Status.returnStatus(res, Status.ERROR, err);
+                                }
 
-                        return res.json(raw);
-                    });
+                                return res.json(raw);
+                            });
+                    }
+                    else { // user.apply == false
+                        _user.cell = user.cell;
+                        _user.name = user.name;
+                        //_user.password = user.password;
+                        _user.gender = user.gender;
+                        //_user.icon = user.icon;
+                        _user.birthdate = user.birthdate;
+                        _user.apply = true;
+                        
+                        _user.save();
+
+                        return res.json(_user);
+                    }
+                    
+
+                });
+        }
+    },
+
+    // 用于用户注册前,关联用户与药师的关系
+    AddPresetByLinkId: function(req, res){
+        if (req.params && req.params.id) { // params.id is WeChat ID
+            var linkId = req.params.id;
+
+            if (!linkId) return Status.returnStatus(res, Status.NO_ID);
+
+            // 获取user数据（json）
+            var user = req.body;
+            if (!user) return res.sendStatus(400);
+
+            // 用户参数验证
+
+            //icon
+            if (!user.icon) {
+                return Status.returnStatus(res, Status.MISSING_PARAM);
+            }
+
+            User.create({link_id: linkId,
+                    icon: user.icon,
+                    apply: false},
+                function (err, raw) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    return res.json(raw);
 
                 });
         }

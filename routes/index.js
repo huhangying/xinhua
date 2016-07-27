@@ -30,6 +30,9 @@ router.route('/user/wechat/:id')
     .post(urlencodedParser, User.AddByLinkId)
     .patch(urlencodedParser, User.UpdateByLinkId);
 
+router.route('/user/preset/wechat/:id')
+    .post(urlencodedParser, User.AddPresetByLinkId)
+
 
 
 
