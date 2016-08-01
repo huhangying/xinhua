@@ -48,8 +48,8 @@ module.exports = {
         _date.setHours(24,0,0,0); // next midnignt
         if (req.params && req.params.did) {
 
-            Schedule.find({doctor: req.params.did, date: {$gte: (+new Date())}})
-            //Schedule.find({doctor: req.params.did, date: {$gte: (+new Date(_date))}})
+            //Schedule.find({doctor: req.params.did, date: {$gte: (+new Date())}})
+            Schedule.find({doctor: req.params.did, date: {$gte: _date}})
                 .sort({date: 1, period: 1})
                 .exec(function (err, items) {
                     if (err) {
