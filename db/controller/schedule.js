@@ -42,12 +42,13 @@ module.exports = {
             });
     },
 
-    // 根据药师ID 获取相关的门诊
+    // 根据药师ID 获取相关的门诊(不包括当天的门诊)
     GetByDoctorId: function (req, res) {
-
+        var _date = new Date(req.params.date);
+        _date.setHours(24,0,0,0); // next midnignt
         if (req.params && req.params.did) {
 
-            Schedule.find({doctor: req.params.did, date: {$gte: (+new Date())}})
+            Schedule.find({doctor: req.params.did, date: {$gte: (+new Date(_date))}})
                 .sort({date: 1, period: 1})
                 .exec(function (err, items) {
                     if (err) {
