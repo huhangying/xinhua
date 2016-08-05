@@ -223,4 +223,30 @@ module.exports = {
         }
     },
 
+    DeleteByUserId: function (req, res) {
+        if (req.params && req.params.id) { // params.id is user ID
+
+            Relationship.remove({user: req.params.id}, function (err) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                res.sendStatus(200);
+            });
+        }
+    },
+
+    DeleteByDoctorId: function (req, res) {
+        if (req.params && req.params.id) { // params.id is doctor ID
+
+            Relationship.remove({doctor: req.params.id}, function (err) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                res.sendStatus(200);
+            });
+        }
+    },
+
 }

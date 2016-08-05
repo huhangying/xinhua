@@ -98,9 +98,11 @@ router.route('/relationships')
     .get(Relationship.GetAll);
 
 router.route('/relationships/doctor/:id')
-    .get(Relationship.GetByDoctorId);
+    .get(Relationship.GetByDoctorId)
+    .delete(Relationship.DeleteByDoctorId);
 router.route('/relationships/user/:id')
-    .get(Relationship.GetByUserId);
+    .get(Relationship.GetByUserId)
+    .delete(Relationship.DeleteByUserId);
 router.route('/relationships/group/:group')
     .get(Relationship.GetByGroupId);
 
