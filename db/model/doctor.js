@@ -21,11 +21,11 @@ var _Doctor = new Schema({
     honor: String,
     icon: String,
 
-    created: {type : Date, default: Date.now},
-    updated: {type : Date, default: Date.now},
+    created: {type : Date, default: Date.now },
+    updated: {type : Date, default: Date.now },
     locked_count: Number,
-    apply: {type : Boolean, default: true},
-    order: { type: Number }
+    apply: {type : Boolean, default: true },
+    order: { type: Number, default: 0 }
 });
 
 module.exports =  mongoose.model('doctor', _Doctor);
