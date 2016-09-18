@@ -24,7 +24,8 @@ var _Doctor = new Schema({
     created: {type : Date, default: Date.now},
     updated: {type : Date, default: Date.now},
     locked_count: Number,
-    apply: {type : Boolean, default: true}
+    apply: {type : Boolean, default: true},
+    order: { type: Number }
 });
 
 module.exports =  mongoose.model('doctor', _Doctor);

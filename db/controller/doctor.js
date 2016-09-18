@@ -16,8 +16,8 @@ module.exports = {
             //console.log(number);
         }
 
-        Doctor.find({role:0})
-            .sort({updated: -1})
+        Doctor.find({role: 0, apply: true})
+            .sort({order: 1, updated: -1})
             .limit(number)
             .exec(function (err, items) {
                 if (err) {
@@ -32,6 +32,7 @@ module.exports = {
             });
     },
 
+    // for CMS
     GetAll: function (req, res) {
         var number = 999; // set max return numbers
 
@@ -41,7 +42,7 @@ module.exports = {
         }
 
         Doctor.find()
-            .sort({updated: -1})
+            .sort({order: 1, updated: -1})
             .limit(number)
             .exec(function (err, items) {
                 if (err) {
@@ -60,6 +61,7 @@ module.exports = {
         var deferred = Q.defer();
 
         Relationship.find({user: userId, role: 0, apply: true})
+            .sort({order: 1, updated: -1})
             .exec(function (err, items) {
                 if (err) {
                     deferred.resolve([]);
@@ -83,8 +85,8 @@ module.exports = {
         if (req.params && req.params.user) {
 
             Relationship.getFocusDoctors(req.params.user).then(function(doctors) {
-                Doctor.find({ _id: { "$nin": doctors }, role: 0 })
-                    .sort({updated: -1})
+                Doctor.find({ _id: { "$nin": doctors }, role: 0, apply: true })
+                    .sort({order: 1, updated: -1})
                     //.limit(number)
                     .exec(function (err, items) {
                         if (err) {
@@ -120,7 +122,7 @@ module.exports = {
         //console.log('number: ' + number + ', skip: ' + skip);
 
         Doctor.find({role: 0, apply: true})
-            .sort({updated: -1})
+            .sort({order: 1, updated: -1})
             .skip(skip)
             .limit(number)
             .exec(function (err, items) {
@@ -201,6 +203,7 @@ module.exports = {
         if (req.params && req.params.departmentid) {
 
             var result = Doctor.find({department: req.params.departmentid, role: 0, apply: true})
+                .sort({order: 1, updated: -1})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -288,6 +291,7 @@ module.exports = {
                         hours: doctor.hours,
                         honor: doctor.honor,
                         icon: doctor.icon,
+                        order: doctor.order,
                         apply: doctor.apply || true
                     }, function (err, raw) {
                         if (err) {
@@ -356,6 +360,8 @@ module.exports = {
                     item.icon = doctor.icon;
                 if (doctor.role || doctor.role === 0)
                     item.role = doctor.role;
+                if (doctor.order || doctor.order === 0)
+                    item.order = doctor.order;
                 item.apply = doctor.apply || true;
 
 
