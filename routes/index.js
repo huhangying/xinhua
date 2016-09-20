@@ -295,4 +295,50 @@ router.route('/const/:id')
 router.route('/const/:name')
     .get(Const.GetByName);
 
+//===================================== Version 1.0
+
+//---------------- 问卷调查类别/section
+var SurveyCat = require('../db/controller/surveyCat');
+
+router.route('/surveycats')
+    .get(SurveyCat.GetAll);
+
+router.route('/surveycat')
+    .post(urlencodedParser, SurveyCat.Add);
+
+router.route('/surveycat/:id')
+    .get(SurveyCat.GetById)
+    .delete(SurveyCat.DeleteById)
+    .patch(urlencodedParser, SurveyCat.UpdateById);
+
+
+//---------------- 问卷调查,包含问题
+var Survey = require('../db/controller/survey');
+
+router.route('/surveys')
+    .get(Survey.GetAll);
+
+router.route('/survey')
+    .post(urlencodedParser, Survey.Add);
+
+router.route('/survey/:id')
+    .get(Survey.GetById)
+    .delete(Survey.DeleteById)
+    .patch(urlencodedParser, Survey.UpdateById);
+
+//---------------- 问卷调查集合
+var SurveyGroup = require('../db/controller/surveyGroup');
+
+router.route('/surveygroups')
+    .get(SurveyGroup.GetAll);
+
+router.route('/surveygroup')
+    .post(urlencodedParser, SurveyGroup.Add);
+
+router.route('/surveygroup/:id')
+    .get(SurveyGroup.GetById)
+    .delete(SurveyGroup.DeleteById)
+    .patch(urlencodedParser, SurveyGroup.UpdateById);
+
+
 module.exports = router;
