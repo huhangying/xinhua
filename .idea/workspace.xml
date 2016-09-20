@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/controller/survey.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/controller/surveyCat.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/controller/surveyGroup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/model/survey.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/model/surveyCat.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/model/surveyGroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/survey.js" afterPath="$PROJECT_DIR$/db/controller/survey.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
     </list>
     <ignored path="Xinhua.iws" />
@@ -33,18 +27,18 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="298" column="0" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
+            <state relative-caret-position="203">
+              <caret line="321" column="33" selection-start-line="321" selection-start-column="33" selection-end-line="321" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="department.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/controller/department.js">
+      <file leaf-file-name="chat.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2055">
-              <caret line="137" column="17" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
+            <state relative-caret-position="-238">
+              <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -93,9 +87,13 @@
       <file leaf-file-name="survey.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/controller/survey.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="225">
+              <caret line="48" column="21" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="21" />
+              <folding>
+                <element signature="e#178#552#0" expanded="false" />
+                <element signature="e#606#1074#0" expanded="false" />
+                <element signature="e#1149#1643#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -125,7 +123,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
               <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1474336613000" expanded="true" signature="0:497" ph="{&quot;name&quot;: &quot;Xinhua&quot;...}" />
+                <marker date="1474336613000" expanded="true" signature="76:111" ph="{&quot;start&quot;: &quot;node ./bin/www&quot;...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -189,6 +190,7 @@
         <option value="$PROJECT_DIR$/db/model/doctor.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/db/controller/survey.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
@@ -524,7 +526,7 @@
       <workItem from="1470356767892" duration="5507000" />
       <workItem from="1473508403593" duration="2759000" />
       <workItem from="1473904795061" duration="5883000" />
-      <workItem from="1474206637941" duration="10826000" />
+      <workItem from="1474206637941" duration="11971000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -544,7 +546,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169691000" />
+    <option name="totallyTimeSpent" value="170836000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -557,7 +559,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="740" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2668785" sideWeight="0.49425286" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -788,13 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/chatroom.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3450">
@@ -930,7 +925,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1474336613000" expanded="true" signature="0:497" ph="{&quot;name&quot;: &quot;Xinhua&quot;...}" />
+            <marker date="1474336613000" expanded="true" signature="76:111" ph="{&quot;start&quot;: &quot;node ./bin/www&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -946,14 +944,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-565">
           <caret line="26" column="35" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/controller/survey.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -974,10 +964,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/controller/survey.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="48" column="21" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="21" />
+          <folding>
+            <element signature="e#178#552#0" expanded="false" />
+            <element signature="e#606#1074#0" expanded="false" />
+            <element signature="e#1149#1643#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="298" column="0" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
+        <state relative-caret-position="203">
+          <caret line="321" column="33" selection-start-line="321" selection-start-column="33" selection-end-line="321" selection-end-column="33" />
           <folding />
         </state>
       </provider>

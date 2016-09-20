@@ -45,6 +45,26 @@ module.exports = {
         }
     },
 
+    // 根据Cat ID获取Survey list
+    GetSurveysByCatId: function (req, res) {
+
+        if (req.params && req.params.catid) {
+
+            Survey.find({_id: req.params.catid})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+    
     // 创建关系组
     Add: function (req, res) {
 

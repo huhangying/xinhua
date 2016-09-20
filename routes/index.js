@@ -318,6 +318,9 @@ var Survey = require('../db/controller/survey');
 router.route('/surveys')
     .get(Survey.GetAll);
 
+router.route('/surveys/:catid')
+    .get(Survey.GetSurveysByCatId);
+
 router.route('/survey')
     .post(urlencodedParser, Survey.Add);
 
