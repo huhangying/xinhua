@@ -13,6 +13,7 @@ var _SurveyGroup = new Schema({
                 survey: { type: Schema.Types.ObjectId, ref: 'survey', required: true }
             }
         ],
+        apply: { type: Boolean, default: true }
     },
     {
         timestamps: true
