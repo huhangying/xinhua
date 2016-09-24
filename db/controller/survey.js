@@ -50,7 +50,27 @@ module.exports = {
 
         if (req.params && req.params.catid) {
 
-            Survey.find({_id: req.params.catid})
+            Survey.find({cat: req.params.catid})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
+    // 根据Department ID获取Survey list
+    GetSurveysByDepartmentId: function (req, res) {
+
+        if (req.params && req.params.did) {
+
+            Survey.find({department: req.params.did})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -76,7 +96,10 @@ module.exports = {
         if (!survey.name) {
             return Status.returnStatus(res, Status.NO_NAME);
         }
-
+        // department
+        if (!survey.department) {
+            return Status.returnStatus(res, Status.MISSING_PARAM);
+        }
         // category
         if (!survey.cat) {
             return Status.returnStatus(res, Status.NO_CAT);
@@ -90,6 +113,7 @@ module.exports = {
         Survey.create({
 
             name: survey.name,
+            department: survey.department,
             cat: survey.cat,
             questions: survey.questions
         }, function (err, raw) {
@@ -121,6 +145,8 @@ module.exports = {
 
                 if (survey.name)
                     item.name = survey.name;
+                if (survey.department)
+                    item.department = survey.department;
                 if (survey.cat)
                     item.cat = survey.cat;
                 if (survey.questions && survey.questions.length > 0)

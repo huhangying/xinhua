@@ -295,6 +295,7 @@ router.route('/const/:id')
 router.route('/const/:name')
     .get(Const.GetByName);
 
+
 //===================================== Version 1.0
 
 //---------------- 问卷调查类别/section
@@ -318,8 +319,10 @@ var Survey = require('../db/controller/survey');
 router.route('/surveys')
     .get(Survey.GetAll);
 
-router.route('/surveys/:catid')
+router.route('/surveys/cat/:catid')
     .get(Survey.GetSurveysByCatId);
+router.route('/surveys/department/:did')
+    .get(Survey.GetSurveysByDepartmentId);
 
 router.route('/survey')
     .post(urlencodedParser, Survey.Add);

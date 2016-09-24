@@ -59,8 +59,6 @@ module.exports = {
 
         // survey group ? allow to create a survey group without survey?
 
-
-
         // 不存在，创建
         SurveyGroup.create({
 

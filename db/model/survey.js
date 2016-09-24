@@ -6,6 +6,7 @@ var Schema = global.mongoose.Schema;
 var _Survey = new Schema({
 
         name: { type: String, required: true, trim: true }, // Survey section name
+        department: { type: Schema.Types.ObjectId, ref: 'department', required: true },
         cat: { type: Schema.Types.ObjectId, ref: 'survey_cat', required: true },
         questions: [
             {
@@ -18,7 +19,8 @@ var _Survey = new Schema({
                 options: [
                     {
                         answer: { type: String, required: true },
-                        addition_text: { type: Boolean, default: false },
+                        input_required: { type: Boolean, default: false },
+                        input: { type: String, trim: true },
                         hint: { type: String },
                         weight: { type: Number },
                         selected: { type: Boolean }
