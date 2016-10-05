@@ -5,15 +5,15 @@ var Schema = global.mongoose.Schema;
 
 var _Prescription = new Schema({
 
-        booking: {type: Schema.Types.ObjectId, ref: 'booking' },
+        booking: {type: Schema.Types.ObjectId, ref: 'booking', required: true },
         doctor: {type: Schema.Types.ObjectId, ref: 'doctor', required: true },
         user: {type: Schema.Types.ObjectId, ref: 'user', required: true },
         medicines: [ {
-            name: {type: String, required: true, trim: true},
-            desc: {type: String, required: true, trim: true},
-            unit: {type: String},
-            capacity: {type: Number},
-            usage: {type: String}, // 内服外用等
+            name: {type: String, required: true, trim: true },
+            desc: {type: String, trim: true },
+            unit: {type: String, required: true },
+            capacity: {type: Number },
+            usage: {type: String }, // 内服外用等
             dosage: {
                 frequency: {type: Number, required: true},
                 way: {type: String, required: true, trim: true} // 饭前/饭后/隔几小时

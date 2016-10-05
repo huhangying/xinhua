@@ -367,6 +367,25 @@ router.route('/medicine/:id')
     .patch(urlencodedParser, Medicine.UpdateById);
 
 //---------------- 处方管理
+var Prescription = require('../db/controller/prescription');
+
+router.route('/prescriptions')
+    .get(Prescription.GetAll);
+
+router.route('/prescriptions/booking/:id')
+    .get(Prescription.GetByBookingId);
+router.route('/prescriptions/doctor/:id')
+    .get(Prescription.GetByDoctorId);
+router.route('/prescriptions/user/:id')
+    .get(Prescription.GetByUserId);
+
+router.route('/prescription')
+    .post(urlencodedParser, Prescription.Add);
+
+router.route('/prescription/:id')
+    .get(Prescription.GetById)
+    .delete(Prescription.DeleteById)
+    .patch(urlencodedParser, Prescription.UpdateById);
 
 
 module.exports = router;
