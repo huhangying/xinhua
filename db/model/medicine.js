@@ -6,8 +6,8 @@ var Schema = global.mongoose.Schema;
 var _Medicine = new Schema({
 
         name: { type: String, required: true, trim: true },
-        desc: { type: String, required: true, trim: true },
-        unit: { type: String },
+        desc: { type: String, trim: true },
+        unit: { type: String, required: true },
         capacity: { type: Number },
         usage: { type: String }, // 内服外用等
         dosage: {

@@ -346,5 +346,27 @@ router.route('/surveygroup/:id')
     .delete(SurveyGroup.DeleteById)
     .patch(urlencodedParser, SurveyGroup.UpdateById);
 
+//---------------- 药品管理
+var Medicine = require('../db/controller/medicine');
+
+router.route('/medicines')
+    .get(Medicine.GetAll);
+
+router.route('/medicines/available')
+    .get(Medicine.GetAllAvailable);
+
+// router.route('/medicines/cat/:catid')
+//     .get(Medicine.GetMedicinesByCatId);
+
+router.route('/medicine')
+    .post(urlencodedParser, Medicine.Add);
+
+router.route('/medicine/:id')
+    .get(Medicine.GetById)
+    .delete(Medicine.DeleteById)
+    .patch(urlencodedParser, Medicine.UpdateById);
+
+//---------------- 处方管理
+
 
 module.exports = router;
