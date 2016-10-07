@@ -7,7 +7,7 @@ var _Medicine = new Schema({
 
         name: { type: String, required: true, trim: true },
         desc: { type: String, trim: true },
-        unit: { type: String, required: true },
+        unit: { type: String },
         capacity: { type: Number },
         usage: { type: String }, // 内服外用等
         dosage: {

@@ -72,9 +72,9 @@ module.exports = {
             return Status.returnStatus(res, Status.NO_NAME);
         }
         // unit
-        if (!medicine.unit) {
-            return Status.returnStatus(res, Status.MISSING_PARAM);
-        }
+        // if (!medicine.unit) {
+        //     return Status.returnStatus(res, Status.MISSING_PARAM);
+        // }
 
         // dosage
         if (!medicine.dosage) {
