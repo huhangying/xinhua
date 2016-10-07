@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/prescription.js" afterPath="$PROJECT_DIR$/db/controller/prescription.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/model/prescription.js" afterPath="$PROJECT_DIR$/db/model/prescription.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/medicine.js" afterPath="$PROJECT_DIR$/db/controller/medicine.js" />
     </list>
     <ignored path="Xinhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,7 +23,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="774">
@@ -85,8 +83,8 @@
       <file leaf-file-name="medicine.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/model/medicine.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
+            <state relative-caret-position="279">
+              <caret line="22" column="31" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="31" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
               </folding>
@@ -106,19 +104,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="medicine.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="medicine.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/controller/medicine.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="108" column="36" selection-start-line="108" selection-start-column="36" selection-end-line="108" selection-end-column="36" />
+            <state relative-caret-position="335">
+              <caret line="137" column="36" selection-start-line="137" selection-start-column="36" selection-end-line="137" selection-end-column="36" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
                 <element signature="e#141#517#0" expanded="false" />
                 <element signature="e#571#1041#0" expanded="false" />
                 <element signature="e#1121#1535#0" expanded="false" />
-                <element signature="e#1577#2705#0" expanded="false" />
-                <element signature="e#2744#4286#0" expanded="false" />
-                <element signature="e#4325#4984#0" expanded="false" />
+                <element signature="e#4294#4953#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -214,10 +210,10 @@
         <option value="$PROJECT_DIR$/db/model/survey.js" />
         <option value="$PROJECT_DIR$/db/controller/survey.js" />
         <option value="$PROJECT_DIR$/db/model/medicine.js" />
-        <option value="$PROJECT_DIR$/db/controller/medicine.js" />
         <option value="$PROJECT_DIR$/db/model/prescription.js" />
         <option value="$PROJECT_DIR$/db/controller/prescription.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/db/controller/medicine.js" />
       </list>
     </option>
   </component>
@@ -553,7 +549,7 @@
       <workItem from="1473508403593" duration="2759000" />
       <workItem from="1473904795061" duration="5883000" />
       <workItem from="1474206637941" duration="17787000" />
-      <workItem from="1475418782117" duration="11276000" />
+      <workItem from="1475418782117" duration="16346000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -573,7 +569,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187928000" />
+    <option name="totallyTimeSpent" value="192998000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -595,7 +591,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35185185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20461538" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20524691" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39692307" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -961,16 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/model/medicine.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/drivers/node-mongodb-native/connection.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
@@ -1010,22 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/controller/medicine.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="108" column="36" selection-start-line="108" selection-start-column="36" selection-end-line="108" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-            <element signature="e#141#517#0" expanded="false" />
-            <element signature="e#571#1041#0" expanded="false" />
-            <element signature="e#1121#1535#0" expanded="false" />
-            <element signature="e#1577#2705#0" expanded="false" />
-            <element signature="e#2744#4286#0" expanded="false" />
-            <element signature="e#4325#4984#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/model/prescription.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1053,6 +1023,30 @@
         <state relative-caret-position="774">
           <caret line="384" column="27" selection-start-line="384" selection-start-column="27" selection-end-line="384" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/model/medicine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/controller/medicine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="137" column="36" selection-start-line="137" selection-start-column="36" selection-end-line="137" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+            <element signature="e#141#517#0" expanded="false" />
+            <element signature="e#571#1041#0" expanded="false" />
+            <element signature="e#1121#1535#0" expanded="false" />
+            <element signature="e#4294#4953#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
