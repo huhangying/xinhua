@@ -17,6 +17,7 @@ module.exports =  {
     NO_ID: 'no_id',
     NO_PASSWORD: 'no_password',
     NO_USER: 'no_user',
+    NO_DEPARTMENT: 'no_department',
     NO_DOCTOR: 'no_doctor',
     NO_ROLE: 'no role',
     NO_TYPE: 'no type',

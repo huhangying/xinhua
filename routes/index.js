@@ -303,6 +303,8 @@ var SurveyCat = require('../db/controller/surveyCat');
 
 router.route('/surveycats')
     .get(SurveyCat.GetAll);
+router.route('/surveycats/department/:did')
+    .get(SurveyCat.GetSurveyCatsByDepartmentId);
 
 router.route('/surveycat')
     .post(urlencodedParser, SurveyCat.Add);
