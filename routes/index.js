@@ -389,5 +389,41 @@ router.route('/prescription/:id')
     .delete(Prescription.DeleteById)
     .patch(urlencodedParser, Prescription.UpdateById);
 
+//---------------- 宣教材料类别
+var PageCat = require('../db/controller/pageCat');
+
+router.route('/pagecats')
+    .get(PageCat.GetAll);
+router.route('/pagecats/department/:did')
+    .get(PageCat.GetPageCatsByDepartmentId);
+
+router.route('/pagecat')
+    .post(urlencodedParser, PageCat.Add);
+
+router.route('/pagecat/:id')
+    .get(PageCat.GetById)
+    .delete(PageCat.DeleteById)
+    .patch(urlencodedParser, PageCat.UpdateById);
+
+
+//---------------- 宣教材料
+var Page = require('../db/controller/page');
+
+router.route('/pages')
+    .get(Page.GetAll);
+
+router.route('/pages/cat/:catid')
+    .get(Page.GetPagesByCatId);
+router.route('/pages/department/:did')
+    .get(Page.GetPagesByDepartmentId);
+
+router.route('/page')
+    .post(urlencodedParser, Page.Add);
+
+router.route('/page/:id')
+    .get(Page.GetById)
+    .delete(Page.DeleteById)
+    .patch(urlencodedParser, Page.UpdateById);
+
 
 module.exports = router;
