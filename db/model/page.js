@@ -10,8 +10,8 @@ var _Page = new Schema({
         cat: { type: Schema.Types.ObjectId, ref: 'page_cat', required: true },
         title: { type: String },
         title_image: { type: String },
-        edit_html: { type: String, required: true }, // url
-        render_html: { type: String, required: true }, //url
+        edit_html: { type: String }, // url ?
+        render_html: { type: String }, //url
         data: { type: String },
         apply: { type: Boolean, default: true }
     },
