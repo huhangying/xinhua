@@ -148,8 +148,7 @@ module.exports = {
                     item.cat = survey.cat;
                 if (survey.questions && survey.questions.length > 0)
                     item.questions = survey.questions;
-                if (survey.apply || survey.apply === false)
-                    item.apply = survey.apply;
+                item.apply = survey.apply || false;
                 
                 //console.log(JSON.stringify(item));
 

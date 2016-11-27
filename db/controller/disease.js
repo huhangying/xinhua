@@ -156,7 +156,7 @@ var self = module.exports = {
                         item.desc = disease.desc;
                     if (disease.order)
                         item.order = disease.order;
-                    item.apply = disease.apply || true;
+                    item.apply = disease.apply || false;
 
                     item.symptoms.length = 0;
 

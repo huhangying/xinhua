@@ -362,7 +362,7 @@ module.exports = {
                     item.role = doctor.role;
                 if (doctor.order || doctor.order === 0)
                     item.order = doctor.order;
-                item.apply = doctor.apply || true;
+                item.apply = doctor.apply || false;
 
 
                 //console.log(JSON.stringify(item));

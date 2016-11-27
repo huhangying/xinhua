@@ -160,8 +160,7 @@ module.exports = {
                     item.render_html = page.render_html;
                 if (page.data)
                     item.data = page.data;
-                if (page.apply || page.apply === false)
-                    item.apply = page.apply;
+                item.apply = page.apply || false;
 
                 //console.log(JSON.stringify(item));
 

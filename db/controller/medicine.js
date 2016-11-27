@@ -137,8 +137,7 @@ module.exports = {
                     item.dosage = medicine.dosage;
                 if (medicine.notices)
                     item.notices = medicine.notices;
-                if (medicine.apply || medicine.apply === false)
-                    item.apply = medicine.apply;
+                item.apply = medicine.apply || false;
 
                 //
                 item.save(function (err, raw) {

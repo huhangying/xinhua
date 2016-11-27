@@ -216,7 +216,7 @@ module.exports = {
                     item.sin = user.sin;
                 if (user.icon)
                     item.icon = user.icon || '';
-                item.apply = user.apply || true;
+                item.apply = user.apply || false;
 
                 //console.log(JSON.stringify(item));
 
