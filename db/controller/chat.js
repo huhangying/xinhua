@@ -48,10 +48,10 @@ module.exports = {
                             if (chat.direction === "0" && chatroom.doctor && chatroom.doctor.status && chatroom.doctor.status > 0) {
                                 // 自动回复消息
                                 Chat.create({
-                                        chatroom: chatroom._id,
+                                        chatroom: raw.chatroom,
                                         direction: 1,
-                                        type: chat.type,
-                                    // read: chat.read+1,
+                                        type: raw.type,
+                                        read: 0,
                                         data: '自动回复消息' //todo:
                                     },
                                     function (__err, _raw) {
