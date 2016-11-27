@@ -361,7 +361,8 @@ module.exports = {
                     item.role = doctor.role;
                 if (doctor.order || doctor.order === 0)
                     item.order = doctor.order;
-                item.apply = doctor.apply || false;
+                if (doctor.apply || doctor.apply === false)
+                    item.apply = doctor.apply;
 
 
                 if (doctor.status || doctor.status === 0) {
