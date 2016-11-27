@@ -303,55 +303,111 @@ module.exports = {
     GetAndUpdateChatroom: function (userid, doctorid, direction, username, doctorname) {
         var deferred = Q.defer();
 
-        Chatroom.findOne( {user: userid, doctor: doctorid})
-            .exec(function (err, item){
-                if (err) {
-                    deferred.reject(err);
-                }
-
-                // 存在
-                if (item) {
-
-                    if (direction == 0){
-                        item.user_unread++;
+        if (direction === "0") { // !!! only difference: 0: populate doctor
+            Chatroom.findOne( {user: userid, doctor: doctorid})
+                .populate({ path: 'doctor', select: 'status' })
+                .exec(function (err, item){
+                    if (err) {
+                        deferred.reject(err);
                     }
-                    else if (direction == 1){
-                        item.doctor_unread++;
+
+                    // 存在
+                    if (item) {
+
+                        if (direction == 0){
+                            item.user_unread++;
+                        }
+                        else if (direction == 1){
+                            item.doctor_unread++;
+                        }
+                        item.updated = Date.now();
+
+                        item.save();
+                        //console.log(JSON.stringify(item));
+
+                        deferred.resolve(item);
                     }
-                    item.updated = Date.now();
+                    else {
 
-                    item.save();
-                    //console.log(JSON.stringify(item));
+                        // 不存在，创建
 
-                    deferred.resolve(item);
-                }
-                else {
+                        // set chatroom name (format: user name | doctor name)
+                        var name = username + '|' + doctorname;
+                        var user_unread = direction == 0 ? 1 : 0;
+                        var doctor_unread = direction == 1 ? 1 : 0;
 
-                    // 不存在，创建
+                        // create
+                        Chatroom.create({
+                                name: name,
+                                doctor: doctorid,
+                                user: userid,
+                                user_unread: user_unread,
+                                doctor_unread: doctor_unread
+                            },
+                            function (err, raw) {
+                                if (err) {
+                                    deferred.reject(err);
+                                }
 
-                    // set chatroom name (format: user name | doctor name)
-                    var name = username + '|' + doctorname;
-                    var user_unread = direction == 0 ? 1 : 0;
-                    var doctor_unread = direction == 1 ? 1 : 0;
+                                deferred.resolve(raw);
+                            });
+                    }
 
-                    // create
-                    Chatroom.create({
-                            name: name,
-                            doctor: doctorid,
-                            user: userid,
-                            user_unread: user_unread,
-                            doctor_unread: doctor_unread
-                        },
-                        function (err, raw) {
-                            if (err) {
-                                deferred.reject(err);
-                            }
+                });
+        }
+        else {
+            Chatroom.findOne( {user: userid, doctor: doctorid})
+                .exec(function (err, item){
+                    if (err) {
+                        deferred.reject(err);
+                    }
 
-                            deferred.resolve(raw);
-                        });
-                }
+                    // 存在
+                    if (item) {
 
-            });
+                        if (direction == 0){
+                            item.user_unread++;
+                        }
+                        else if (direction == 1){
+                            item.doctor_unread++;
+                        }
+                        item.updated = Date.now();
+
+                        item.save();
+                        //console.log(JSON.stringify(item));
+
+                        deferred.resolve(item);
+                    }
+                    else {
+
+                        // 不存在，创建
+
+                        // set chatroom name (format: user name | doctor name)
+                        var name = username + '|' + doctorname;
+                        var user_unread = direction == 0 ? 1 : 0;
+                        var doctor_unread = direction == 1 ? 1 : 0;
+
+                        // create
+                        Chatroom.create({
+                                name: name,
+                                doctor: doctorid,
+                                user: userid,
+                                user_unread: user_unread,
+                                doctor_unread: doctor_unread
+                            },
+                            function (err, raw) {
+                                if (err) {
+                                    deferred.reject(err);
+                                }
+
+                                deferred.resolve(raw);
+                            });
+                    }
+
+                });
+        }
+
+
         return deferred.promise;
     },
 }

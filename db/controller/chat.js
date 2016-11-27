@@ -15,12 +15,13 @@ module.exports = {
 
         // check input(chatroom, direction, type, data)
         if (!chat.user || !chat.doctor || !chat.data) {
-            console.log(JSON.stringify(chat));
+            //console.log(JSON.stringify(chat));
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
 
         // find chatroom. create one if not existed.
 
+        // 如果用户发给药师的消息, 先检查药师的状态,如果不是空闲, 则会发送自动回复消息
         ChatroomService.GetAndUpdateChatroom(chat.user, chat.doctor, chat.direction, chat.username)
             .then(
                 function(chatroom) { // promise resolved
@@ -42,8 +43,30 @@ module.exports = {
                                 return Status.returnStatus(res, Status.ERROR, _err);
                             }
 
-                            return res.send(raw);
+                            // 确保比上个消息慢
+                            // doctor。status 是 ChatroomService.GetAndUpdateChatroom 返回的
+                            if (chat.direction === "0" && chatroom.doctor && chatroom.doctor.status && chatroom.doctor.status > 0) {
+                                // 自动回复消息
+                                Chat.create({
+                                        chatroom: chatroom._id,
+                                        direction: 1,
+                                        type: chat.type,
+                                        data: '自动回复消息' //todo:
+                                    },
+                                    function (__err, _raw) {
+                                        if (__err) {
+                                            return Status.returnStatus(res, Status.ERROR, _err);
+                                        }
+
+                                        return res.send(raw);
+                                    });
+                            }
+                            else {
+                                return res.send(raw);
+                            }
+
                         });
+
                 },
                 function(err){ // promise rejected
                     return Status.returnStatus(res, Status.ERROR, err);

@@ -306,7 +306,7 @@ module.exports = {
                                     if (err) {
                                         return console.error('sync failed:', err);
                                     }
-                                    console.log('sync successful!  Server responded with:', body);
+                                    //console.log('sync successful!  Server responded with:', body);
                                 });
                         }
 
@@ -323,7 +323,6 @@ module.exports = {
             // 获取user数据（json）
             var doctor = req.body;
             if (!doctor) return res.sendStatus(400);
-
 
             Doctor.findOne({user_id: uid}, function (err, item) {
                 if (err) {
@@ -365,6 +364,9 @@ module.exports = {
                 item.apply = doctor.apply || false;
 
 
+                if (doctor.status || doctor.status === 0) {
+                    item.status = doctor.status;
+                }
                 //console.log(JSON.stringify(item));
 
                 //
