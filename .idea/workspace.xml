@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/chat.js" afterPath="$PROJECT_DIR$/db/controller/chat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/chatroom.js" afterPath="$PROJECT_DIR$/db/controller/chatroom.js" />
     </list>
     <ignored path="Xinhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="surveyGroup.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/controller/surveyGroup.js">
+      <file leaf-file-name="chatroom.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/model/chatroom.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="97" column="16" selection-start-line="97" selection-start-column="16" selection-end-line="98" selection-end-column="51" />
+            <state relative-caret-position="60">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="18" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -74,10 +74,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chat.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="chat.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
+            <state relative-caret-position="336">
               <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
               <folding />
             </state>
@@ -94,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chatroom.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="chatroom.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/controller/chatroom.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="326" column="47" selection-start-line="326" selection-start-column="47" selection-end-line="326" selection-end-column="47" />
+            <state relative-caret-position="156">
+              <caret line="326" column="27" selection-start-line="326" selection-start-column="27" selection-end-line="326" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -192,8 +192,8 @@
         <option value="$PROJECT_DIR$/db/controller/surveyCat.js" />
         <option value="$PROJECT_DIR$/db/controller/surveyGroup.js" />
         <option value="$PROJECT_DIR$/db/controller/user.js" />
-        <option value="$PROJECT_DIR$/db/controller/chatroom.js" />
         <option value="$PROJECT_DIR$/db/controller/chat.js" />
+        <option value="$PROJECT_DIR$/db/controller/chatroom.js" />
       </list>
     </option>
   </component>
@@ -532,7 +532,7 @@
       <workItem from="1475418782117" duration="22605000" />
       <workItem from="1479618373241" duration="11110000" />
       <workItem from="1480049626107" duration="26513000" />
-      <workItem from="1480283800128" duration="1096000" />
+      <workItem from="1480283800128" duration="2121000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -552,7 +552,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="237976000" />
+    <option name="totallyTimeSpent" value="239001000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -565,7 +565,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="740" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24384432" sideWeight="0.49425286" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32561728" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -576,7 +576,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14197531" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4353846" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37538463" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -615,22 +615,16 @@
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/db/controller/chat.js</url>
-          <line>47</line>
+          <url>file://$PROJECT_DIR$/db/controller/chatroom.js</url>
+          <line>324</line>
           <properties />
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/db/controller/chat.js</url>
-          <line>61</line>
-          <properties />
-          <option name="timeStamp" value="44" />
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="45" />
+      <option name="time" value="46" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -841,13 +835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/model/chatroom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="18" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/model/department.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -874,6 +861,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="150" column="16" selection-start-line="150" selection-start-column="16" selection-end-line="151" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -895,6 +883,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="186" column="43" selection-start-line="186" selection-start-column="43" selection-end-line="186" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -927,6 +916,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1133">
           <caret line="245" column="0" selection-start-line="245" selection-start-column="0" selection-end-line="251" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1008,6 +998,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/db/model/chatroom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="18" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/db/model/chat.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1016,18 +1014,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/controller/chatroom.js">
+    <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="326" column="47" selection-start-line="326" selection-start-column="47" selection-end-line="326" selection-end-column="47" />
+        <state relative-caret-position="336">
+          <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/controller/chat.js">
+    <entry file="file://$PROJECT_DIR$/db/controller/chatroom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+        <state relative-caret-position="156">
+          <caret line="326" column="27" selection-start-line="326" selection-start-column="27" selection-end-line="326" selection-end-column="27" />
           <folding />
         </state>
       </provider>

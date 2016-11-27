@@ -311,7 +311,7 @@ module.exports = {
             searchCriteria.doctor = doctorid;
         }
 
-        if (direction === "0") { // !!! only difference: 0: populate doctor
+        if (direction == 0) { // !!! only difference: 0: populate doctor
             Chatroom.findOne( searchCriteria )
                 .populate({ path: 'doctor', select: 'status' })
                 .exec(function (err, item){

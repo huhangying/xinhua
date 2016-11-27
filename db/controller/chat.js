@@ -45,7 +45,7 @@ module.exports = {
 
                             // 确保比上个消息慢
                             // doctor。status 是 ChatroomService.GetAndUpdateChatroom 返回的
-                            if (chat.direction === "0" && chatroom.doctor && chatroom.doctor.status && chatroom.doctor.status > 0) {
+                            if (chat.direction == 0 && chatroom.doctor && chatroom.doctor.status && chatroom.doctor.status > 0) {
                                 // 自动回复消息
                                 Chat.create({
                                         chatroom: raw.chatroom,
