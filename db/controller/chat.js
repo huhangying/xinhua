@@ -22,7 +22,7 @@ module.exports = {
         // find chatroom. create one if not existed.
 
         // 如果用户发给药师的消息, 先检查药师的状态,如果不是空闲, 则会发送自动回复消息
-        ChatroomService.GetAndUpdateChatroom(chat.user, chat.doctor, chat.direction, chat.username)
+        ChatroomService.GetAndUpdateChatroom(chat.user, chat.doctor, chat.direction, chat.chatroom)
             .then(
                 function(chatroom) { // promise resolved
 

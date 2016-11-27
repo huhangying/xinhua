@@ -300,11 +300,19 @@ module.exports = {
 
     // 根据 doctor 和 user IDs 查找chatroom。 如果不存在，则创建一个。
     // return: chatroom id;
-    GetAndUpdateChatroom: function (userid, doctorid, direction, username, doctorname) {
+    GetAndUpdateChatroom: function (userid, doctorid, direction, chatroom) {
         var deferred = Q.defer();
+        var searchCriteria = {};
+        if (chatroom) {
+            searchCriteria._id = chatroom;
+        }
+        else {
+            searchCriteria.user = userid;
+            searchCriteria.doctor = doctorid;
+        }
 
         if (direction === "0") { // !!! only difference: 0: populate doctor
-            Chatroom.findOne( {user: userid, doctor: doctorid})
+            Chatroom.findOne( searchCriteria )
                 .populate({ path: 'doctor', select: 'status' })
                 .exec(function (err, item){
                     if (err) {
@@ -359,7 +367,7 @@ module.exports = {
                 });
         }
         else {
-            Chatroom.findOne( {user: userid, doctor: doctorid})
+            Chatroom.findOne(searchCriteria)
                 .exec(function (err, item){
                     if (err) {
                         deferred.reject(err);
