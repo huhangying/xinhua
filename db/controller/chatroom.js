@@ -316,6 +316,9 @@ module.exports = {
 
                         if (direction == 0){
                             item.user_unread++;
+                            if (item.doctor.status && item.doctor.status > 0) { // 加上自动回复的消息数
+                                item.doctor_unread++;
+                            }
                         }
                         else if (direction == 1){
                             item.doctor_unread++;

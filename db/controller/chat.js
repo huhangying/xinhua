@@ -51,6 +51,7 @@ module.exports = {
                                         chatroom: chatroom._id,
                                         direction: 1,
                                         type: chat.type,
+                                    // read: chat.read+1,
                                         data: '自动回复消息' //todo:
                                     },
                                     function (__err, _raw) {
