@@ -122,7 +122,8 @@ module.exports = {
                     item.desc = cat.desc;
                 if (cat.fixed || cat.fixed === false)
                     item.fixed = cat.fixed;
-                item.apply = cat.apply || false;
+                if (cat.apply || cat.apply === false)
+                    item.apply = cat.apply;
 
 
                 //console.log(JSON.stringify(item));

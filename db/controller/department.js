@@ -108,7 +108,8 @@ module.exports = {
                     item.desc = department.desc;
                 if (department.order)
                     item.order = department.order;
-                item.apply = department.apply || false;
+                if (department.apply || department.apply === false)
+                    item.apply = department.apply;
 
                 console.log(JSON.stringify(item));
 

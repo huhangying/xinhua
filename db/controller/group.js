@@ -148,7 +148,8 @@ module.exports = {
                 if (group.name){
                     item.name = group.name;
                 }
-                item.apply = group.apply || false;
+                if (group.apply || group.apply === false)
+                    item.apply = group.apply;
 
 
                 //console.log(JSON.stringify(item));

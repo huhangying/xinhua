@@ -95,7 +95,8 @@ module.exports = {
                     item.desc = surveyGroup.desc;
                 if (surveyGroup.surveys && surveyGroup.surveys.length > 0)
                     item.surveys = surveyGroup.surveys;
-                item.apply = surveyGroup.apply || false;
+                if (surveyGroup.apply || surveyGroup.apply === false)
+                    item.apply = surveyGroup.apply;
 
 
                 //console.log(JSON.stringify(item));

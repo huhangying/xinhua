@@ -118,7 +118,8 @@ module.exports = {
                     item.name = cat.name;
                 if (cat.desc)
                     item.desc = cat.desc;
-                item.apply = cat.apply || false;
+                if (cat.apply || cat.apply === false)
+                    item.apply = cat.apply;
 
 
                 //

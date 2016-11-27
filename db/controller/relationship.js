@@ -182,7 +182,8 @@ module.exports = {
 
                 if (relationship.user)
                     item.user = relationship.user;
-                item.apply = relationship.apply || false;
+                if (relationship.apply || relationship.apply === false)
+                    item.apply = relationship.apply;
 
                 //console.log(JSON.stringify(item));
 
