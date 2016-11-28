@@ -59,7 +59,7 @@ module.exports = {
                                             return Status.returnStatus(res, Status.ERROR, _err);
                                         }
 
-                                        return res.send(raw);
+                                        return res.send(_raw);
                                     });
                             }
                             else {
