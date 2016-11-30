@@ -9,7 +9,7 @@ var _ArticlePage = new Schema({
         cat: { type: Schema.Types.ObjectId, ref: 'page_cat', required: true }, // remove?
         title: { type: String },
         title_image: { type: String },
-        template: { type: String },
+        content: { type: String },
         apply: { type: Boolean, default: true },
 
         createdAt: { type : Date, default: Date.now },

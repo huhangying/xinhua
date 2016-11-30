@@ -9,8 +9,7 @@ var _ArticlePageLog = new Schema({
         user: {type: Schema.Types.ObjectId, ref: 'user', required: true },      // to
         articlePageId: { type: Schema.Types.ObjectId, ref: 'article_page', required: true },
         createdAt: { type : Date, default: Date.now },
-        createdBy: { type: Schema.Types.ObjectId, required: true },
-        read: { type: Number}
+        read: { type: Number, default: 0 }
     });
 
 module.exports =  mongoose.model('article_page_log', _ArticlePageLog);

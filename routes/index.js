@@ -390,40 +390,78 @@ router.route('/prescription/:id')
     .patch(urlencodedParser, Prescription.UpdateById);
 
 //---------------- 宣教材料类别
-var PageCat = require('../db/controller/pageCat');
+var ArticleCat = require('../db/controller/articleCat');
 
-router.route('/pagecats')
-    .get(PageCat.GetAll);
-router.route('/pagecats/department/:did')
-    .get(PageCat.GetPageCatsByDepartmentId);
+router.route('/articlecats')
+    .get(ArticleCat.GetAll);
+router.route('/articlecats/department/:did')
+    .get(ArticleCat.GetArticleCatsByDepartmentId);
 
-router.route('/pagecat')
-    .post(urlencodedParser, PageCat.Add);
+router.route('/articlecat')
+    .post(urlencodedParser, ArticleCat.Add);
 
-router.route('/pagecat/:id')
-    .get(PageCat.GetById)
-    .delete(PageCat.DeleteById)
-    .patch(urlencodedParser, PageCat.UpdateById);
+router.route('/articlecat/:id')
+    .get(ArticleCat.GetById)
+    .delete(ArticleCat.DeleteById)
+    .patch(urlencodedParser, ArticleCat.UpdateById);
 
 
-//---------------- 宣教材料
-var Page = require('../db/controller/page');
+//---------------- 宣教材料模板
+var ArticleTemplate = require('../db/controller/articleTemplate');
+
+router.route('/templates')
+    .get(ArticleTemplate.GetAll);
+
+router.route('/templates/cat/:catid')
+    .get(ArticleTemplate.GetArticleTemplatesByCatId);
+router.route('/templates/department/:did')
+    .get(ArticleTemplate.GetArticleTemplatesByDepartmentId);
+
+router.route('/template')
+    .post(urlencodedParser, ArticleTemplate.Add);
+
+router.route('/template/:id')
+    .get(ArticleTemplate.GetById)
+    .delete(ArticleTemplate.DeleteById)
+    .patch(urlencodedParser, ArticleTemplate.UpdateById);
+
+//---------------- 宣教材料文章页面
+var ArticlePage = require('../db/controller/articlePage');
 
 router.route('/pages')
-    .get(Page.GetAll);
+    .get(ArticlePage.GetAll);
 
 router.route('/pages/cat/:catid')
-    .get(Page.GetPagesByCatId);
-router.route('/pages/department/:did')
-    .get(Page.GetPagesByDepartmentId);
+    .get(ArticlePage.GetArticlePagesByCatId);
 
 router.route('/page')
-    .post(urlencodedParser, Page.Add);
+    .post(urlencodedParser, ArticlePage.Add);
 
 router.route('/page/:id')
-    .get(Page.GetById)
-    .delete(Page.DeleteById)
-    .patch(urlencodedParser, Page.UpdateById);
+    .get(ArticlePage.GetById)
+    .delete(ArticlePage.DeleteById)
+    .patch(urlencodedParser, ArticlePage.UpdateById);
+
+//---------------- 宣教材料文章页面 LOG
+var ArticlePageLog = require('../db/controller/articlePageLog');
+
+router.route('/pagelogs')
+    .get(ArticlePageLog.GetAll);
+
+router.route('/pagelogs/doctor/:did')
+    .get(ArticlePageLog.GetArticlePageLogsByDoctor);
+router.route('/pagelogs/user/:uid')
+    .get(ArticlePageLog.GetArticlePageLogsByUser);
+
+router.route('/pagelog')
+    .post(urlencodedParser, ArticlePageLog.Add);
+
+router.route('/pagelog/:id')
+    .get(ArticlePageLog.GetById)
+    .delete(ArticlePageLog.DeleteById)
+    .patch(urlencodedParser, ArticlePageLog.UpdateById);
+
+
 
 
 module.exports = router;
