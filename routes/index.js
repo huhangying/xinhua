@@ -461,7 +461,21 @@ router.route('/pagelog/:id')
     .delete(ArticlePageLog.DeleteById)
     .patch(urlencodedParser, ArticlePageLog.UpdateById);
 
+//---------------- 不良反应(基于科室)
+var AdverseReaction = require('../db/controller/adverseReaction');
 
+router.route('/adversereactions')
+    .get(AdverseReaction.GetAll);
+router.route('/adversereactions/department/:did')
+    .get(AdverseReaction.GetByDepartmentId);
+
+router.route('/adversereaction')
+    .post(urlencodedParser, AdverseReaction.Add);
+
+router.route('/adversereaction/:id')
+    .get(AdverseReaction.GetById)
+    .delete(AdverseReaction.DeleteById)
+    .patch(urlencodedParser, AdverseReaction.UpdateById);
 
 
 module.exports = router;
