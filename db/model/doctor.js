@@ -21,6 +21,7 @@ var _Doctor = new Schema({
     honor: String,
     icon: String,
     status: { type: Number, default: 0, min: 0, max: 3 },  // 0: idle, 1: busy; 2: away; 3: offline
+    shortcuts: { type: String }, // 快捷回复, separated by '|'
 
     created: {type : Date, default: Date.now },
     updated: {type : Date, default: Date.now },
