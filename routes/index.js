@@ -478,4 +478,11 @@ router.route('/adversereaction/:id')
     .patch(urlencodedParser, AdverseReaction.UpdateById);
 
 
+//===================== 图片上传
+var Uploader = require('../db/controller/upload');
+
+router.route('/upload')
+    .post(urlencodedParser, Uploader.receiveFile);
+
+
 module.exports = router;
