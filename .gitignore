@@ -40,6 +40,7 @@ jspm_packages
 .idea
 .idea/*
 .idea/*/*
+.idea/workspace.xml
 
 public/upload
 
