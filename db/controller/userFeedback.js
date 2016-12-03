@@ -1,15 +1,14 @@
 /**
- * Created by hhu on 2016/5/21.
+ * Created by ehuhang on 12/2/2016.
  */
 
-var Booking = require('../model/booking.js');
-var Schedule = require('../model/schedule.js');
+var UserFeedback = require('../model/userFeedback');
 
 module.exports = {
 
     GetAll: function (req, res) {
 
-        Booking.find()
+        UserFeedback.find()
             .sort({created: -1})
             .exec(function (err, items) {
                 if (err) {
@@ -23,34 +22,14 @@ module.exports = {
                 res.json(items);
             });
     },
-
-    // cms 用
-    GetAllPopulated: function (req, res) {
-
-        Booking.find()
-            .populate('schedule')
-            .sort({created: -1})
-            .exec(function (err, items) {
-                if (err) {
-                    return Status.returnStatus(res, Status.ERROR, err);
-                }
-
-                if (!items || items.length < 1) {
-                    return Status.returnStatus(res, Status.NULL);
-                }
-
-                res.json(items);
-            });
-    },
-
 
     // 根据ID获取详细信息
     GetById: function (req, res) {
 
         if (req.params && req.params.id) {
 
-            var result = Booking.findOne({_id: req.params.id})
-                .populate('schedule')
+            UserFeedback.findOne({_id: req.params.id})
+                //.populate('schedule')
                 .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -65,14 +44,14 @@ module.exports = {
         }
     },
 
-    // 根据患者ID 获取相关的预约
+    // 根据患者 ID, 类型 获取相关类型的反馈
     GetByUserId: function (req, res) {
 
-        if (req.params && req.params.uid) {
+        if (req.params && req.params.uid && req.params.type) {
 
-            Booking.find({user: req.params.uid})
+            UserFeedback.find({user: req.params.uid, type: req.params.type })
                 .sort({created: -1})
-                .populate('schedule')
+                //.populate('doctor')
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -87,14 +66,36 @@ module.exports = {
         }
     },
 
-    // 根据药师ID 获取相关的预约
+    // 根据药师 ID, 类型 获取相关类型的反馈
     GetByDoctorId: function (req, res) {
+
+        if (req.params && req.params.did && req.params.type) {
+
+            UserFeedback.find({ doctor: req.params.did, type: req.params.type })
+                .sort({created: -1})
+                //.populate('user')
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
+    // 根据药师 ID, 类型 获取相关类型的反馈
+    GetUnreadByDoctorId: function (req, res) {
 
         if (req.params && req.params.did) {
 
-            Booking.find({doctor: req.params.did})
+            UserFeedback.find({ doctor: req.params.did, status: 0 }) // only 1 and 0 for now.
                 .sort({created: -1})
-                .populate('schedule')
+                //.populate('user')
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -109,109 +110,59 @@ module.exports = {
         }
     },
 
-    //TODO: not working
-    // 根据药师ID和日期 获取相关的预约
-    GetByDoctorIdAndDate: function (req, res) {
-
-        if (req.params && req.params.did && req.params.date) {
-
-            var _date = +new Date(req.params.date);
-
-            Booking.find({doctor: req.params.did }) //from: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }}
-                .sort({created: -1})
-                .populate('schedule')
-                //.where({from: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }})
-                .exec(function (err, items) {
-                    if (err) {
-                        return Status.returnStatus(res, Status.ERROR, err);
-                    }
-
-                    if (!items || items.length < 1) {
-                        return Status.returnStatus(res, Status.NULL);
-                    }
-
-                    res.json(items);
-                });
-        }
-    },
-
-    // 根据药师ID和日期 获取相关的预约
-    GetByScheduleId: function (req, res) {
-
-        if (req.params && req.params.sid) {
-
-            Booking.find({schedule: req.params.sid, apply: true})
-                .sort({created: -1})
-                .exec(function (err, items) {
-                    if (err) {
-                        return Status.returnStatus(res, Status.ERROR, err);
-                    }
-
-                    if (!items || items.length < 1) {
-                        return Status.returnStatus(res, Status.NULL);
-                    }
-
-                    res.json(items);
-                });
-        }
-    },
-
-
-
-    // 创建预约
+    // 创建Feedback
     Add: function (req, res) {
 
         // 获取请求数据（json）
-        var booking = req.body;
-        if (!booking) return res.sendStatus(400);
+        var feedback = req.body;
+        if (!feedback) return res.sendStatus(400);
 
         // doctor, user, schedule
-        if (!booking.doctor) {
+        if (!feedback.doctor) {
             return Status.returnStatus(res, Status.NO_DOCTOR);
         }
-        if (!booking.user) {
+        if (!feedback.user) {
             return Status.returnStatus(res, Status.NO_USER);
         }
-        if (!booking.schedule) {
-            return Status.returnStatus(res, Status.MISSING_PARAM);
+        if (!feedback.type) {
+            return Status.returnStatus(res, Status.NO_TYPE);
+        }
+        if (!feedback.name) {
+            return Status.returnStatus(res, Status.NO_NAME);
         }
 
-
-
         // 不存在，创建
-        Booking.create({
+        UserFeedback.create({
 
-            doctor: booking.doctor,
-            user: booking.user,
-            schedule: booking.schedule,
-            status: booking.status || 0 // 0: 创建
+            doctor: feedback.doctor,
+            user: feedback.user,
+            type: feedback.type,
+            name: feedback.name,
+            how: feedback.how,
+            startDate: feedback.startDate,
+            endDate: feedback.endDate,
+            notes: feedback.notes,
+            status: feedback.status || 0 // 0: 创建
         }, function (err, raw) {
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);
             }
-
-            // limit-- in schedule
-            Schedule.findById(booking.schedule)
-                .exec( function (err, schedule) {
-                    schedule.limit--;
-                    schedule.save();
-                });
 
             return res.send(raw);
         });
 
     },
 
-    // 更新booking
+    // 更新Feedback Status ONLY!
     UpdateById: function (req, res) {
-        if (req.params && req.params.id) { // params.id is booking ID
+        if (req.params && req.params.id) { // params.id is feedback ID
             var id = req.params.id;
 
             // 获取数据（json）,只能更新status and score
-            var booking = req.body;
-            if (!booking) return res.sendStatus(400);
+            var feedback = req.body;
+            if (!feedback) return res.sendStatus(400);
 
-            Booking.findById(id)
+            UserFeedback.findById(id)
                 .exec( function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -221,30 +172,13 @@ module.exports = {
                         return Status.returnStatus(res, Status.NULL);
                     }
 
-                    var original_status = item.status;
-                    if (booking.status) {
-                        item.status = booking.status;
+                    if (feedback.status) {
+                        item.status = feedback.status;
                     }
 
-                    if (booking.score)
-                        item.score = booking.score;
-
-                    //console.log(JSON.stringify(item));
-
-                    //
                     item.save(function (err, raw) {
                         if (err) {
                             return Status.returnStatus(res, Status.ERROR, err);
-                        }
-
-                        // if status changed from 1 to 2, or 1 to 3, limit++ in schedule table
-                        if (original_status === 1 && (item.status === 2 || item.status === 3)) {
-                            // limit++ in schedule
-                            Schedule.findById(item.schedule)
-                                .exec( function (err, schedule) {
-                                    schedule.limit++;
-                                    schedule.save();
-                                });
                         }
 
                         res.json(raw);
@@ -257,7 +191,7 @@ module.exports = {
     DeleteById: function (req, res) {
         if (req.params && req.params.id) { // params.id is booking ID
 
-            Booking.findOne({_id: req.params.id}, function (err, item) {
+            UserFeedback.findOne({_id: req.params.id}, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }

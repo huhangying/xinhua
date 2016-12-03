@@ -477,6 +477,26 @@ router.route('/adversereaction/:id')
     .delete(AdverseReaction.DeleteById)
     .patch(urlencodedParser, AdverseReaction.UpdateById);
 
+//---------------- 用户反馈
+var UserFeedback = require('../db/controller/userFeedback');
+
+router.route('/feedbacks')
+    .get(UserFeedback.GetAll);
+
+router.route('/feedbacks/user/:uid')
+    .get(UserFeedback.GetByUserId);
+
+router.route('/feedbacks/doctor/:did')
+    .get(UserFeedback.GetByDoctorId);
+router.route('/feedbacks/unread/doctor/:did')
+    .get(UserFeedback.GetUnreadByDoctorId);
+
+router.route('/feedback')
+    .post(urlencodedParser, UserFeedback.Add);
+
+router.route('/feedback/:id')
+    .get(UserFeedback.GetById)
+    .patch(urlencodedParser, UserFeedback.UpdateById)
 
 //===================== 图片上传
 var Uploader = require('../db/controller/upload');

@@ -49,7 +49,7 @@ module.exports = {
 
         if (req.params && req.params.did) {
 
-            AdverseReaction.find({department: req.params.did})
+            AdverseReaction.find({$or: [{department: req.params.did}, { isCommon: true }]})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -71,8 +71,10 @@ module.exports = {
         var ar = req.body;
         if (!ar) return res.sendStatus(400);
 
+        ar.isCommon = ar.isCommon || false;
+
         // department
-        if (!ar.department) {
+        if (!ar.isCommon && !ar.department) {
             return Status.returnStatus(res, Status.NO_DEPARTMENT);
         }
 
@@ -84,7 +86,7 @@ module.exports = {
 
         // 不存在，创建
         AdverseReaction.create({
-
+            isCommon: ar.isCommon,
             department: ar.department,
             name: ar.name
         }, function (err, raw) {
@@ -114,13 +116,15 @@ module.exports = {
                 if (!item) {
                     return Status.returnStatus(res, Status.NULL);
                 }
+
+                if (ar.isCommon || ar.isCommon === false)
+                    item.isCommon = ar.isCommon;
                 if (ar.department)
                     item.department = ar.department;
                 if (ar.name)
                     item.name = ar.name;
                 if (ar.apply || ar.apply === false)
                     item.apply = ar.apply;
-
 
                 //
                 item.save(function (err, raw) {
