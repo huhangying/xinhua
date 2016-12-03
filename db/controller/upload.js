@@ -16,7 +16,8 @@ module.exports = {
 
         form.parse(req, function(err, fields, files) {
 
-            res.writeHead(200, {'content-type': 'text/plain'});
+            res.writeHead(200, {'content-type': files.file.type});
+            // res.writeHead(200, {'content-type': 'multipart/form-data'});
             //res.write('received upload:\n\n');
             res.end(util.inspect({fields: fields, files: files}));
 
