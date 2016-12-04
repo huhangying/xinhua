@@ -17,6 +17,8 @@ global.mongoose.connect('mongodb://127.0.0.1:27017/eyao');
 var routes = require('./routes/index');
 //var users = require('./routes/users');
 
+global.Consts = require('./util/consts.js');
+
 var app = express();
 
 //设置跨域访问

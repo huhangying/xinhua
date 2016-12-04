@@ -43,6 +43,18 @@ module.exports = {
         }
     },
 
+    // 内部使用。 by util/const.js
+    _GetByName: function (_name) {
+        return Const.findOne({name: _name})
+            .exec(function (err, item) {
+                if (err || !item) {
+                    return '';
+                }
+                //console.log(item);
+                return item;
+            });
+    },
+
 
     // 创建医院科室
     Add: function (req, res) {
@@ -121,6 +133,7 @@ module.exports = {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
+                    Consts.clearCacheByName(_const.name); // clear cache
                     res.json(raw);
                 });
 

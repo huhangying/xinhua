@@ -47,20 +47,28 @@ module.exports = {
                             // doctor。status 是 ChatroomService.GetAndUpdateChatroom 返回的
                             if (chat.direction == 0 && chatroom.doctor && chatroom.doctor.status && chatroom.doctor.status > 0) {
                                 // 自动回复消息
-                                Chat.create({
-                                        chatroom: raw.chatroom,
-                                        direction: 1,
-                                        type: raw.type,
-                                        read: 0,
-                                        data: '自动回复消息' //todo:
-                                    },
-                                    function (__err, _raw) {
-                                        if (__err) {
-                                            return Status.returnStatus(res, Status.ERROR, _err);
-                                        }
 
-                                        return res.send(_raw);
+                                global.Consts.get(global.Consts.AWAY_RESPONSE)
+                                    .then(function(autoResponse) {
+                                        if (!autoResponse || autoResponse == '') {
+                                            return res.send(raw);
+                                        }
+                                        Chat.create({
+                                                chatroom: raw.chatroom,
+                                                direction: 1,
+                                                type: raw.type,
+                                                read: 0,
+                                                data: autoResponse
+                                            },
+                                            function (__err, _raw) {
+                                                if (__err) {
+                                                    return Status.returnStatus(res, Status.ERROR, _err);
+                                                }
+
+                                                return res.send(_raw);
+                                            });
                                     });
+
                             }
                             else {
                                 return res.send(raw);
