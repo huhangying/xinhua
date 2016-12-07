@@ -15,7 +15,6 @@ global.moment = require('moment');
 global.mongoose.connect('mongodb://127.0.0.1:27017/eyao');
 
 var routes = require('./routes/index');
-//var users = require('./routes/users');
 
 global.Consts = require('./util/consts.js');
 
@@ -27,14 +26,19 @@ var app = express();
    res.header("Access-Control-Allow-Origin", "*");
    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS,PATCH");
-   res.header("X-Powered-By",' Harry')
+   res.header("X-Powered-By",' hwem')
    res.header("Content-Type", "application/json;charset=utf-8");
+   // res.header("Content-Type", "text/html;charset=utf-8");
    next();
  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('view options', {
+  layout: false
+});
+app.disable('etag'); //avoid 304 error
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -47,7 +51,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-//app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -41,6 +41,26 @@ module.exports = {
                 });
         }
     },
+    
+    //todo: move to articlePage
+    RenderById: function(req, res) {
+        if (req.params && req.params.id) {
+
+            ArticleTemplate.findOne({_id: req.params.id})
+                .exec(function (err, item) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!item) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+                    
+                    res.set('Content-Type', 'text/html');
+                    res.render('article', { content: item.content, name: item.name, title: item.title });
+                });
+        }
+    },
 
     // 根据Cat ID获取 article template list
     GetArticleTemplatesByCatId: function (req, res) {
@@ -174,7 +194,6 @@ module.exports = {
 
         }
     },
-
 
     DeleteById: function (req, res) {
         if (req.params && req.params.id) { // params.id is group ID

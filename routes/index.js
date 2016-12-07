@@ -504,5 +504,9 @@ var Uploader = require('../db/controller/upload');
 router.route('/upload')
     .post(urlencodedParser, Uploader.receiveFile);
 
+//
+var ArticlePage = require('../db/controller/articleTemplate')
+
+router.get('/article/:id', ArticlePage.RenderById);
 
 module.exports = router;
