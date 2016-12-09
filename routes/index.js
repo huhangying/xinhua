@@ -61,7 +61,6 @@ router.route('/doctor/:id')
     .post(urlencodedParser, Doctor.AddByUserId)
     .patch(urlencodedParser, Doctor.UpdateByUserId);
 
-
 router.route('/doctors/department/:departmentid')
     .get(Doctor.GetByDepartmentId);//
 
@@ -113,6 +112,10 @@ router.route('/relationship/:id')
 
 router.route('/relationship')
     .post(urlencodedParser, Relationship.FindOrAdd);
+
+
+router.route('/relationships/doctor/:id/select')  // 返回用户组和用户信息: [group name, group id,] user name, user id
+    .get(Relationship.GetSelectionByDoctorId);
 
 
 //---------------- 医院科室
