@@ -212,6 +212,8 @@ module.exports = {
                     item.gender = user.gender;
                 if (user.birthdate)
                     item.birthdate = user.birthdate;
+                if (user.role || user.role == 0)
+                    item.role = user.role;
                 if (user.sin)
                     item.sin = user.sin;
                 if (user.icon)

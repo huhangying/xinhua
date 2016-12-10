@@ -7,6 +7,7 @@ var _User = new global.mongoose.Schema({
     cell: String,
     name: String,
     password: String,
+    role: { type: Number, default: 0, min:0, max:1 }, // 0: registered; 1: authorized;
     created: {type : Date, default: Date.now},
     updated: {type : Date, default: Date.now},
     icon: String,
