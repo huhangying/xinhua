@@ -445,6 +445,8 @@ router.route('/page/:id')
     .delete(ArticlePage.DeleteById)
     .patch(urlencodedParser, ArticlePage.UpdateById);
 
+router.get('/article/:id', ArticlePage.RenderById); // 显示页面
+
 //---------------- 宣教材料文章页面 LOG
 var ArticlePageLog = require('../db/controller/articlePageLog');
 
@@ -507,9 +509,5 @@ var Uploader = require('../db/controller/upload');
 router.route('/upload')
     .post(urlencodedParser, Uploader.receiveFile);
 
-//
-var ArticlePage = require('../db/controller/articleTemplate')
-
-router.get('/article/:id', ArticlePage.RenderById);
 
 module.exports = router;
