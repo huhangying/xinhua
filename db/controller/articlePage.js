@@ -89,6 +89,11 @@ module.exports = {
         var item = req.body;
         if (!item) return res.sendStatus(400);
 
+        // doctor
+        if (!item.doctor) {
+            return Status.returnStatus(res, Status.NO_DOCTOR);
+        }
+
         // name
         if (!item.name) {
             return Status.returnStatus(res, Status.NO_NAME);
@@ -99,20 +104,20 @@ module.exports = {
             return Status.returnStatus(res, Status.NO_CAT);
         }
 
-        if (!item.updatedBy) {
+        // category
+        if (!item.title) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
 
         // 不存在，创建
         ArticlePage.create({
 
+            doctor: item.doctor,
             name: item.name,
-            department: item.department,
             cat: item.cat,
             title: item.title,
             title_image: item.title_image,
-            content: item.content,
-            updatedBy: item.updatedBy
+            content: item.content
         }, function (err, raw) {
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);
@@ -142,8 +147,8 @@ module.exports = {
 
                 if (template.name)
                     item.name = template.name;
-                if (template.department)
-                    item.department = template.department;
+                if (template.doctor)
+                    item.doctor = template.doctor;
                 if (template.cat)
                     item.cat = template.cat;
                 if (template.title)
@@ -152,8 +157,6 @@ module.exports = {
                     item.title_image = template.title_image;
                 if (template.content)
                     item.content = template.content;
-                if (template.updatedBy)
-                    item.updatedBy = template.updatedBy;
                 if (template.apply || template.apply === false)
                     item.apply = template.apply;
 
