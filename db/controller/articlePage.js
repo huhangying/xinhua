@@ -42,7 +42,27 @@ module.exports = {
         }
     },
 
-    // 根据Cat ID获取 article template list
+    // 根据 doctor ID获取 article page list
+    GetArticlePagesByDoctorId: function (req, res) {
+
+        if (req.params && req.params.did) {
+
+            ArticlePage.find({doctor: req.params.did})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
+    // 根据Cat ID获取 article page list
     GetArticlePagesByCatId: function (req, res) {
 
         if (req.params && req.params.catid) {

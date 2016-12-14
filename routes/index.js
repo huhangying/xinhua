@@ -436,6 +436,8 @@ router.route('/pages')
 
 router.route('/pages/cat/:catid')
     .get(ArticlePage.GetArticlePagesByCatId);
+router.route('/pages/doctor/:did')
+    .get(ArticlePage.GetArticlePagesByDoctorId);
 
 router.route('/page')
     .post(urlencodedParser, ArticlePage.Add);
