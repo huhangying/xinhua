@@ -87,6 +87,7 @@ module.exports = {
         if (req.params && req.params.id) {
 
             ArticlePage.findOne({_id: req.params.id})
+                .populate({ path: 'doctor', select: 'name title' })
                 .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -97,7 +98,7 @@ module.exports = {
                     }
 
                     res.set('Content-Type', 'text/html');
-                    res.render('article', { content: item.content, name: item.name, title: item.title });
+                    res.render('article', { content: item.content, name: item.name, title: item, timestamp: global.moment(item.createdAt).format('YYYY 年 M 月 D 日'), doctor: item.doctor.name + ' ' + item.doctor.title });
                 });
         }
     },
