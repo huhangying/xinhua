@@ -98,7 +98,7 @@ module.exports = {
                     }
 
                     res.set('Content-Type', 'text/html');
-                    res.render('article', { content: item.content, name: item.name, title: item, timestamp: global.moment(item.createdAt).format('YYYY 年 M 月 D 日'), doctor: item.doctor.name + ' ' + item.doctor.title });
+                    res.render('article', { content: item.content, name: item.name, title: item.title, timestamp: global.moment(item.createdAt).format('YYYY 年 M 月 D 日'), doctor: item.doctor.name + ' ' + item.doctor.title });
                 });
         }
     },

@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/articlePage.js" afterPath="$PROJECT_DIR$/db/controller/articlePage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/article.ejs" afterPath="$PROJECT_DIR$/views/article.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/header.ejs" afterPath="$PROJECT_DIR$/views/partials/header.ejs" />
     </list>
     <ignored path="Xinhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,8 +76,8 @@
       <file leaf-file-name="articlePage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/controller/articlePage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="100" column="106" selection-start-line="100" selection-start-column="97" selection-end-line="100" selection-end-column="106" />
+            <state relative-caret-position="225">
+              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -191,8 +189,8 @@
         <option value="$PROJECT_DIR$/public/stylesheets/main.css" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/partials/header.ejs" />
-        <option value="$PROJECT_DIR$/db/controller/articlePage.js" />
         <option value="$PROJECT_DIR$/views/article.ejs" />
+        <option value="$PROJECT_DIR$/db/controller/articlePage.js" />
       </list>
     </option>
   </component>
@@ -607,7 +605,7 @@
       <workItem from="1480570461510" duration="12113000" />
       <workItem from="1480739078675" duration="38566000" />
       <workItem from="1481268206369" duration="3432000" />
-      <workItem from="1481345662595" duration="17389000" />
+      <workItem from="1481345662595" duration="17571000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -627,7 +625,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="322019000" />
+    <option name="totallyTimeSpent" value="322201000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1068,8 +1066,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/articlePage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="100" column="106" selection-start-line="100" selection-start-column="97" selection-end-line="100" selection-end-column="106" />
+        <state relative-caret-position="225">
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding />
         </state>
       </provider>
