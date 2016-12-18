@@ -14,6 +14,7 @@ var _User = new global.mongoose.Schema({
     gender: String,
     birthdate:{type: Date},
     sin: String,
+    admissionNumber: { type: String},
     locked_count: Number,
     apply: {type : Boolean, default: true}
 });

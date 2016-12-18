@@ -5,7 +5,7 @@ var Schema = global.mongoose.Schema;
 
 var _Prescription = new Schema({
 
-        booking: {type: Schema.Types.ObjectId, ref: 'booking', required: true },
+        booking: {type: Schema.Types.ObjectId, ref: 'booking', required: true }, // not required for walk-in
         doctor: {type: Schema.Types.ObjectId, ref: 'doctor', required: true },
         user: {type: Schema.Types.ObjectId, ref: 'user', required: true },
         medicines: [ {

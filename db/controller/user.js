@@ -70,6 +70,41 @@ module.exports = {
         }
     },
 
+    // 根据ID获取用户信息
+    Search: function (req, res) {
+        var option = req.body;
+
+        var filter_options = {};
+        if (option.name) {
+            filter_options.name = new RegExp(option.name, "i");
+        }
+        if (option.cell) {
+            filter_options.cell = new RegExp(option.cell, "i");
+        }
+        if (option.admissionNumber) {
+            filter_options.admissionNumber = new RegExp(option.admissionNumber, "i");
+        }
+        if (option.sin) {
+            filter_options.sin = new RegExp(option.sin, "i");
+        }
+
+        console.log(filter_options);
+
+        User.find(filter_options)
+            .exec(function(err, user) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!user) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                res.json(user);
+            });
+
+    },
+
     // 根据手机号码获取用户信息
     GetByCell: function (req, res) {
 
@@ -119,6 +154,8 @@ module.exports = {
             // birth date
 
             // sin
+
+            // admission number
 
             User.findOne({link_id: linkId}) // check if registered
                 .exec(function (err, _user) {
@@ -216,6 +253,8 @@ module.exports = {
                     item.role = user.role;
                 if (user.sin)
                     item.sin = user.sin;
+                if (user.admissionNumber)
+                    item.admissionNumber = user.admissionNumber;
                 if (user.icon)
                     item.icon = user.icon || '';
                 if (user.apply || user.apply === false)
