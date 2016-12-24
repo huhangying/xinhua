@@ -8,6 +8,7 @@ var _SurveyGroup = new Schema({
         type: { type: Number, required: true, min: 0, max: 5 },
         name: { type: String, required: true, trim: true }, // Survey group name
         desc: { type: String },
+        order: { type: Number },
         apply: { type: Boolean, default: true }
     },
     {

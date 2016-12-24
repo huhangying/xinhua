@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/surveyGroup.js" afterPath="$PROJECT_DIR$/db/controller/surveyGroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/surveyTemplate.js" afterPath="$PROJECT_DIR$/db/controller/surveyTemplate.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/model/surveyGroup.js" afterPath="$PROJECT_DIR$/db/model/surveyGroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
     </list>
     <ignored path="Xinhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,8 +77,8 @@
       <file leaf-file-name="surveyGroup.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/model/surveyGroup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+            <state relative-caret-position="150">
+              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -89,8 +87,8 @@
       <file leaf-file-name="surveyGroup.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/controller/surveyGroup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1085">
-              <caret line="52" column="75" selection-start-line="52" selection-start-column="75" selection-end-line="52" selection-end-column="75" />
+            <state relative-caret-position="25">
+              <caret line="83" column="35" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -190,9 +188,9 @@
         <option value="$PROJECT_DIR$/db/controller/user.js" />
         <option value="$PROJECT_DIR$/db/model/survey.js" />
         <option value="$PROJECT_DIR$/db/model/surveyTemplate.js" />
-        <option value="$PROJECT_DIR$/db/model/surveyGroup.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/db/controller/surveyTemplate.js" />
+        <option value="$PROJECT_DIR$/db/model/surveyGroup.js" />
         <option value="$PROJECT_DIR$/db/controller/surveyGroup.js" />
       </list>
     </option>
@@ -576,7 +574,7 @@
       <workItem from="1480739078675" duration="38566000" />
       <workItem from="1481268206369" duration="3432000" />
       <workItem from="1481345662595" duration="24734000" />
-      <workItem from="1482376674966" duration="7687000" />
+      <workItem from="1482376674966" duration="8966000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -596,7 +594,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="337051000" />
+    <option name="totallyTimeSpent" value="338330000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1019,14 +1017,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/model/surveyGroup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1043,10 +1033,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/db/model/surveyGroup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/surveyGroup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1085">
-          <caret line="52" column="75" selection-start-line="52" selection-start-column="75" selection-end-line="52" selection-end-column="75" />
+        <state relative-caret-position="25">
+          <caret line="83" column="35" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="35" />
           <folding />
         </state>
       </provider>

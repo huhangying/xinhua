@@ -82,7 +82,8 @@ module.exports = {
             department: surveyGroup.department,
             type: surveyGroup.type,
             name: surveyGroup.name,
-            desc: surveyGroup.desc
+            desc: surveyGroup.desc,
+            order: surveyGroup.order
         }, function (err, raw) {
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);
@@ -118,6 +119,8 @@ module.exports = {
                     surveyGroup.name = surveyGroup.name;
                 if (surveyGroup.desc)
                     item.desc = surveyGroup.desc;
+                if (surveyGroup.order || surveyGroup.order == 0)
+                    item.order = surveyGroup.order;
                 if (surveyGroup.apply || surveyGroup.apply === false)
                     item.apply = surveyGroup.apply;
 
