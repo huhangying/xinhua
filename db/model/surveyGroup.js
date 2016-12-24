@@ -4,15 +4,10 @@
 var Schema = global.mongoose.Schema;
 
 var _SurveyGroup = new Schema({
-
-    //
+        department: { type: Schema.Types.ObjectId, ref: 'department', required: true },
+        type: { type: Number, required: true, min: 0, max: 5 },
         name: { type: String, required: true, trim: true }, // Survey group name
         desc: { type: String },
-        surveys: [
-            {
-                survey: { type: Schema.Types.ObjectId, ref: 'survey', required: true }
-            }
-        ],
         apply: { type: Boolean, default: true }
     },
     {

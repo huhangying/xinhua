@@ -42,6 +42,26 @@ module.exports = {
         }
     },
 
+    // 根据 department & type 获取Survey group list
+    GetSurveyGroupsByType: function (req, res) {
+
+        if (req.params && req.params.department && req.params.type) {
+
+            SurveyGroup.find({department: req.params.department, type: req.params.type})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
     // 创建关系组
     Add: function (req, res) {
 
@@ -59,9 +79,10 @@ module.exports = {
         // 不存在，创建
         SurveyGroup.create({
 
+            department: surveyGroup.department,
+            type: surveyGroup.type,
             name: surveyGroup.name,
-            desc: surveyGroup.desc,
-            surveys: surveyGroup.surveys
+            desc: surveyGroup.desc
         }, function (err, raw) {
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);
@@ -89,12 +110,14 @@ module.exports = {
                 if (!item) {
                     return Status.returnStatus(res, Status.NULL);
                 }
+                if (surveyGroup.department)
+                    item.department = surveyGroup.department;
+                if (surveyGroup.type)
+                    item.type = surveyGroup.type;
                 if (surveyGroup.name)
                     surveyGroup.name = surveyGroup.name;
                 if (surveyGroup.desc)
                     item.desc = surveyGroup.desc;
-                if (surveyGroup.surveys && surveyGroup.surveys.length > 0)
-                    item.surveys = surveyGroup.surveys;
                 if (surveyGroup.apply || surveyGroup.apply === false)
                     item.apply = surveyGroup.apply;
 

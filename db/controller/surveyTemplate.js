@@ -42,7 +42,7 @@ module.exports = {
         }
     },
 
-    // 根据 type 获取Survey template list
+    // 根据 department & type 获取Survey template list
     GetSurveyTemplatesByType: function (req, res) {
 
         if (req.params && req.params.department && req.params.type) {

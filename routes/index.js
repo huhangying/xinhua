@@ -366,6 +366,9 @@ var SurveyGroup = require('../db/controller/surveyGroup');
 router.route('/surveygroups')
     .get(SurveyGroup.GetAll);
 
+router.route('/surveygroups/:department/type/:type')
+    .get(SurveyGroup.GetSurveyGroupsByType);
+
 router.route('/surveygroup')
     .post(urlencodedParser, SurveyGroup.Add);
 
