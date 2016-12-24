@@ -2,13 +2,13 @@
  * Created by harry on 16/9/13.
  */
 
-var Survey = require('../model/survey.js');
+var SurveyTemplate = require('../model/surveyTemplate.js');
 
 module.exports = {
 
     GetAll: function (req, res) {
 
-        Survey.find()
+        SurveyTemplate.find()
             .exec(function (err, items) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
@@ -27,7 +27,7 @@ module.exports = {
 
         if (req.params && req.params.id) {
 
-            Survey.findOne({_id: req.params.id})
+            SurveyTemplate.findOne({_id: req.params.id})
                 .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -42,12 +42,12 @@ module.exports = {
         }
     },
 
-    // 根据Cat ID获取Survey list
-    GetSurveysByCatId: function (req, res) {
+    // 根据 type 获取Survey template list
+    GetSurveyTemplatesByType: function (req, res) {
 
-        if (req.params && req.params.catid) {
+        if (req.params && req.params.department && req.params.type) {
 
-            Survey.find({cat: req.params.catid})
+            SurveyTemplate.find({department: req.params.department, type: req.params.type})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -62,12 +62,12 @@ module.exports = {
         }
     },
 
-    // 根据Department ID获取Survey list
-    GetSurveysByDepartmentId: function (req, res) {
+    // 根据 Department ID 获取 Survey template list
+    GetSurveyTemplatesByDepartmentId: function (req, res) {
 
         if (req.params && req.params.did) {
 
-            Survey.find({department: req.params.did})
+            SurveyTemplate.find({department: req.params.did})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -86,20 +86,20 @@ module.exports = {
     Add: function (req, res) {
 
         // 获取请求数据（json）
-        var survey = req.body;
-        if (!survey) return res.sendStatus(400);
+        var template = req.body;
+        if (!template) return res.sendStatus(400);
 
         // name
-        if (!survey.name) {
+        if (!template.name) {
             return Status.returnStatus(res, Status.NO_NAME);
         }
         // department
-        if (!survey.department) {
+        if (!template.department) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
-        // category
-        if (!survey.cat) {
-            return Status.returnStatus(res, Status.NO_CAT);
+        // type
+        if (!template.type) {
+            return Status.returnStatus(res, Status.NO_TYPE);
         }
         
         // questions ? allow to create a survey without questions?
@@ -107,12 +107,13 @@ module.exports = {
 
 
         // 不存在，创建
-        Survey.create({
+        SurveyTemplate.create({
 
-            name: survey.name,
-            department: survey.department,
-            cat: survey.cat,
-            questions: survey.questions
+            name: template.name,
+            department: template.department,
+            type: template.type,
+            questions: template.questions,
+            order: template.order
         }, function (err, raw) {
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);
@@ -128,10 +129,10 @@ module.exports = {
             var id = req.params.id;
 
             // 获取数据（json）
-            var survey = req.body;
-            if (!survey) return res.sendStatus(400);
+            var template = req.body;
+            if (!template) return res.sendStatus(400);
 
-            Survey.findById(id, function (err, item) {
+            SurveyTemplate.findById(id, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }
@@ -140,16 +141,18 @@ module.exports = {
                     return Status.returnStatus(res, Status.NULL);
                 }
 
-                if (survey.name)
-                    item.name = survey.name;
-                if (survey.department)
-                    item.department = survey.department;
-                if (survey.cat)
-                    item.cat = survey.cat;
-                if (survey.questions && survey.questions.length > 0)
-                    item.questions = survey.questions;
-                if (survey.apply || survey.apply === false)
-                    item.apply = survey.apply;
+                if (template.name)
+                    item.name = template.name;
+                if (template.department)
+                    item.department = template.department;
+                if (template.type)
+                    item.type = template.type;
+                if (template.questions && template.questions.length > 0)
+                    item.questions = template.questions;
+                if (template.order)
+                    item.order = template.order;
+                if (template.apply || template.apply === false)
+                    item.apply = template.apply;
                 
                 //console.log(JSON.stringify(item));
 
@@ -170,7 +173,7 @@ module.exports = {
     DeleteById: function (req, res) {
         if (req.params && req.params.id) { // params.id is group ID
 
-            Survey.findOne({_id: req.params.id}, function (err, item) {
+            SurveyTemplate.findOne({_id: req.params.id}, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }

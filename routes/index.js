@@ -321,6 +321,26 @@ router.route('/surveycat/:id')
     .patch(urlencodedParser, SurveyCat.UpdateById);
 
 
+
+//---------------- 问卷模版,包含问题
+var SurveyTemplate = require('../db/controller/surveyTemplate');
+
+router.route('/surveytemplates')
+    .get(SurveyTemplate.GetAll);
+
+router.route('/surveytemplates/:department/type/:type')
+    .get(SurveyTemplate.GetSurveyTemplatesByType);
+router.route('/surveytemplates/department/:did')
+    .get(SurveyTemplate.GetSurveyTemplatesByDepartmentId);
+
+router.route('/surveytemplate')
+    .post(urlencodedParser, SurveyTemplate.Add);
+
+router.route('/surveytemplate/:id')
+    .get(SurveyTemplate.GetById)
+    .delete(SurveyTemplate.DeleteById)
+    .patch(urlencodedParser, SurveyTemplate.UpdateById);
+
 //---------------- 问卷调查,包含问题
 var Survey = require('../db/controller/survey');
 

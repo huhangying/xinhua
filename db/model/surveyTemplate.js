@@ -3,11 +3,11 @@
  */
 var Schema = global.mongoose.Schema;
 
-var _Survey = new Schema({
+var _SurveyTemplate = new Schema({
 
         name: { type: String, required: true, trim: true }, // Survey section name
         department: { type: Schema.Types.ObjectId, ref: 'department', required: true },
-        cat: { type: Schema.Types.ObjectId, ref: 'survey_cat', required: true },
+        type: { type: Number, required: true, min: 0, max: 5 },
         questions: [
             {
                 question: { type: String, required: true, trim: true },
@@ -29,6 +29,7 @@ var _Survey = new Schema({
                 apply: { type: Boolean }
             }
         ],
+        order: { type: Number },
         apply: { type: Boolean, default: true }
     },
     {
