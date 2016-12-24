@@ -328,8 +328,8 @@ var SurveyTemplate = require('../db/controller/surveyTemplate');
 router.route('/surveytemplates')
     .get(SurveyTemplate.GetAll);
 
-router.route('/surveytemplates/:department/type/:type')
-    .get(SurveyTemplate.GetSurveyTemplatesByType);
+router.route('/surveytemplates/:department/:type/:group')
+    .get(SurveyTemplate.GetSurveyTemplatesByTypeGroup);
 router.route('/surveytemplates/department/:did')
     .get(SurveyTemplate.GetSurveyTemplatesByDepartmentId);
 
