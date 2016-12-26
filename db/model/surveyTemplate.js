@@ -19,7 +19,7 @@ var _SurveyTemplate = new Schema({
                 answer_type: { type: Number, required: true, min: 0, max: 3 }, // 0: boolean; 1: radio; 2: multiple; 3: text
                 options: [
                     {
-                        answer: { type: String, required: true },
+                        answer: { type: String},
                         input_required: { type: Boolean, default: false },
                         input: { type: String, trim: true },
                         hint: { type: String },

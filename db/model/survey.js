@@ -9,6 +9,7 @@ var _Survey = new Schema({
         name: { type: String, required: true, trim: true }, // Survey section name
         department: { type: Schema.Types.ObjectId, ref: 'department', required: true },
         type: { type: Number, required: true, min: 0, max: 5 },
+        group: { type: Schema.Types.ObjectId, ref: 'survey_group' },
         questions: [
             {
                 question: { type: String, required: true, trim: true },
@@ -19,7 +20,7 @@ var _Survey = new Schema({
                 answer_type: { type: Number, required: true, min: 0, max: 3 }, // 0: boolean; 1: radio; 2: multiple; 3: text
                 options: [
                     {
-                        answer: { type: String, required: true },
+                        answer: { type: String },
                         input_required: { type: Boolean, default: false },
                         input: { type: String, trim: true },
                         hint: { type: String },
@@ -30,6 +31,7 @@ var _Survey = new Schema({
                 apply: { type: Boolean }
             }
         ],
+        order: { type: Number },
         apply: { type: Boolean, default: true }
     },
     {
