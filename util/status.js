@@ -22,6 +22,7 @@ module.exports =  {
     NO_ROLE: 'no role',
     NO_TYPE: 'no type',
     NO_CAT: 'no category',
+    NO_GROUP: 'no group',
     NO_VALUE: 'no value',
     MISSING_PARAM: 'missing_param',
     INVALID_PARAM: 'invalid_param',

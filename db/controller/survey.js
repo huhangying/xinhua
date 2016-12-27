@@ -95,12 +95,16 @@ module.exports = {
         }
         // department
         if (!survey.department) {
-            return Status.returnStatus(res, Status.MISSING_PARAM);
+            return Status.returnStatus(res, Status.NO_DEPARTMENT);
         }
-        // category
-        if (!survey.cat) {
-            return Status.returnStatus(res, Status.NO_CAT);
+        // type
+        if (!survey.type) {
+            return Status.returnStatus(res, Status.NO_TYPE);
         }
+        // group
+        // if (!survey.group) {
+        //     return Status.returnStatus(res, Status.NO_GROUP);
+        // }
         
         // questions ? allow to create a survey without questions?
         
@@ -111,7 +115,9 @@ module.exports = {
 
             name: survey.name,
             department: survey.department,
-            cat: survey.cat,
+            type: survey.type,
+            group: survey.group,
+            order: survey.order,
             questions: survey.questions
         }, function (err, raw) {
             if (err) {
@@ -144,10 +150,14 @@ module.exports = {
                     item.name = survey.name;
                 if (survey.department)
                     item.department = survey.department;
-                if (survey.cat)
-                    item.cat = survey.cat;
+                if (survey.group)
+                    item.group = survey.group;
+                if (survey.type || survey.type == 0)
+                    item.type = survey.type;
                 if (survey.questions && survey.questions.length > 0)
                     item.questions = survey.questions;
+                if (survey.order)
+                    item.order = survey.order;
                 if (survey.apply || survey.apply === false)
                     item.apply = survey.apply;
                 
