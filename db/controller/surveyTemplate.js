@@ -42,14 +42,11 @@ module.exports = {
         }
     },
 
-    // 根据 department & type & group 获取Survey template list
-    GetSurveyTemplatesByTypeGroup: function (req, res) {
+    // 根据 department & type 获取Survey template list
+    GetSurveyTemplatesByType: function (req, res) {
 
         if (req.params && req.params.department && req.params.type) {
             var searchCriteria = {department: req.params.department, type: req.params.type};
-            if (req.params.group && req.params.group != '0' ) {
-                searchCriteria.group = req.params.group;
-            }
 
             SurveyTemplate.find(searchCriteria)
                 .exec(function (err, items) {
@@ -116,7 +113,7 @@ module.exports = {
             name: template.name,
             department: template.department,
             type: template.type,
-            group: template.group,
+            //group: template.group,
             questions: template.questions,
             order: template.order
         }, function (err, raw) {
@@ -152,8 +149,8 @@ module.exports = {
                     item.department = template.department;
                 if (template.type)
                     item.type = template.type;
-                if (template.group)
-                    item.group = template.group;
+                // if (template.group)
+                //     item.group = template.group;
                 if (template.questions && template.questions.length > 0)
                     item.questions = template.questions;
                 if (template.order)

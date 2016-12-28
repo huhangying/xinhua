@@ -328,8 +328,8 @@ var SurveyTemplate = require('../db/controller/surveyTemplate');
 router.route('/surveytemplates')
     .get(SurveyTemplate.GetAll);
 
-router.route('/surveytemplates/:department/:type/:group')
-    .get(SurveyTemplate.GetSurveyTemplatesByTypeGroup);
+router.route('/surveytemplates/:department/type/:type')
+    .get(SurveyTemplate.GetSurveyTemplatesByType);
 router.route('/surveytemplates/department/:did')
     .get(SurveyTemplate.GetSurveyTemplatesByDepartmentId);
 
@@ -347,8 +347,8 @@ var Survey = require('../db/controller/survey');
 router.route('/surveys')
     .get(Survey.GetAll);
 
-router.route('/surveys/cat/:catid')
-    .get(Survey.GetSurveysByCatId);
+router.route('/surveys/:department/:user/:type')
+    .get(Survey.GetSurveysByUserType);
 router.route('/surveys/department/:did')
     .get(Survey.GetSurveysByDepartmentId);
 

@@ -42,12 +42,17 @@ module.exports = {
         }
     },
 
-    // 根据Cat ID获取Survey list
-    GetSurveysByCatId: function (req, res) {
+    // 根据 department & type & user 获取Survey list
+    GetSurveysByUserType: function (req, res) {
 
-        if (req.params && req.params.catid) {
+        if (req.params && req.params.department && req.params.type && req.params.user) {
+            var searchCriteria = {
+                user: req.params.user,
+                department: req.params.department,
+                type: req.params.type
+            };
 
-            Survey.find({cat: req.params.catid})
+            Survey.find(searchCriteria)
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -61,6 +66,7 @@ module.exports = {
                 });
         }
     },
+
 
     // 根据Department ID获取Survey list
     GetSurveysByDepartmentId: function (req, res) {
@@ -89,6 +95,11 @@ module.exports = {
         var survey = req.body;
         if (!survey) return res.sendStatus(400);
 
+        // user
+        if (!survey.user) {
+            return Status.returnStatus(res, Status.NO_USER);
+        }
+
         // name
         if (!survey.name) {
             return Status.returnStatus(res, Status.NO_NAME);
@@ -113,10 +124,13 @@ module.exports = {
         // 不存在，创建
         Survey.create({
 
+            user: survey.user,
+            surveyTemplate: survey.surveyTemplate,
+
             name: survey.name,
             department: survey.department,
             type: survey.type,
-            group: survey.group,
+            //group: survey.group,
             order: survey.order,
             questions: survey.questions
         }, function (err, raw) {
@@ -146,12 +160,16 @@ module.exports = {
                     return Status.returnStatus(res, Status.NULL);
                 }
 
+                if (survey.user)
+                    item.user = survey.user;
+                if (survey.surveyTemplate)
+                    item.surveyTemplate = survey.surveyTemplate;
                 if (survey.name)
                     item.name = survey.name;
                 if (survey.department)
                     item.department = survey.department;
-                if (survey.group)
-                    item.group = survey.group;
+                // if (survey.group)
+                //     item.group = survey.group;
                 if (survey.type || survey.type == 0)
                     item.type = survey.type;
                 if (survey.questions && survey.questions.length > 0)
@@ -178,7 +196,7 @@ module.exports = {
 
 
     DeleteById: function (req, res) {
-        if (req.params && req.params.id) { // params.id is group ID
+        if (req.params && req.params.id) { // params.id is ID
 
             Survey.findOne({_id: req.params.id}, function (err, item) {
                 if (err) {
