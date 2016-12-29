@@ -218,6 +218,55 @@ module.exports = {
         }
     },
 
+    GetShortcuts: function (req, res) {
+        if (req.params && req.params.userid) {
+
+            Doctor.findOne({user_id: req.params.userid, apply: true}, 'shortcuts -_id')
+                .exec(function (err, item) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!item) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(item.shortcuts || '');
+                });
+        }
+    },
+
+    UpdateShortcuts: function (req, res) {
+        if (req.params && req.params.userid) { // params.id is doctor's user ID
+            // 获取user数据（json）
+            var doctor = req.body;
+            if (!doctor) return res.sendStatus(400);
+
+            Doctor.findOne({user_id: req.params.userid, apply: true}, function (err, item) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!item) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                if (doctor.shortcuts || doctor.shortcuts == '') {
+                    item.shortcuts = doctor.shortcuts;
+                }
+
+                //
+                item.save(function (err, raw) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+                    res.json(raw.shortcuts || '');
+                });
+            });
+        }
+
+    },
+
     // 创建药师用户
     AddByUserId: function (req, res) {
 
@@ -363,7 +412,6 @@ module.exports = {
                     item.order = doctor.order;
                 if (doctor.apply || doctor.apply === false)
                     item.apply = doctor.apply;
-
 
                 if (doctor.status || doctor.status === 0) {
                     item.status = doctor.status;

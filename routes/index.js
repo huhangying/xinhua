@@ -72,6 +72,10 @@ router.route('/login/doctor')
 router.route('/doctor/passwd/:did')
     .get(Doctor.GetPassword);//
 
+// 药师快捷回复
+router.route('/doctor/shortcuts/:userid')
+    .get(Doctor.GetShortcuts)
+    .patch(urlencodedParser, Doctor.UpdateShortcuts);
 
 //---------------- 医患关系组
 var Group = require('../db/controller/group');
