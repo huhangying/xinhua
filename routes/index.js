@@ -73,7 +73,7 @@ router.route('/doctor/passwd/:did')
     .get(Doctor.GetPassword);//
 
 // 药师快捷回复
-router.route('/doctor/shortcuts/:userid')
+router.route('/doctor/shortcuts/:did')
     .get(Doctor.GetShortcuts)
     .patch(urlencodedParser, Doctor.UpdateShortcuts);
 

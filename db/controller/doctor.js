@@ -219,9 +219,9 @@ module.exports = {
     },
 
     GetShortcuts: function (req, res) {
-        if (req.params && req.params.userid) {
+        if (req.params && req.params.did) {
 
-            Doctor.findOne({user_id: req.params.userid, apply: true}, 'shortcuts -_id')
+            Doctor.findOne({user_id: req.params.did, apply: true}, 'shortcuts -_id')
                 .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -237,12 +237,12 @@ module.exports = {
     },
 
     UpdateShortcuts: function (req, res) {
-        if (req.params && req.params.userid) { // params.id is doctor's user ID
+        if (req.params && req.params.did) { // params.id is doctor's user ID
             // 获取user数据（json）
             var doctor = req.body;
             if (!doctor) return res.sendStatus(400);
 
-            Doctor.findOne({user_id: req.params.userid, apply: true}, function (err, item) {
+            Doctor.findOne({user_id: req.params.did, apply: true}, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }
