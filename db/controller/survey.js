@@ -42,13 +42,13 @@ module.exports = {
         }
     },
 
-    // 根据 department & type & user 获取Survey list
+    // 根据 doctor & type & user 获取Survey list
     GetSurveysByUserType: function (req, res) {
 
-        if (req.params && req.params.department && req.params.type && req.params.user) {
+        if (req.params && req.params.doctor && req.params.type && req.params.user) {
             var searchCriteria = {
                 user: req.params.user,
-                department: req.params.department,
+                doctor: req.params.doctor,
                 type: req.params.type
             };
 
@@ -95,6 +95,11 @@ module.exports = {
         var survey = req.body;
         if (!survey) return res.sendStatus(400);
 
+        // doctor
+        if (!survey.doctor) {
+            return Status.returnStatus(res, Status.NO_DOCTOR);
+        }
+
         // user
         if (!survey.user) {
             return Status.returnStatus(res, Status.NO_USER);
@@ -124,6 +129,7 @@ module.exports = {
         // 不存在，创建
         Survey.create({
 
+            doctor: survey.doctor,
             user: survey.user,
             surveyTemplate: survey.surveyTemplate,
 
@@ -160,6 +166,8 @@ module.exports = {
                     return Status.returnStatus(res, Status.NULL);
                 }
 
+                if (survey.doctor)
+                    item.doctor = survey.doctor;
                 if (survey.user)
                     item.user = survey.user;
                 if (survey.surveyTemplate)

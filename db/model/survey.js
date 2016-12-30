@@ -5,12 +5,12 @@ var Schema = global.mongoose.Schema;
 
 var _Survey = new Schema({
         surveyTemplate: { type: Schema.Types.ObjectId, ref: 'survey_template' },
+        doctor: { type: Schema.Types.ObjectId, ref: 'doctor', required: true },
         user: { type: Schema.Types.ObjectId, ref: 'user', required: true },
 
         name: { type: String, required: true, trim: true }, // Survey section name
         department: { type: Schema.Types.ObjectId, ref: 'department', required: true },
         type: { type: Number, required: true, min: 0, max: 6 },
-        //group: { type: Schema.Types.ObjectId, ref: 'survey_group' },
         questions: [
             {
                 question: { type: String, required: true, trim: true },

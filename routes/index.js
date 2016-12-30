@@ -351,7 +351,7 @@ var Survey = require('../db/controller/survey');
 router.route('/surveys')
     .get(Survey.GetAll);
 
-router.route('/surveys/:department/:user/:type')
+router.route('/surveys/:doctor/:user/:type')
     .get(Survey.GetSurveysByUserType);
 router.route('/surveys/department/:did')
     .get(Survey.GetSurveysByDepartmentId);
