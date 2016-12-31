@@ -109,18 +109,16 @@ module.exports = {
         }
     },
 
-    //TODO: not working
     // 根据药师ID和日期 获取相关的预约
-    GetByDoctorIdAndDate: function (req, res) {
+    GetTodaysByDoctorId: function (req, res) {
 
-        if (req.params && req.params.did && req.params.date) {
+        if (req.params && req.params.did) {
 
-            var _date = +new Date(req.params.date);
-
-            Booking.find({doctor: req.params.did }) //from: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }}
+            var today = global.moment().startOf('day').format();
+            var tomorrow = global.moment(today).add(1, 'days').format();
+            Booking.find({doctor: req.params.did, date: {$gte: today, $lt: tomorrow} })
                 .sort({created: -1})
                 .populate('schedule')
-                //.where({from: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -135,7 +133,7 @@ module.exports = {
         }
     },
 
-    // 根据药师ID和日期 获取相关的预约
+    //
     GetByScheduleId: function (req, res) {
 
         if (req.params && req.params.sid) {
@@ -184,6 +182,7 @@ module.exports = {
             doctor: booking.doctor,
             user: booking.user,
             schedule: booking.schedule,
+            date: booking.date,
             status: booking.status || 0 // 0: 创建
         }, function (err, raw) {
             if (err) {

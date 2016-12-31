@@ -275,8 +275,8 @@ router.route('/bookings/user/:uid')
 
 router.route('/bookings/doctor/:did')
     .get(Booking.GetByDoctorId);
-router.route('/bookings/doctor/:did/:date')
-    .get(Booking.GetByDoctorIdAndDate);
+router.route('/bookings/today/doctor/:did')
+    .get(Booking.GetTodaysByDoctorId);
 
 router.route('/bookings/schedule/:sid')
     .get(Booking.GetByScheduleId);
