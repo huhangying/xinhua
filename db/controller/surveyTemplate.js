@@ -49,6 +49,7 @@ module.exports = {
             var searchCriteria = {department: req.params.department, type: req.params.type};
 
             SurveyTemplate.find(searchCriteria)
+                .sort({order: 1})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
