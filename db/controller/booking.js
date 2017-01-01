@@ -115,10 +115,12 @@ module.exports = {
         if (req.params && req.params.did) {
 
             var today = global.moment().startOf('day').format();
-            var tomorrow = global.moment(today).add(1, 'days').format();
+            var tomorrow = global.moment(today).add(4, 'days').format();
+            // Booking.find({ doctor: req.params.did })
             Booking.find({doctor: req.params.did, date: {$gte: today, $lt: tomorrow} })
                 .sort({created: -1})
-                .populate('schedule')
+                //.populate('schedule')
+                .populate('user') //, 'name cell')
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -218,6 +220,10 @@ module.exports = {
 
                     if (!item) {
                         return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    if (booking.date) {
+                        item.date = booking.date;
                     }
 
                     var original_status = item.status;
