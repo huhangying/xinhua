@@ -12,7 +12,8 @@ var _Medicine = new Schema({
         usage: { type: String }, // 内服外用等
         dosage: {
             frequency: { type: Number, required: true },
-            way: { type: String, required: true, trim: true } // 饭前/饭后/隔几小时
+            count: { type: Number, min: 1 },
+            way: { type: String, trim: true } // 饭前/饭后/隔几小时
         },
         // cat: { type: Schema.Types.ObjectId, ref: 'medicine_cat', required: true },
         notices: [

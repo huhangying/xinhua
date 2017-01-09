@@ -21,11 +21,25 @@ var _Diagnose = new Schema({
         },
 
         prescription: [
-
+            {
+                name: { type: String, required: true, trim: true },
+                desc: { type: String, trim: true },
+                unit: { type: String },
+                capacity: { type: Number },
+                usage: { type: String }, // 内服外用等
+                dosage: {
+                    frequency: { type: Number, required: true },
+                    count: { type: Number, min: 1 },
+                    way: { type: String, trim: true } // 饭前/饭后/隔几小时
+                }
+            }
         ],
         notices: [
             {
-                name: { type: String }
+                notice: { type: String, required: true, trim: true },
+                days_to_start: { type: Number, required: true },
+                during: { type: Number, required: true },
+                require_confirm: { type: Boolean, default: true }
             }
         ],
         statue: { type: Number, min: 0, max: 3, default: 0 }    // 0: assigned to user;  1: user finished; 2: doctor saved; 3: archived

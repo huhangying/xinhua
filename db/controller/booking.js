@@ -126,9 +126,9 @@ module.exports = {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
 
-                    if (!items || items.length < 1) {
-                        return Status.returnStatus(res, Status.NULL);
-                    }
+                    // if (!items || items.length < 1) {
+                    //     return Status.returnStatus(res, Status.NULL);
+                    // }
 
                     res.json(items);
                 });
