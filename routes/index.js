@@ -533,7 +533,20 @@ router.route('/feedback')
 
 router.route('/feedback/:id')
     .get(UserFeedback.GetById)
-    .patch(urlencodedParser, UserFeedback.UpdateById)
+    .patch(urlencodedParser, UserFeedback.UpdateById);
+
+//---------------- 药师坐诊
+var Diagnose = require('../db/controller/diagnose');
+
+router.route('/diagnose/:doctor/:user')
+    .get(Diagnose.GetByUserAndDoctor);
+
+router.route('/diagnose')
+    .post(urlencodedParser, Diagnose.Add);
+
+router.route('/diagnose/:id')
+    .delete(Diagnose.DeleteById)
+    .patch(urlencodedParser, Diagnose.UpdateById);
 
 //===================== 图片上传
 var Uploader = require('../db/controller/upload');

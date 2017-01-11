@@ -42,7 +42,7 @@ var _Diagnose = new Schema({
                 require_confirm: { type: Boolean, default: true }
             }
         ],
-        statue: { type: Number, min: 0, max: 3, default: 0 }    // 0: assigned to user;  1: user finished; 2: doctor saved; 3: archived
+        status: { type: Number, min: 0, max: 3, default: 0 }    // 0: assigned to user;  1: user finished; 2: doctor saved; 3: archived
     },
     {
         timestamps: true
