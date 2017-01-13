@@ -31,7 +31,8 @@ var _Diagnose = new Schema({
                     frequency: { type: Number, required: true },
                     count: { type: Number, min: 1 },
                     way: { type: String, trim: true } // 饭前/饭后/隔几小时
-                }
+                },
+                notes: { type: String }
             }
         ],
         notices: [
