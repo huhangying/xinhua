@@ -32,6 +32,14 @@ var _Diagnose = new Schema({
                     count: { type: Number, min: 1 },
                     way: { type: String, trim: true } // 饭前/饭后/隔几小时
                 },
+                notices: [
+                    {
+                        notice: { type: String, required: true, trim: true },
+                        days_to_start: { type: Number, required: true },
+                        during: { type: Number, required: true },
+                        require_confirm: { type: Boolean, default: true }
+                    }
+                ],
                 notes: { type: String }
             }
         ],
