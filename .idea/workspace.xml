@@ -27,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="551" column="0" selection-start-line="551" selection-start-column="3" selection-end-line="562" selection-end-column="58" />
+              <caret line="552" column="0" selection-start-line="552" selection-start-column="0" selection-end-line="562" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -122,8 +122,8 @@
       <file leaf-file-name="articleSearch.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/controller/articleSearch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="62" column="65" selection-start-line="62" selection-start-column="65" selection-end-line="62" selection-end-column="65" />
+            <state relative-caret-position="328">
+              <caret line="122" column="19" selection-start-line="122" selection-start-column="19" selection-end-line="122" selection-end-column="19" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
               </folding>
@@ -584,7 +584,7 @@
       <workItem from="1481345662595" duration="24734000" />
       <workItem from="1482376674966" duration="50317000" />
       <workItem from="1483581549385" duration="26095000" />
-      <workItem from="1484618792128" duration="3986000" />
+      <workItem from="1484618792128" duration="4235000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -604,7 +604,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="409762000" />
+    <option name="totallyTimeSpent" value="410011000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1020,16 +1020,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/controller/articleSearch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="62" column="65" selection-start-line="62" selection-start-column="65" selection-end-line="62" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/model/articleSearch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1060,10 +1050,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/db/controller/articleSearch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="122" column="19" selection-start-line="122" selection-start-column="19" selection-end-line="122" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="551" column="0" selection-start-line="551" selection-start-column="3" selection-end-line="562" selection-end-column="58" />
+          <caret line="552" column="0" selection-start-line="552" selection-start-column="0" selection-end-line="562" selection-end-column="55" />
           <folding />
         </state>
       </provider>
