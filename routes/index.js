@@ -549,18 +549,18 @@ router.route('/diagnose/:id')
     .patch(urlencodedParser, Diagnose.UpdateById);
 
 //---------------- 文章关键字搜索
-var ArticleSearch = require('../db/controller/ArticleSearch');
-
-router.route('/keywordsearchs')
-    .get(ArticleSearch.GetAll);
-
-router.route('/keywordsearch')
-    .post(urlencodedParser, ArticleSearch.Add);
-
-router.route('/keywordsearch/:id')
-    .get(ArticleSearch.GetById)
-    .delete(ArticleSearch.DeleteById)
-    .patch(urlencodedParser, ArticleSearch.UpdateById);
+// var ArticleSearch = require('../db/controller/ArticleSearch');
+//
+// router.route('/keywordsearchs')
+//     .get(ArticleSearch.GetAll);
+//
+// router.route('/keywordsearch')
+//     .post(urlencodedParser, ArticleSearch.Add);
+//
+// router.route('/keywordsearch/:id')
+//     .get(ArticleSearch.GetById)
+//     .delete(ArticleSearch.DeleteById)
+//     .patch(urlencodedParser, ArticleSearch.UpdateById);
 
 
 //===================== 图片上传
