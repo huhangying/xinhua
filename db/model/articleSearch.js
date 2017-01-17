@@ -10,7 +10,7 @@ var _ArticleSearch = new Schema({
         title: { type: String, required: true },
         title_image: { type: String },
         targetUrl: { type: String, required: true },
-        keywords: { type: String }
+        keywords: { type: String } // separated by |
     },
     {
         timestamps: true
