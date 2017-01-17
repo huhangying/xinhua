@@ -103,7 +103,7 @@ module.exports = {
         }
     },
 
-    // 创建关系组
+    // 创建页面
     Add: function (req, res) {
 
         // 获取请求数据（json）
