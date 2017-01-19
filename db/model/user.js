@@ -1,8 +1,9 @@
 /**
  * Created by hhu on 2016/4/27.
  */
+var Schema = global.mongoose.Schema;
 
-var _User = new global.mongoose.Schema({
+var _User = new Schema({
     link_id: String,
     cell: String,
     name: String,
@@ -15,6 +16,9 @@ var _User = new global.mongoose.Schema({
     birthdate:{type: Date},
     sin: String,
     admissionNumber: { type: String},
+    visitedDepartments: [
+        { type: Schema.Types.ObjectId, ref: 'department' }
+    ], //用来判定应该使用初诊问卷还是复诊问卷
     locked_count: Number,
     apply: {type : Boolean, default: true}
 });

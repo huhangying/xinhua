@@ -260,6 +260,10 @@ module.exports = {
                 if (user.apply || user.apply === false)
                     item.apply = user.apply;
 
+                if (user.visitedDepartments) {
+                    item.visitedDepartments = user.visitedDepartments;
+                }
+
                 //console.log(JSON.stringify(item));
 
                 //
