@@ -54,6 +54,7 @@ module.exports = {
             assessment: item.assessment,
             prescription: item.prescription,
             notices: item.notices,
+            labResults: item.labResults,
             status: item.status
         }, function (err, raw) {
             if (err) {
@@ -96,6 +97,8 @@ module.exports = {
                     item.prescription = diagnose.prescription;
                 if (diagnose.notices)
                     item.notices = diagnose.notices;
+                if (diagnose.labResults)
+                    item.labResults = diagnose.labResults;
                 if (diagnose.status)
                     item.status = diagnose.status;
 

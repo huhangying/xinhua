@@ -12,9 +12,6 @@ var _Diagnose = new Schema({
         surveys: [
             {type: Schema.Types.ObjectId, ref: 'survey'}
         ],
-        // labResult: [
-        //     {type: Schema.Types.ObjectId, ref: 'survey'}
-        // ],
         assessment:  {
             score: { type: Number, min: 1, max: 10 },
             assessment: {type: Schema.Types.ObjectId, ref: 'survey'}
@@ -50,6 +47,9 @@ var _Diagnose = new Schema({
                 during: { type: Number, required: true },
                 require_confirm: { type: Boolean, default: true }
             }
+        ],
+        labResults: [
+            {type: Schema.Types.ObjectId, ref: 'lab_result'}
         ],
         status: { type: Number, min: 0, max: 3, default: 0 }    // 0: assigned to user;  1: user finished; 2: doctor saved; 3: archived
     },
