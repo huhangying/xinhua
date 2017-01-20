@@ -37,8 +37,6 @@ router.route('/users/search') //GET
     .post(urlencodedParser, User.Search)
 
 
-
-
 //---------------- 药师注册
 var Doctor = require('../db/controller/doctor');
 
@@ -561,6 +559,22 @@ router.route('/keywordsearch/:id')
     .get(ArticleSearch.GetById)
     .delete(ArticleSearch.DeleteById)
     .patch(urlencodedParser, ArticleSearch.UpdateById);
+
+//---------------- 实验室化验结果
+var LabResult = require('../db/controller/labResult');
+
+router.route('/labresults')
+    .get(LabResult.GetAll);
+router.route('/labresult/:uid')
+    .get(LabResult.GetLabResultsByUserId);
+
+router.route('/labresult')
+    .post(urlencodedParser, LabResult.Add);
+
+router.route('/labresult/:id')
+    .get(LabResult.GetById)
+    .delete(LabResult.DeleteById)
+    .patch(urlencodedParser, LabResult.UpdateById);
 
 
 //===================== 图片上传
