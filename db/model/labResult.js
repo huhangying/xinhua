@@ -12,12 +12,11 @@ var _labResult = new Schema({
         list: [
             {
                 item: { type: String, required: true, trim: true },
-                result: { type: String, required: true },
+                result: { type: String, trim: true  },
                 type: { type: Number }
             }
         ],
-        testDate: { type: Date },
-        apply: { type: Boolean, default: true }
+        testDate: { type: Date }
     },
     {
         timestamps: true

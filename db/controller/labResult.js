@@ -131,8 +131,8 @@ module.exports = {
                     item.list = labResult.list;
                 if (labResult.testDate)
                     item.testDate = labResult.testDate;
-                if (labResult.apply || labResult.apply === false)
-                    item.apply = labResult.apply;
+                // if (labResult.apply || labResult.apply === false)
+                //     item.apply = labResult.apply;
 
                 //console.log(JSON.stringify(item));
 
