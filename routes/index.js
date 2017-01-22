@@ -565,7 +565,7 @@ var LabResult = require('../db/controller/labResult');
 
 router.route('/labresults')
     .get(LabResult.GetAll);
-router.route('/labresult/:uid')
+router.route('/labresult/user/:uid')
     .get(LabResult.GetLabResultsByUserId);
 
 router.route('/labresult')
