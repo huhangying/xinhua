@@ -560,6 +560,9 @@ router.route('/keywordsearch/:id')
     .delete(ArticleSearch.DeleteById)
     .patch(urlencodedParser, ArticleSearch.UpdateById);
 
+router.route('/keywordsearchs/keyword/:keyword')
+    .get(ArticleSearch.GetSerachResults);
+
 //---------------- 实验室化验结果
 var LabResult = require('../db/controller/labResult');
 

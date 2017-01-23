@@ -27,16 +27,38 @@ module.exports = {
         if (req.params && req.params.id) {
 
             ArticleSearch.findOne({_id: req.params.id})
-                .exec(function (err, item) {
+                .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
 
-                    if (!item) {
+                    if (!items || items.length < 1) {
                         return Status.returnStatus(res, Status.NULL);
                     }
 
-                    res.json(item);
+                    res.json(items);
+                });
+        }
+    },
+
+    // 根据keyword 获取article list
+    GetSerachResults: function (req, res) {
+
+        if (req.params && req.params.keyword) {
+            var keywordRE = new RegExp(req.params.keyword, 'i');
+            ArticleSearch.find({$or: [{keywords: keywordRE }, {name: keywordRE}, {title: keywordRE} ]}, '-__v')
+                .sort({updatedAt: -1})
+                .limit(20)
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
                 });
         }
     },
