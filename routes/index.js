@@ -332,6 +332,8 @@ router.route('/surveytemplates')
 
 router.route('/surveytemplates/:department/type/:type')
     .get(SurveyTemplate.GetSurveyTemplatesByType);
+router.route('/surveytemplates/:department/type/:type/:list')
+    .get(SurveyTemplate.GetSurveyTemplatesByTypeAndList);
 router.route('/surveytemplates/department/:did')
     .get(SurveyTemplate.GetSurveyTemplatesByDepartmentId);
 

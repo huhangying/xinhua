@@ -64,6 +64,36 @@ module.exports = {
         }
     },
 
+    // 根据 department & type & list 获取Survey template list
+    GetSurveyTemplatesByTypeAndList: function (req, res) {
+
+        if (req.params && req.params.department && req.params.type && req.params.list) {
+            var searchCriteria = {
+                department: req.params.department,
+                type: req.params.type
+            };
+
+            SurveyTemplate.find(searchCriteria)
+                .sort({order: 1})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    var surveyTemplateList = req.params.list.split('|');
+
+                    items = items.filter(function(item) {
+                        return surveyTemplateList.indexOf(item._id.toString()) > -1;
+                    });
+                    res.json(items);
+                });
+        }
+    },
+
     // 根据 Department ID 获取 Survey template list
     GetSurveyTemplatesByDepartmentId: function (req, res) {
 
