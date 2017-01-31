@@ -65,7 +65,7 @@ module.exports = {
     },
 
     // 根据 department & type & list 获取Survey template list
-    GetSurveyTemplatesByTypeAndList: function (req, res) {
+            GetSurveyTemplatesByTypeAndList: function (req, res) {
 
         if (req.params && req.params.department && req.params.type && req.params.list) {
             var searchCriteria = {

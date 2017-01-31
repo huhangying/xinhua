@@ -353,6 +353,8 @@ router.route('/surveys')
 
 router.route('/surveys/:doctor/:user/:type')
     .get(Survey.GetSurveysByUserType);
+router.route('/surveys/:doctor/:user/:type/:list')
+    .get(Survey.GetSurveysByUserTypeAndList);
 router.route('/surveys/department/:did')
     .get(Survey.GetSurveysByDepartmentId);
 

@@ -10,7 +10,10 @@ var _Diagnose = new Schema({
 
         booking: { type: Schema.Types.ObjectId, ref: 'booking' },
         surveys: [
-            {type: Schema.Types.ObjectId, ref: 'survey'}
+            {
+                type: { type: Number, min: 1, max: 6},
+                list: [{type: Schema.Types.ObjectId, ref: 'survey'}]
+            }
         ],
         assessment:  {
             score: { type: Number, min: 1, max: 10 },

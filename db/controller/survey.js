@@ -69,6 +69,39 @@ module.exports = {
     },
 
 
+    // 根据 doctor & type & user and list to retrieve details
+    GetSurveysByUserTypeAndList: function (req, res) {
+
+        if (req.params && req.params.doctor && req.params.type && req.params.user && req.params.list) {
+            var searchCriteria = {
+                user: req.params.user,
+                doctor: req.params.doctor,
+                type: req.params.type
+            };
+
+            Survey.find(searchCriteria)
+                .sort({order: 1})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    var surveyList = req.params.list.split('|');
+
+                    items = items.filter(function(item) {
+                        return surveyList.indexOf(item._id.toString()) > -1;
+                    });
+
+                    res.json(items);
+                });
+        }
+    },
+
+
     // 根据Department ID获取Survey list
     GetSurveysByDepartmentId: function (req, res) {
 

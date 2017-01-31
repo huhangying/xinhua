@@ -11,9 +11,10 @@ var _Medicine = new Schema({
         capacity: { type: Number },
         usage: { type: String }, // 内服外用等
         dosage: {
+            period: { type: String, trim: true }, // 每天/隔几小时
+            way: { type: String, trim: true }, // 饭前/饭后
             frequency: { type: Number, required: true },
-            count: { type: Number, min: 1 },
-            way: { type: String, trim: true } // 饭前/饭后/隔几小时
+            count: { type: Number, min: 0 }
         },
         // cat: { type: Schema.Types.ObjectId, ref: 'medicine_cat', required: true },
         notices: [
