@@ -74,6 +74,9 @@ router.route('/doctor/passwd/:did')
 router.route('/doctor/shortcuts/:did')
     .get(Doctor.GetShortcuts)
     .patch(urlencodedParser, Doctor.UpdateShortcuts);
+// 药师的基本信息: 
+router.route('/doctor/brief/:did')
+    .get(Doctor.GetBriefInfo);//
 
 //---------------- 医患关系组
 var Group = require('../db/controller/group');
@@ -542,6 +545,9 @@ var Diagnose = require('../db/controller/diagnose');
 
 router.route('/diagnose/:doctor/:user')
     .get(Diagnose.GetByUserAndDoctor);
+
+router.route('/diagnoses/history/:user')
+    .get(Diagnose.GetUserHistoryList);
 
 router.route('/diagnose')
     .post(urlencodedParser, Diagnose.Add);

@@ -531,6 +531,29 @@ module.exports = {
         }
     },
 
+    //====================================================== 
+    // 药师的基本信息: 包括名字,专科名字,title
+
+    GetBriefInfo: function (req, res) {
+
+        if (req.params && req.params.did) { //doctor user id
+            Doctor.findOne({_id: req.params.did, apply: true})
+                .populate({ path: 'department', select: 'name' })
+                .exec(function (err, item) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!item) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(item);
+                });
+
+        }
+    },
+    
     //====================================================== for service
 
     GetNameById : function(id) {
