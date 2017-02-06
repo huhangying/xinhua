@@ -553,6 +553,7 @@ router.route('/diagnose')
     .post(urlencodedParser, Diagnose.Add);
 
 router.route('/diagnose/:id')
+    .get(Diagnose.GetById)
     .delete(Diagnose.DeleteById)
     .patch(urlencodedParser, Diagnose.UpdateById);
 

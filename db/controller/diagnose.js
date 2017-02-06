@@ -7,6 +7,26 @@ var Diagnose = require('../model/diagnose');
 module.exports = {
 
     // 根据ID获取详细信息
+    GetById: function (req, res) {
+
+        if (req.params && req.params.id) {
+
+            Diagnose.findOne({_id: req.params.id})
+                .exec(function (err, item) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!item) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(item);
+                });
+        }
+    },
+
+    // 根据ID获取详细信息
     GetByUserAndDoctor: function (req, res) {
 
         if (req.params && req.params.user && req.params.doctor) {
