@@ -26,12 +26,12 @@ module.exports = {
         }
     },
 
-    // 根据ID获取详细信息
+    // 根据doctor id and patient ID获取当前的门诊
     GetByUserAndDoctor: function (req, res) {
 
         if (req.params && req.params.user && req.params.doctor) {
 
-            Diagnose.findOne({user: req.params.user, doctor: req.params.doctor})
+            Diagnose.findOne({user: req.params.user, doctor: req.params.doctor, status: {$ne : 3} })
                 .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -46,7 +46,7 @@ module.exports = {
         }
     },
 
-    // 根据ID获取详细信息
+    // 获取用户的门诊历史记录
     GetUserHistoryList: function (req, res) {
 
         if (req.params && req.params.user) {
