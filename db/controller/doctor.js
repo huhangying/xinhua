@@ -488,7 +488,7 @@ module.exports = {
             return Status.returnStatus(res, Status.NO_PASSWORD);
         }
         Doctor.find({user_id: login.user_id, apply: true},
-            {_id: 1, user_id: 1, password: 1, name: 1, icon: 1, department: 1, role: 1}, // select fields
+            {_id: 1, user_id: 1, password: 1, name: 1, icon: 1, title: 1, department: 1, role: 1}, // select fields
             function(err, items){
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
