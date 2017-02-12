@@ -91,11 +91,11 @@ module.exports = {
     // 根据药师 ID, 类型 获取相关类型的反馈
     GetUnreadByDoctorId: function (req, res) {
 
-        if (req.params && req.params.did) {
+        if (req.params && req.params.did && req.params.type) {
 
-            UserFeedback.find({ doctor: req.params.did, status: 0 }) // only 1 and 0 for now.
+            UserFeedback.find({ doctor: req.params.did, type: req.params.type, status: 0 }) // only 1 and 0 for now.
                 .sort({created: -1})
-                //.populate('user')
+                .populate('user', 'name icon')
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -106,6 +106,22 @@ module.exports = {
                     }
 
                     res.json(items);
+                });
+        }
+    },
+
+    // 根据药师 ID, 类型 获取相关类型的反馈个数
+    GetUnreadCountByDoctorId: function (req, res) {
+
+        if (req.params && req.params.did && req.params.type) {
+
+            UserFeedback.count({ doctor: req.params.did, type: req.params.type, status: 0 }) // 0 is unread.
+                .exec(function (err, count) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    res.json({count: count});
                 });
         }
     },
