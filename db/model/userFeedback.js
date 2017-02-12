@@ -12,7 +12,7 @@ var _UserFeedback = new Schema({
         startDate: { type: Date, default: Date.now },
         endDate: { type: Date },
         notes: { type: String },
-        status: { type: Number, default: 0 } // 0: after user sent; 1. after doctor read;
+        status: { type: Number, default: 0 } // 0: after user sent; 1. after doctor read; 2: 药师回复
     },
     {
         timestamps: true
