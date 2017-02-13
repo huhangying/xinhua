@@ -110,6 +110,28 @@ module.exports = {
         }
     },
 
+    // 根据病患 ID, 类型 获取相关的反馈
+    GetUnreadByUserId: function (req, res) {
+
+        if (req.params && req.params.uid && req.params.type) {
+
+            UserFeedback.find({ user: req.params.uid, type: req.params.type, status: 2 }) // only 2 and 0 for now.
+                .sort({created: -1})
+                //.populate('user', 'name icon')
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
     // 根据药师 ID, 类型 获取相关类型的反馈个数
     GetUnreadCountByDoctorId: function (req, res) {
 
