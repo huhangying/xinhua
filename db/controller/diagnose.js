@@ -68,6 +68,29 @@ module.exports = {
         }
     },
 
+    // 获取用户最近一次的门诊(history)
+    GetUserLatestDiagnose: function (req, res) {
+
+        if (req.params && req.params.user) {
+
+            Diagnose.find({user: req.params.user, status: 3})
+                .populate({ path: 'doctor', select: 'name title department -_id' })
+                .sort({updatedAt: -1})
+                .limit(1)
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items[0]);
+                });
+        }
+    },
+
     // 创建关系组
     Add: function (req, res) {
 

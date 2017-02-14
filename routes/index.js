@@ -553,6 +553,9 @@ router.route('/diagnose/:doctor/:user')
 
 router.route('/diagnoses/history/:user')
     .get(Diagnose.GetUserHistoryList);
+router.route('/diagnose/history/latest/:user')
+    .get(Diagnose.GetUserLatestDiagnose);
+
 
 router.route('/diagnose')
     .post(urlencodedParser, Diagnose.Add);
