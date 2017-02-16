@@ -148,6 +148,31 @@ module.exports = {
                     return Status.returnStatus(res, Status.NULL);
                 }
 
+                // always handle prescription array
+                // 1. remove prescription array in item
+                for (var i=0; i<item.prescription.length; i++) {
+
+                    diagnose.prescription.some(function(obj, index) {
+                        if (obj._id === item.prescription[i]._doc._id.toString()) { //update
+                            item.prescription[i]._doc = obj;
+                            return true;
+                        }
+                    });
+
+                    //todo:
+                        // item.prescription.push(item.prescription[i]);
+
+                    // if (diagnose.prescription.indexOf(item.prescription[i]._doc) >= 0) {
+                    //     continue;
+                    // }
+                    // else {
+                    //     item.prescription[i].remove();
+                    // }
+                }
+
+                // 2.
+
+
                 if (diagnose.user)
                     item.user = diagnose.user;
                 if (diagnose.doctor)
@@ -158,8 +183,11 @@ module.exports = {
                     item.surveys = diagnose.surveys;
                 if (diagnose.assessment)
                     item.assessment = diagnose.assessment;
-                if (diagnose.prescription)
-                    item.prescription = diagnose.prescription;
+                if (diagnose.prescription && diagnose.prescription.length > 0) {
+                    diagnose.prescription.map(function(pres) {
+
+                    });
+                }
                 if (diagnose.notices)
                     item.notices = diagnose.notices;
                 if (diagnose.labResults)
