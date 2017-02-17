@@ -52,7 +52,7 @@ module.exports = {
         if (req.params && req.params.user) {
 
             Diagnose.find({user: req.params.user, status: 3})
-               .populate({ path: 'doctor', select: 'name title department -_id' })
+               .populate({ path: 'doctor', select: 'name title department' })
                 .sort({updatedAt: -1})
                 .exec(function (err, items) {
                     if (err) {
@@ -74,7 +74,7 @@ module.exports = {
         if (req.params && req.params.user) {
 
             Diagnose.find({user: req.params.user, status: 3})
-                .populate({ path: 'doctor', select: 'name title department -_id' })
+                .populate({ path: 'doctor', select: 'name title department' })
                 .sort({updatedAt: -1})
                 .limit(1)
                 .exec(function (err, items) {
