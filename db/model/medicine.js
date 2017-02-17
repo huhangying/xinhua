@@ -11,7 +11,7 @@ var _Medicine = new Schema({
         capacity: { type: Number },
         usage: { type: String }, // 内服外用等
         dosage: {
-            period: { type: Number, min: 0, required: true }, // 每几天
+            intervalDay: { type: Number, default: 1, min: 0 }, // 每几天
             way: { type: String, trim: true }, // 饭前/饭后/隔几小时
             frequency: { type: Number, required: true },
             count: { type: Number, min: 0 }

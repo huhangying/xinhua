@@ -133,13 +133,12 @@ module.exports = {
 
     UpdateById: function (req, res) {
         if (req.params && req.params.id) { // params.id is ID
-            var id = req.params.id;
 
             // 获取数据（json）
             var diagnose = req.body;
             if (!diagnose) return res.sendStatus(400);
 
-            Diagnose.findById(id, function (err, item) {
+            Diagnose.findOne({_id: req.params.id}, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }
@@ -148,29 +147,9 @@ module.exports = {
                     return Status.returnStatus(res, Status.NULL);
                 }
 
+
                 // always handle prescription array
-                // 1. remove prescription array in item
-                for (var i=0; i<item.prescription.length; i++) {
-
-                    diagnose.prescription.some(function(obj, index) {
-                        if (obj._id === item.prescription[i]._doc._id.toString()) { //update
-                            item.prescription[i]._doc = obj;
-                            return true;
-                        }
-                    });
-
-                    //todo:
-                        // item.prescription.push(item.prescription[i]);
-
-                    // if (diagnose.prescription.indexOf(item.prescription[i]._doc) >= 0) {
-                    //     continue;
-                    // }
-                    // else {
-                    //     item.prescription[i].remove();
-                    // }
-                }
-
-                // 2.
+                item.prescription = diagnose.prescription;
 
 
                 if (diagnose.user)
@@ -183,11 +162,6 @@ module.exports = {
                     item.surveys = diagnose.surveys;
                 if (diagnose.assessment)
                     item.assessment = diagnose.assessment;
-                if (diagnose.prescription && diagnose.prescription.length > 0) {
-                    diagnose.prescription.map(function(pres) {
-
-                    });
-                }
                 if (diagnose.notices)
                     item.notices = diagnose.notices;
                 if (diagnose.labResults)
