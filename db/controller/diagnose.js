@@ -210,4 +210,55 @@ module.exports = {
         }
     },
 
+    GetAssessmentById: function (req, res) {
+
+        if (req.params && req.params.id) {
+
+            Diagnose.findOne({_id: req.params.id}, 'assessment')
+                .exec(function (err, item) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!item) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(item.assessment);
+                });
+        }
+    },
+
+    UpdateAssessmentById: function (req, res) {
+        if (req.params && req.params.id) { // params.id is ID
+
+            // 获取数据（json）
+            var diagnose = req.body;
+            if (!diagnose) return res.sendStatus(400);
+
+            Diagnose.findOne({_id: req.params.id}, function (err, item) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!item) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+
+                item.assessment = diagnose.assessment;
+
+                //
+                item.save(function (err, raw) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+                    res.json(raw);
+                });
+
+            });
+
+        }
+    },
+
 }

@@ -565,6 +565,11 @@ router.route('/diagnose/:id')
     .delete(Diagnose.DeleteById)
     .patch(urlencodedParser, Diagnose.UpdateById);
 
+// 药师评估
+router.route('/diagnose-assessment/:id')
+    .get(Diagnose.GetAssessmentById)
+    .patch(urlencodedParser, Diagnose.UpdateAssessmentById);
+
 //---------------- 文章关键字搜索
 var ArticleSearch = require('../db/controller/articleSearch');
 
