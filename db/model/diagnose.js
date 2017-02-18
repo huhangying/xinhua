@@ -22,6 +22,7 @@ var _Diagnose = new Schema({
 
         prescription: [
             {
+                startDate: { type: Date, default: Date.now },
                 name: { type: String, required: true, trim: true },
                 desc: { type: String, trim: true },
                 unit: { type: String },
