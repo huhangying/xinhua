@@ -525,10 +525,10 @@ var UserFeedback = require('../db/controller/userFeedback');
 router.route('/feedbacks')
     .get(UserFeedback.GetAll);
 
-router.route('/feedbacks/user/:uid')
+router.route('/feedbacks/user/:type/:uid')
     .get(UserFeedback.GetByUserId);
 
-router.route('/feedbacks/doctor/:did')
+router.route('/feedbacks/doctor/:type/:did')
     .get(UserFeedback.GetByDoctorId);
 router.route('/feedbacks/unread/:type/:did')
     .get(UserFeedback.GetUnreadByDoctorId);
