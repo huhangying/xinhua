@@ -23,10 +23,12 @@ var _Diagnose = new Schema({
         prescription: [
             {
                 startDate: { type: Date, default: Date.now },
+                endDate: { type: Date },
                 name: { type: String, required: true, trim: true },
                 desc: { type: String, trim: true },
                 unit: { type: String },
                 capacity: { type: Number },
+                quantity: { type: Number, default: 1 },
                 usage: { type: String }, // 内服外用等
                 dosage: {
                     intervalDay: { type: Number, default: 1, min: 0 }, // 每几天
@@ -47,6 +49,8 @@ var _Diagnose = new Schema({
         ],
         notices: [
             {
+                startDate: { type: Date, default: Date.now },
+                endDate: { type: Date },
                 notice: { type: String, required: true, trim: true },
                 days_to_start: { type: Number, required: true },
                 during: { type: Number, required: true },
