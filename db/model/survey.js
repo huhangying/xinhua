@@ -33,6 +33,7 @@ var _Survey = new Schema({
             }
         ],
         order: { type: Number },
+        availableBy: { type: Date }, // 有效期
         apply: { type: Boolean, default: true }
     },
     {

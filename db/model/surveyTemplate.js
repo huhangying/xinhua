@@ -31,6 +31,7 @@ var _SurveyTemplate = new Schema({
             }
         ],
         order: { type: Number },
+        availableDays: { type: Number, default: 30 }, // 有效天数, 默认为30天
         apply: { type: Boolean, default: true }
     },
     {

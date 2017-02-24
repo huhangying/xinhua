@@ -172,6 +172,7 @@ module.exports = {
             type: survey.type,
             //group: survey.group,
             order: survey.order,
+            availableBy: survey.availableBy,
             questions: survey.questions
         }, function (err, raw) {
             if (err) {
@@ -218,6 +219,8 @@ module.exports = {
                     item.questions = survey.questions;
                 if (survey.order)
                     item.order = survey.order;
+                if (survey.availableBy)
+                    item.availableBy = survey.availableBy;
                 if (survey.apply || survey.apply === false)
                     item.apply = survey.apply;
                 

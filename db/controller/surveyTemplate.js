@@ -146,6 +146,7 @@ module.exports = {
             type: template.type,
             //group: template.group,
             questions: template.questions,
+            availableDays: template.availableDays,
             order: template.order
         }, function (err, raw) {
             if (err) {
@@ -186,6 +187,8 @@ module.exports = {
                     item.questions = template.questions;
                 if (template.order)
                     item.order = template.order;
+                if (template.availableDays)
+                    item.availableDays = template.availableDays;
                 if (template.apply || template.apply === false)
                     item.apply = template.apply;
                 
