@@ -45,11 +45,17 @@ module.exports = {
     // 根据 doctor & type & user 获取Survey list
     GetSurveysByUserType: function (req, res) {
 
+        var readonly = false;
+        if (req.params.readonly == 1) {
+            readonly = true;
+        }
         if (req.params && req.params.doctor && req.params.type && req.params.user) {
             var searchCriteria = {
                 user: req.params.user,
                 doctor: req.params.doctor,
-                type: req.params.type
+                type: req.params.type,
+                availableBy: { $gt: new Date() },
+                finished: readonly
             };
 
             Survey.find(searchCriteria)
@@ -72,11 +78,17 @@ module.exports = {
     // 根据 doctor & type & user and list to retrieve details
     GetSurveysByUserTypeAndList: function (req, res) {
 
+        var readonly = false;
+        if (req.params.readonly == 1) {
+            readonly = true;
+        }
         if (req.params && req.params.doctor && req.params.type && req.params.user && req.params.list) {
             var searchCriteria = {
                 user: req.params.user,
                 doctor: req.params.doctor,
-                type: req.params.type
+                type: req.params.type,
+                availableBy: { $gt: new Date() },
+                finished: readonly
             };
 
             Survey.find(searchCriteria)
@@ -101,6 +113,33 @@ module.exports = {
         }
     },
 
+
+    // 获取 user 的未完成 surveys
+    GetMySurveys: function (req, res) {
+
+        if (req.params && req.params.user) {
+            var searchCriteria = {
+                user: req.params.user,
+                type: { $gt: 0, $lt: 5 },
+                availableBy: { $gt: new Date() },
+                finished: false
+            };
+
+            Survey.find(searchCriteria)
+                .sort({updatedAt: -1})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
 
     // 根据Department ID获取Survey list
     GetSurveysByDepartmentId: function (req, res) {
@@ -221,8 +260,8 @@ module.exports = {
                     item.order = survey.order;
                 if (survey.availableBy)
                     item.availableBy = survey.availableBy;
-                if (survey.apply || survey.apply === false)
-                    item.apply = survey.apply;
+                if (survey.finished || survey.finished === false)
+                    item.finished = survey.finished;
                 
                 //console.log(JSON.stringify(item));
 

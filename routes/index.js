@@ -354,10 +354,13 @@ var Survey = require('../db/controller/survey');
 router.route('/surveys')
     .get(Survey.GetAll);
 
-router.route('/surveys/:doctor/:user/:type')
+router.route('/surveys/:doctor/:user/:type/:readonly')
     .get(Survey.GetSurveysByUserType);
-router.route('/surveys/:doctor/:user/:type/:list')
+router.route('/surveys/:doctor/:user/:type/:list/:readonly')
     .get(Survey.GetSurveysByUserTypeAndList);
+
+router.route('/mysurveys/:user')
+    .get(Survey.GetMySurveys);
 router.route('/surveys/department/:did')
     .get(Survey.GetSurveysByDepartmentId);
 
