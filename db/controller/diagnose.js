@@ -154,10 +154,11 @@ module.exports = {
                     return Status.returnStatus(res, Status.NULL);
                 }
 
-
-                // always handle prescription array
-                item.prescription = diagnose.prescription;
-
+                // tricky: 如果不需要更新prescription的话,把 prescription 设置成 undefined!!
+                if (diagnose.prescription) {
+                    // update prescription array, include prescription=[]
+                    item.prescription = diagnose.prescription;
+                }
 
                 if (diagnose.user)
                     item.user = diagnose.user;
