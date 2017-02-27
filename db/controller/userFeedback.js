@@ -116,6 +116,10 @@ module.exports = {
         if (req.params && req.params.uid && req.params.type) {
 
             UserFeedback.find({ user: req.params.uid, type: req.params.type, status: 2 }) // only 2 and 0 for now.
+                .populate({
+                    path: 'doctor',
+                    select: 'name title'
+                })
                 .sort({created: -1})
                 //.populate('user', 'name icon')
                 .exec(function (err, items) {
