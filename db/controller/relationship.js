@@ -141,22 +141,28 @@ module.exports = {
         }
 
 
-        Relationship.findOne({doctor: relationship.doctor, user: relationship.user}) // check if existed
-            .exec(function (err, item) {
+        Relationship.find({doctor: relationship.doctor, user: relationship.user, apply: true}) // check if existed
+            .exec(function (err, items) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }
 
-                // 如果存在，直接返回
-                if (item) {
+                // 一个患者能被加到多个组中
+                if (items) {
 
-                    // check if group is different, update it.
-                    if (item.group != relationship.group){
-                        item.group = relationship.group;
-                        item.save();
+                    var found = false;
+                    for(var i = 0; i < items.length; i++) {
+                        if (items[i].group == relationship.group) {
+                            found = true;
+                            break;
+                        }
                     }
 
-                    return res.json(item);
+                    // 如果存在，直接返回
+                    if (found){
+                        return res.json(items);
+                    }
+
                 }
 
                 // 不存在，创建
@@ -164,8 +170,7 @@ module.exports = {
 
                     user: relationship.user,
                     doctor: relationship.doctor,
-                    group: relationship.group,
-                    apply: relationship.apply || true
+                    group: relationship.group
                 }, function (err, raw) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
