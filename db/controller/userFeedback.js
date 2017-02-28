@@ -50,8 +50,10 @@ module.exports = {
         if (req.params && req.params.uid && req.params.type) {
 
             UserFeedback.find({user: req.params.uid, type: req.params.type })
+                .populate({
+                    path: 'doctor',
+                    select: 'name title'})
                 .sort({created: -1})
-                //.populate('doctor')
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
