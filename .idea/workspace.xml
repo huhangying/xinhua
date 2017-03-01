@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/booking.js" afterPath="$PROJECT_DIR$/db/controller/booking.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/model/booking.js" afterPath="$PROJECT_DIR$/db/model/booking.js" />
     </list>
     <ignored path="Xinhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,8 +36,8 @@
       <file leaf-file-name="booking.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/controller/booking.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="141" column="24" selection-start-line="141" selection-start-column="24" selection-end-line="141" selection-end-column="24" />
+            <state relative-caret-position="504">
+              <caret line="143" column="25" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -583,7 +582,7 @@
       <workItem from="1486795057303" duration="47186000" />
       <workItem from="1487744134312" duration="24397000" />
       <workItem from="1488129399030" duration="219000" />
-      <workItem from="1488163910901" duration="12453000" />
+      <workItem from="1488163910901" duration="12696000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -603,7 +602,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="545670000" />
+    <option name="totallyTimeSpent" value="545913000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1076,8 +1075,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/booking.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="141" column="24" selection-start-line="141" selection-start-column="24" selection-end-line="141" selection-end-column="24" />
+        <state relative-caret-position="504">
+          <caret line="143" column="25" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="25" />
           <folding />
         </state>
       </provider>
