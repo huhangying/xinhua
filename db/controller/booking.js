@@ -115,12 +115,20 @@ module.exports = {
         if (req.params && req.params.did) {
 
             var today = global.moment().startOf('day').format();
-            var tomorrow = global.moment(today).add(4, 'days').format();
+            var tomorrow = global.moment(today).add(1, 'days').format();
             // Booking.find({ doctor: req.params.did })
-            Booking.find({doctor: req.params.did, date: {$gte: today, $lt: tomorrow} })
+            Booking.find({doctor: req.params.did, status: 0 }) //, date: {$gte: today, $lt: tomorrow}
                 .sort({created: -1})
                 //.populate('schedule')
                 .populate('user') //, 'name cell')
+                .populate({
+                    path: 'schedule',
+                    select: 'date period',
+                    populate: {
+                        path: 'period',
+                        select: 'name -_id'
+                    }
+                })
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -129,6 +137,10 @@ module.exports = {
                     // if (!items || items.length < 1) {
                     //     return Status.returnStatus(res, Status.NULL);
                     // }
+
+                    items = items.filter(function(item){
+                        return item.schedule.date >= today && item.schedule.date < tomorrow;
+                    })
 
                     res.json(items);
                 });
