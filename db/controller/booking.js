@@ -117,7 +117,7 @@ module.exports = {
             var today = global.moment().startOf('day').format();
             var tomorrow = global.moment(today).add(1, 'days').format();
             // Booking.find({ doctor: req.params.did })
-            Booking.find({doctor: req.params.did, status: 0 }) //, date: {$gte: today, $lt: tomorrow}
+            Booking.find({doctor: req.params.did, status: 1 }) //, date: {$gte: today, $lt: tomorrow}
                 .sort({created: -1})
                 //.populate('schedule')
                 .populate('user') //, 'name cell')
@@ -140,7 +140,7 @@ module.exports = {
 
                     items = items.filter(function(item){
                         return item.schedule.date >= today && item.schedule.date < tomorrow;
-                    })
+                    });
 
                     res.json(items);
                 });
