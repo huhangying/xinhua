@@ -139,8 +139,8 @@ module.exports = {
                     // }
 
                     items = items.filter(function(item){
-                        if (item.schedule && item.schedule.date){
-                            return item.schedule.date >= today && item.schedule.date < tomorrow;
+                        if (item.schedule && item.schedule._doc && item.schedule._doc.date){
+                            return item.schedule._doc.date >= today && item.schedule._doc.date < tomorrow;
                         }
                     });
 

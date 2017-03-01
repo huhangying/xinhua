@@ -36,8 +36,8 @@
       <file leaf-file-name="booking.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/controller/booking.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="143" column="25" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="25" />
+            <state relative-caret-position="489">
+              <caret line="142" column="27" selection-start-line="142" selection-start-column="27" selection-end-line="142" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -582,7 +582,7 @@
       <workItem from="1486795057303" duration="47186000" />
       <workItem from="1487744134312" duration="24397000" />
       <workItem from="1488129399030" duration="219000" />
-      <workItem from="1488163910901" duration="12696000" />
+      <workItem from="1488163910901" duration="13261000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -602,7 +602,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="545913000" />
+    <option name="totallyTimeSpent" value="546478000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -615,7 +615,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-618" y="-1006" width="1269" height="960" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19150642" sideWeight="0.48851454" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32515338" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -683,11 +683,17 @@
           <line>143</line>
           <option name="timeStamp" value="148" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/db/controller/booking.js</url>
+          <line>142</line>
+          <properties />
+          <option name="timeStamp" value="192" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="190" />
+      <option name="time" value="193" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
@@ -1075,8 +1081,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/booking.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="143" column="25" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="25" />
+        <state relative-caret-position="489">
+          <caret line="142" column="27" selection-start-line="142" selection-start-column="27" selection-end-line="142" selection-end-column="27" />
           <folding />
         </state>
       </provider>
