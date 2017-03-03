@@ -91,9 +91,14 @@ module.exports = {
 
         if (req.params && req.params.id) {
 
-            Relationship.find({doctor: req.params.id, apply: true})
-                .populate('user', 'name cell gender birthdate role created -_id')
+            Relationship.find({doctor: req.params.id, apply: true} )//, 'user -_id')
+                // .populate('user', 'name cell gender birthdate role created -_id')
                 // .sort({'user.created': 1})
+                .populate({
+                    path: 'user',
+                    select: 'name cell gender birthdate role created -_id'
+                })
+                .sort({'user.created': 1})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -102,6 +107,12 @@ module.exports = {
                     if (!items || items.length < 1) {
                         return Status.returnStatus(res, Status.NULL);
                     }
+
+                    // var _items = [];
+                    // items.map(function(item) {
+                    //     _items.push(item.user);
+                    // });
+                    // _items = _.sortBy(_items, 'created').reverse();
 
                     res.json(items);
                 });
