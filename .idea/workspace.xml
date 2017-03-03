@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="059307ef-0e72-40b5-88a8-dd090e88c104" name="Default" comment="init add test">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/booking.js" afterPath="$PROJECT_DIR$/db/controller/booking.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/controller/relationship.js" afterPath="$PROJECT_DIR$/db/controller/relationship.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
     </list>
     <ignored path="Xinhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,51 +25,95 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="279" column="28" selection-start-line="279" selection-start-column="28" selection-end-line="279" selection-end-column="28" />
+            <state relative-caret-position="499">
+              <caret line="126" column="68" selection-start-line="126" selection-start-column="68" selection-end-line="126" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="booking.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/db/controller/booking.js">
+      <file leaf-file-name="relationship.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/controller/relationship.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="534">
-              <caret line="145" column="23" selection-start-line="145" selection-start-column="23" selection-end-line="145" selection-end-column="23" />
+            <state relative-caret-position="490">
+              <caret line="107" column="6" selection-start-line="107" selection-start-column="6" selection-end-line="107" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schedule.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/model/schedule.js">
+      <file leaf-file-name="articlePage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/controller/articlePage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="10" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="10" />
+            <state relative-caret-position="54">
+              <caret line="109" column="28" selection-start-line="109" selection-start-column="28" selection-end-line="109" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="period.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/controller/period.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="period.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/model/period.js">
+      <file leaf-file-name="relationship.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/model/relationship.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/model/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="26" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="booking.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/controller/booking.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="137" column="1" selection-start-line="137" selection-start-column="1" selection-end-line="137" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="diagnose.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/model/diagnose.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#40#0" expanded="false" />
+                <element signature="e#694#1876#0" expanded="false" />
+                <element signature="e#1895#2296#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userFeedback.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/model/userFeedback.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userFeedback.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/controller/userFeedback.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="109" column="36" selection-start-line="109" selection-start-column="36" selection-end-line="109" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -79,48 +125,6 @@
             <state relative-caret-position="255">
               <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/model/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="relationship.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/model/relationship.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-30">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="group.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/model/group.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="diagnose.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/controller/diagnose.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="61" column="18" selection-start-line="54" selection-start-column="16" selection-end-line="61" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#39#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -188,11 +192,11 @@
         <option value="$PROJECT_DIR$/db/model/survey.js" />
         <option value="$PROJECT_DIR$/db/controller/survey.js" />
         <option value="$PROJECT_DIR$/db/controller/diagnose.js" />
-        <option value="$PROJECT_DIR$/db/controller/relationship.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/db/controller/userFeedback.js" />
         <option value="$PROJECT_DIR$/db/model/booking.js" />
         <option value="$PROJECT_DIR$/db/controller/booking.js" />
+        <option value="$PROJECT_DIR$/db/controller/relationship.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
   </component>
@@ -582,7 +586,7 @@
       <workItem from="1486795057303" duration="47186000" />
       <workItem from="1487744134312" duration="24397000" />
       <workItem from="1488129399030" duration="219000" />
-      <workItem from="1488163910901" duration="14325000" />
+      <workItem from="1488163910901" duration="19552000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1462163243225</created>
@@ -602,7 +606,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="547542000" />
+    <option name="totallyTimeSpent" value="552769000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -626,7 +630,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13389626" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24769585" sideWeight="0.49679488" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24769585" sideWeight="0.49679488" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -807,13 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/controller/articlePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1412">
-          <caret line="105" column="11" selection-start-line="105" selection-start-column="11" selection-end-line="105" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/articleTemplate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1471">
@@ -915,18 +912,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/model/diagnose.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-            <element signature="e#694#1876#0" expanded="false" />
-            <element signature="e#1895#2296#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/model/department.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -975,50 +960,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/controller/relationship.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-945">
-          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/model/userFeedback.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/controller/userFeedback.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/model/group.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/model/relationship.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/model/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -1057,14 +1002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="279" column="28" selection-start-line="279" selection-start-column="28" selection-end-line="279" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/model/booking.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1075,8 +1012,76 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/controller/booking.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="145" column="23" selection-start-line="145" selection-start-column="23" selection-end-line="145" selection-end-column="23" />
+        <state relative-caret-position="414">
+          <caret line="137" column="1" selection-start-line="137" selection-start-column="1" selection-end-line="137" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/model/userFeedback.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/controller/userFeedback.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="109" column="36" selection-start-line="109" selection-start-column="36" selection-end-line="109" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/model/diagnose.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+            <element signature="e#694#1876#0" expanded="false" />
+            <element signature="e#1895#2296#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/controller/articlePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="109" column="28" selection-start-line="109" selection-start-column="28" selection-end-line="109" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/model/relationship.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/model/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/controller/relationship.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="107" column="6" selection-start-line="107" selection-start-column="6" selection-end-line="107" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="126" column="68" selection-start-line="126" selection-start-column="68" selection-end-line="126" selection-end-column="68" />
           <folding />
         </state>
       </provider>

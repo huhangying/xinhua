@@ -85,6 +85,28 @@ module.exports = {
         }
     },
 
+    // 根据医生ID 获取相关的关系组
+    // 返回用户详细信息: [user name, cell, gender, birthdate, role]
+    GetUserDetailsByDoctorId: function (req, res) {
+
+        if (req.params && req.params.id) {
+
+            Relationship.find({doctor: req.params.id, apply: true})
+                .populate('user', 'name cell gender birthdate role -_id')
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
     // 根据患者ID 获取医患关系
     GetByUserId: function (req, res) {
 

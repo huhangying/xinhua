@@ -124,6 +124,8 @@ router.route('/relationship')
 
 router.route('/relationships/doctor/:id/select')  // 返回用户组和用户信息: [group name, group id,] user name, user id
     .get(Relationship.GetSelectionByDoctorId);
+router.route('/relationships/doctor/:id/userdetails')  // 用于药师用户管理, 返回用户信息: [name, cell id,] user name, user id
+    .get(Relationship.GetUserDetailsByDoctorId);
 
 
 //---------------- 医院科室
