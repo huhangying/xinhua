@@ -16,7 +16,7 @@ module.exports = {
             //console.log(number);
         }
 
-        Doctor.find({role: 0, apply: true})
+        Doctor.find({role: { $lt: 2 }, apply: true})
             .sort({order: 1, updated: -1})
             .limit(number)
             .exec(function (err, items) {
@@ -60,7 +60,7 @@ module.exports = {
     getFocusDoctors: function(userId) {
         var deferred = Q.defer();
 
-        Relationship.find({user: userId, role: 0, apply: true})
+        Relationship.find({user: userId, role: { $lt: 2 }, apply: true})
             .sort({order: 1, updated: -1})
             .exec(function (err, items) {
                 if (err) {
@@ -85,7 +85,7 @@ module.exports = {
         if (req.params && req.params.user) {
 
             Relationship.getFocusDoctors(req.params.user).then(function(doctors) {
-                Doctor.find({ _id: { "$nin": doctors }, role: 0, apply: true })
+                Doctor.find({ _id: { "$nin": doctors }, role: { $lt: 2 }, apply: true })
                     .sort({order: 1, updated: -1})
                     //.limit(number)
                     .exec(function (err, items) {
@@ -121,7 +121,7 @@ module.exports = {
         var skip = _.parseInt(req.params.skip);
         //console.log('number: ' + number + ', skip: ' + skip);
 
-        Doctor.find({role: 0, apply: true})
+        Doctor.find({role: { $lt: 2 }, apply: true})
             .sort({order: 1, updated: -1})
             .skip(skip)
             .limit(number)
@@ -202,7 +202,7 @@ module.exports = {
 
         if (req.params && req.params.departmentid) {
 
-            var result = Doctor.find({department: req.params.departmentid, role: 0, apply: true})
+            var result = Doctor.find({department: req.params.departmentid, role: { $lt: 2 }, apply: true})
                 .sort({order: 1, updated: -1})
                 .exec(function (err, items) {
                     if (err) {
@@ -349,7 +349,7 @@ module.exports = {
 
                         // 同步消息给药师端 ()
                         // http://139.224.68.92/medical/wx/addDoctor 这是同步药师的接口，需要传入的参数1、userId 2、name
-                        if (doctor.role === 0) {
+                        if (doctor.role === 0 || doctor.role === 1) {
                             request.post({url:'http://139.224.68.92/zhaoys/wx/addDoctor', formData:{userId: uid, name: doctor.name}},
                                 function optionalCallback(err, httpResponse, body) {
                                     if (err) {
