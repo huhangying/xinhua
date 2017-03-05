@@ -98,11 +98,10 @@ module.exports = {
             return Status.returnStatus(res, Status.NO_USER);
         }
 
-        // articlePageId
+        // articlePage
         if (!item.articlePage) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
-
 
         // 不存在，创建
         ArticlePageLog.create({
