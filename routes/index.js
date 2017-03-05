@@ -497,7 +497,7 @@ router.route('/pagelogs')
 
 router.route('/pagelogs/doctor/:did')
     .get(ArticlePageLog.GetArticlePageLogsByDoctor);
-router.route('/pagelogs/user/:uid')
+router.route('/pagelogs/user/:uid')     // 只返回用户没有收到的
     .get(ArticlePageLog.GetArticlePageLogsByUser);
 
 router.route('/pagelog')

@@ -61,12 +61,12 @@ module.exports = {
         }
     },
 
-    // User ID获取 page list
+    // User ID获取 用户没有收到的消息
     GetArticlePageLogsByUser: function (req, res) {
 
         if (req.params && req.params.uid) {
 
-            ArticlePageLog.find({user: req.params.did})
+            ArticlePageLog.find({user: req.params.uid, received: false})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -81,7 +81,7 @@ module.exports = {
         }
     },
 
-    // 创建问卷类别
+    // 创建
     Add: function (req, res) {
 
         // 获取请求数据（json）
@@ -99,7 +99,7 @@ module.exports = {
         }
 
         // articlePageId
-        if (!item.articlePageId) {
+        if (!item.articlePage) {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
 
@@ -109,7 +109,7 @@ module.exports = {
 
             doctor: item.doctor,
             user: item.user,
-            articlePageId: item.articlePageId
+            articlePage: item.articlePage
         }, function (err, raw) {
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);
@@ -120,7 +120,7 @@ module.exports = {
 
     },
 
-    // update read count only
+    // update read count and received status only
     UpdateById: function (req, res) {
         if (req.params && req.params.id) { // params.id is group ID
             var id = req.params.id;
@@ -138,8 +138,11 @@ module.exports = {
                 if (!item) {
                     return Status.returnStatus(res, Status.NULL);
                 }
-                if (log.read)
-                    item.read = log.read;
+
+                if (log.received || log.received === false)
+                    item.received = log.received;
+
+                 item.tryCount++;
 
                 //
                 item.save(function (err, raw) {
