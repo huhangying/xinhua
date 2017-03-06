@@ -490,23 +490,23 @@ router.route('/page/:id')
 router.get('/article/:id', ArticlePage.RenderById); // 显示页面
 
 //---------------- 微信失败的发送消息 LOG
-var MessageLog = require('../db/controller/messageLog');
-
-router.route('/messagelogs')
-    .get(MessageLog.GetAll);
-
-router.route('/messagelogs/doctor/:did')
-    .get(MessageLog.GetMessageLogsByDoctor);
-router.route('/messagelogs/user/:uid')     // 只返回用户没有收到的
-    .get(MessageLog.GetMessageLogsByUser);
-
-router.route('/messagelog')
-    .post(urlencodedParser, MessageLog.Add);
-
-router.route('/messagelog/:id')
-    .get(MessageLog.GetById)
-    .delete(MessageLog.DeleteById)
-    .patch(urlencodedParser, MessageLog.UpdateById);
+// var MessageLog = require('../db/controller/messageLog');
+//
+// router.route('/messagelogs')
+//     .get(MessageLog.GetAll);
+//
+// router.route('/messagelogs/doctor/:did')
+//     .get(MessageLog.GetMessageLogsByDoctor);
+// router.route('/messagelogs/user/:uid')     // 只返回用户没有收到的
+//     .get(MessageLog.GetMessageLogsByUser);
+//
+// router.route('/messagelog')
+//     .post(urlencodedParser, MessageLog.Add);
+//
+// router.route('/messagelog/:id')
+//     .get(MessageLog.GetById)
+//     .delete(MessageLog.DeleteById)
+//     .patch(urlencodedParser, MessageLog.UpdateById);
 
 
 //---------------- 不良反应(基于科室)
