@@ -1,13 +1,13 @@
 /**
  * Created by harry on 16/11/20.
  */
-var ArticlePageLog = require('../model/articlePageLog.js');
+var MessageLog = require('../model/messageLog.js');
 
 module.exports = {
 
     GetAll: function (req, res) {
 
-        ArticlePageLog.find()
+        MessageLog.find()
             .exec(function (err, items) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
@@ -26,7 +26,7 @@ module.exports = {
 
         if (req.params && req.params.id) {
 
-            ArticlePageLog.findOne({_id: req.params.id})
+            MessageLog.findOne({_id: req.params.id})
                 .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -42,11 +42,11 @@ module.exports = {
     },
 
     // Doctor ID获取 page list
-    GetArticlePageLogsByDoctor: function (req, res) {
+    GetMessageLogsByDoctor: function (req, res) {
 
         if (req.params && req.params.did) {
 
-            ArticlePageLog.find({doctor: req.params.did})
+            MessageLog.find({doctor: req.params.did})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -62,11 +62,11 @@ module.exports = {
     },
 
     // User ID获取 用户没有收到的消息
-    GetArticlePageLogsByUser: function (req, res) {
+    GetMessageLogsByUser: function (req, res) {
 
         if (req.params && req.params.uid) {
 
-            ArticlePageLog.find({user: req.params.uid, received: false})
+            MessageLog.find({user: req.params.uid, received: false})
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -98,17 +98,21 @@ module.exports = {
             return Status.returnStatus(res, Status.NO_USER);
         }
 
-        // articlePage
-        if (!item.articlePage) {
-            return Status.returnStatus(res, Status.MISSING_PARAM);
+        // type
+        if (!item.type) {
+            return Status.returnStatus(res, Status.NO_TYPE);
         }
 
         // 不存在，创建
-        ArticlePageLog.create({
+        MessageLog.create({
 
             doctor: item.doctor,
             user: item.user,
-            articlePage: item.articlePage
+            type: item.type,
+            title: item.title,
+            description: item.description,
+            url: item.url,
+            picurl: item.picurl
         }, function (err, raw) {
             if (err) {
                 return Status.returnStatus(res, Status.ERROR, err);
@@ -129,7 +133,7 @@ module.exports = {
             if (!log) return res.sendStatus(400);
 
 
-            ArticlePageLog.findById(id, function (err, item) {
+            MessageLog.findById(id, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }
@@ -160,7 +164,7 @@ module.exports = {
     DeleteById: function (req, res) {
         if (req.params && req.params.id) { // params.id is page ID
 
-            ArticlePageLog.findOne({_id: req.params.id}, function (err, item) {
+            MessageLog.findOne({_id: req.params.id}, function (err, item) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }

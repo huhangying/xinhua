@@ -489,24 +489,25 @@ router.route('/page/:id')
 
 router.get('/article/:id', ArticlePage.RenderById); // 显示页面
 
-//---------------- 宣教材料文章页面 LOG
-var ArticlePageLog = require('../db/controller/articlePageLog');
+//---------------- 微信失败的发送消息 LOG
+var MessageLog = require('../db/controller/messageLog');
 
-router.route('/pagelogs')
-    .get(ArticlePageLog.GetAll);
+router.route('/messagelogs')
+    .get(MessageLog.GetAll);
 
-router.route('/pagelogs/doctor/:did')
-    .get(ArticlePageLog.GetArticlePageLogsByDoctor);
-router.route('/pagelogs/user/:uid')     // 只返回用户没有收到的
-    .get(ArticlePageLog.GetArticlePageLogsByUser);
+router.route('/messagelogs/doctor/:did')
+    .get(MessageLog.GetMessageLogsByDoctor);
+router.route('/messagelogs/user/:uid')     // 只返回用户没有收到的
+    .get(MessageLog.GetMessageLogsByUser);
 
-router.route('/pagelog')
-    .post(urlencodedParser, ArticlePageLog.Add);
+router.route('/messagelog')
+    .post(urlencodedParser, MessageLog.Add);
 
-router.route('/pagelog/:id')
-    .get(ArticlePageLog.GetById)
-    .delete(ArticlePageLog.DeleteById)
-    .patch(urlencodedParser, ArticlePageLog.UpdateById);
+router.route('/messagelog/:id')
+    .get(MessageLog.GetById)
+    .delete(MessageLog.DeleteById)
+    .patch(urlencodedParser, MessageLog.UpdateById);
+
 
 //---------------- 不良反应(基于科室)
 var AdverseReaction = require('../db/controller/adverseReaction');
