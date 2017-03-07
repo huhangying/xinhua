@@ -613,8 +613,11 @@ router.route('/labresult/:id')
 //===================== 图片上传
 var Uploader = require('../db/controller/upload');
 
-router.route('/upload')
+router.route('/upload/:dir')
     .post(urlencodedParser, Uploader.receiveFile);
+
+router.route('/upload/list/:dir')
+    .get(Uploader.getFolderImageList);
 
 
 module.exports = router;
