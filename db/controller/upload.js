@@ -8,26 +8,28 @@ var formidable = require('formidable'),
 module.exports = {
 
     receiveFile: function(req, res){
-        if (req.params && req.params.dir) { // params.id is WeChat ID
-            // parse a file upload
-            var form = new formidable.IncomingForm();
-            form.encoding = 'utf-8';
-            //form.keepExtensions = true;
-            //form.uploadDir = "/home/wwwroot/product.geiliyou.com/ciwen/upload";
+        // parse a file upload
+        var form = new formidable.IncomingForm();
+        form.encoding = 'utf-8';
+        //form.keepExtensions = true;
+        //form.uploadDir = "/home/wwwroot/product.geiliyou.com/ciwen/upload";
 
-            form.parse(req, function (err, fields, files) {
+        form.parse(req, function (err, fields, files) {
 
-                res.writeHead(200, {'content-type': files.file.type});
-                // res.writeHead(200, {'content-type': 'multipart/form-data'});
-                //res.write('received upload:\n\n');
-                res.end(util.inspect({fields: fields, files: files}));
+            res.writeHead(200, {'content-type': files.file.type});
+            // res.writeHead(200, {'content-type': 'multipart/form-data'});
+            //res.write('received upload:\n\n');
+            res.end(util.inspect({fields: fields, files: files}));
 
-                //fs.rename 类似于 move
-                fs.rename(files.file.path, 'public/upload/' + req.params.dir + '/' + files.file.name, function (err) {
-                    if (err) throw err;
-                });
+            //fs.rename 类似于 move
+            var relativeDir = '';
+            if (req.params && req.params.dir) {
+                relativeDir = req.params.dir + '/';
+            }
+            fs.rename(files.file.path, 'public/upload/' + relativeDir + files.file.name, function (err) {
+                if (err) throw err;
             });
-        }
+        });
         return;
     },
 
