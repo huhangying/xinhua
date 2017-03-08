@@ -109,7 +109,7 @@ module.exports = {
                     item.desc = department.desc;
                 if (department.order)
                     item.order = department.order;
-                if (department.assetFolder)
+                if (department.assetFolder || department.assetFolder == '')
                     item.assetFolder = department.assetFolder;
                 if (department.apply || department.apply === false)
                     item.apply = department.apply;
