@@ -26,7 +26,9 @@ module.exports = {
 
     GetAllPopulated: function (req, res) {
 
-        Schedule.find({date: {$gte: (new Date())}})
+        Schedule.find({
+            date: {$gte: (new Date())}
+        })
             .populate('period')
             .sort({created: 1})
             .exec(function (err, items) {
@@ -52,7 +54,11 @@ module.exports = {
         // }
         if (req.params && req.params.did) {
 
-            Schedule.find({doctor: req.params.did, date: {$gte: (+new Date(new Date().setHours(0,0,0,0)) + 24 * 60 * 60 * 1000)}})
+            Schedule.find({
+                doctor: req.params.did, 
+                apply: true,
+                date: {$gte: (+new Date(new Date().setHours(0,0,0,0)) + 24 * 60 * 60 * 1000)}
+            })
             //Schedule.find({doctor: req.params.did, date: {$gte: _date}})
                 .sort({date: 1, period: 1})
                 .exec(function (err, items) {
@@ -97,7 +103,11 @@ module.exports = {
         if (req.params && req.params.did && req.params.date) {
 
             var _date = +new Date(req.params.date);
-            Schedule.find({doctor: req.params.did, date: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }}) // select the selected day
+            Schedule.find({
+                doctor: req.params.did,
+                apply: true,
+                date: {$gte: _date, $lt: (new Date(_date + 24*60*60*1000)) }
+            }) // select the selected day
                 .sort({date: 1, period: 1})
                 .exec(function (err, items) {
                     if (err) {
@@ -173,7 +183,7 @@ module.exports = {
         if (req.params && req.params.id) { // params.id is schedule ID
             var id = req.params.id;
 
-            // 获取数据（json）,只能更新聊天室名
+            // 获取数据（json）
             var schedule = req.body;
             if (!schedule) return res.sendStatus(400);
 
@@ -197,6 +207,9 @@ module.exports = {
                     }
                     if (schedule.limit)
                         item.limit = schedule.limit;
+
+                    if (schedule.apply || schedule.apply == false)
+                        item.apply = schedule.apply;
                     //console.log(JSON.stringify(item));
 
                     //
