@@ -78,29 +78,29 @@ module.exports = {
         if (option.name) {
             filter_options.name = new RegExp(option.name, "i");
         }
-        if (option.cell) {
+        else if (option.cell) {
             filter_options.cell = new RegExp(option.cell, "i");
         }
-        if (option.admissionNumber) {
+        else if (option.admissionNumber) {
             filter_options.admissionNumber = new RegExp(option.admissionNumber, "i");
         }
-        if (option.sin) {
+        else if (option.sin) {
             filter_options.sin = new RegExp(option.sin, "i");
         }
 
-        console.log(filter_options);
+        // console.log(filter_options);
 
         User.find(filter_options)
-            .exec(function(err, user) {
+            .exec(function(err, users) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
                 }
 
-                if (!user) {
+                if (!users) {
                     return Status.returnStatus(res, Status.NULL);
                 }
 
-                res.json(user);
+                res.json(users);
             });
 
     },

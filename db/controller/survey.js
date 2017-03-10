@@ -126,6 +126,7 @@ module.exports = {
             };
 
             Survey.find(searchCriteria)
+                .populate({ path: 'doctor', select: 'name title department' })
                 .sort({updatedAt: -1})
                 .exec(function (err, items) {
                     if (err) {
