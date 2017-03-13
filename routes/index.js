@@ -374,6 +374,9 @@ router.route('/survey/:id')
     .delete(Survey.DeleteById)
     .patch(urlencodedParser, Survey.UpdateById);
 
+router.route('/surveys/close/:doctor/:user') // set finished=true for type in [1,2,5]
+    .patch(urlencodedParser, Survey.CloseAllRelativeSurveys);
+
 //---------------- 问卷调查集合
 var SurveyGroup = require('../db/controller/surveyGroup');
 

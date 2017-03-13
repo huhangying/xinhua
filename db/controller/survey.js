@@ -74,6 +74,42 @@ module.exports = {
         }
     },
 
+    // 关闭所有该药师和该用户相关的surveys（set finished=true for type in [1,2,5]）
+    CloseAllRelativeSurveys: function (req, res) {
+
+        if (req.params && req.params.doctor && req.params.user) {
+
+            Survey.update(
+                {
+                    user: req.params.user,
+                    doctor: req.params.doctor,
+                    finished: false,
+                    type: { $in: [1, 2, 5]}
+
+                },
+                {
+                    $set: {
+                        finished: true
+                    }
+
+                },
+                {
+                    multi: true
+                })
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
 
     // 根据 doctor & type & user and list to retrieve details
     GetSurveysByUserTypeAndList: function (req, res) {
