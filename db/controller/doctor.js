@@ -347,17 +347,17 @@ module.exports = {
                             return Status.returnStatus(res, Status.ERROR, err);
                         }
 
-                        // 同步消息给药师端 ()
+                        // 同步消息给药师端 ()－－－ 现在不需要了
                         // http://139.224.68.92/medical/wx/addDoctor 这是同步药师的接口，需要传入的参数1、userId 2、name
-                        if (doctor.role === 0 || doctor.role === 1) {
-                            request.post({url:'http://139.224.68.92/zhaoys/wx/addDoctor', formData:{userId: uid, name: doctor.name}},
-                                function optionalCallback(err, httpResponse, body) {
-                                    if (err) {
-                                        return console.error('sync failed:', err);
-                                    }
-                                    //console.log('sync successful!  Server responded with:', body);
-                                });
-                        }
+                        // if (doctor.role === 0 || doctor.role === 1) {
+                        //     request.post({url:'http://139.224.68.92/zhaoys/wx/addDoctor', formData:{userId: uid, name: doctor.name}},
+                        //         function optionalCallback(err, httpResponse, body) {
+                        //             if (err) {
+                        //                 return console.error('sync failed:', err);
+                        //             }
+                        //             //console.log('sync successful!  Server responded with:', body);
+                        //         });
+                        // }
 
                         return res.send(raw);
                     });
