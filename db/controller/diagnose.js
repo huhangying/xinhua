@@ -269,4 +269,24 @@ module.exports = {
         }
     },
 
+    GetAssessmentsByDoctor: function (req, res) {
+
+        if (req.params && req.params.did) {
+
+            Diagnose.find({docotor: req.params.did, status: 3 }, 'assessment user createdAt')
+                .populate('assessment')
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
 }
