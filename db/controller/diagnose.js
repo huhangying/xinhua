@@ -273,9 +273,9 @@ module.exports = {
 
         if (req.params && req.params.did) {
 
-            Diagnose.find({docotor: req.params.did, status: 3 }, 'doctor user assessment createdAt updatedAt')
-                .lean()
-                .populate('assessment')
+            Diagnose.find({ doctor: req.params.did, status: 3 }, '-_id doctor user assessment createdAt updatedAt')
+                //.lean()
+                .populate('user', '-_id name')
                 .exec(function (err, items) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
