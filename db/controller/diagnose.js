@@ -273,7 +273,7 @@ module.exports = {
 
         if (req.params && req.params.did) {
 
-            Diagnose.find({docotor: req.params.did, status: 3 }, 'assessment user createdAt')
+            Diagnose.find({docotor: req.params.did, status: 3 }, 'doctor user assessment createdAt updatedAt')
                 .populate('assessment')
                 .exec(function (err, items) {
                     if (err) {
