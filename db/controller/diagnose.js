@@ -290,4 +290,36 @@ module.exports = {
         }
     },
 
+    GetDiagnoseCountsByDoctor: function (req, res) {
+
+        if (req.params && req.params.did) {
+
+            Diagnose.find({ doctor: req.params.did })
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    var finishedCount=0, unfinishedCount=0;
+                    for (var i=0; i<items.length; i++) {
+                        if (items[i].status >= 3) {
+                            finishedCount++;
+                        }
+                        else {
+                            unfinishedCount++;
+                        }
+                    }
+
+                    res.json({
+                        finishedCount: finishedCount,
+                        unfinishedCount: unfinishedCount
+                    });
+                });
+        }
+    },
+
 }

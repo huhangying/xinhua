@@ -582,6 +582,8 @@ router.route('/diagnose-assessment/:id')
 // 药师评估统计
 router.route('/diagnose-assessments/:did')
     .get(Diagnose.GetAssessmentsByDoctor);
+router.route('/diagnose-counts/:did')
+    .get(Diagnose.GetDiagnoseCountsByDoctor);
 
 //---------------- 文章关键字搜索
 var ArticleSearch = require('../db/controller/articleSearch');
