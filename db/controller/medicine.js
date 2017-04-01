@@ -77,9 +77,10 @@ module.exports = {
         // }
 
         // dosage
-        if (!medicine.dosage) {
-            return Status.returnStatus(res, Status.MISSING_PARAM);
-        }
+        // if (!medicine.dosage) {
+        //     return Status.returnStatus(res, Status.MISSING_PARAM);
+        // }
+
         // category
         // if (!medicine.cat) {
         //     return Status.returnStatus(res, Status.NO_CAT);
