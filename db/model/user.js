@@ -13,7 +13,9 @@ var _User = new Schema({
     updated: {type : Date, default: Date.now},
     icon: String,
     gender: String,
-    birthdate:{type: Date},
+    height: { type: String },
+    weight: { type: String },
+    birthdate: { type: Date },
     sin: String,
     admissionNumber: { type: String},
     visitedDepartments: [

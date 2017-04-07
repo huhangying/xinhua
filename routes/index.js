@@ -618,6 +618,17 @@ router.route('/labresult/:id')
     .delete(LabResult.DeleteById)
     .patch(urlencodedParser, LabResult.UpdateById);
 
+//---------------- FAQ
+var Faq = require('../db/controller/faq');
+
+router.route('/faqs')
+    .get(Faq.GetAll);
+router.route('/faq')
+    .post(urlencodedParser, Faq.Add);
+router.route('/faq/:id')
+    .delete(Faq.DeleteById)
+    .patch(urlencodedParser, Faq.UpdateById);
+
 
 //===================== 图片上传
 var Uploader = require('../db/controller/upload');
