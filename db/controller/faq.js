@@ -7,7 +7,7 @@ module.exports = {
 
     GetAll: function (req, res) {
 
-        Faq.find({apply: true})
+        Faq.find({apply: true}, 'question answer -_id')
             .sort({order: 1})
             .exec( function (err, items) {
                 if (err) {
