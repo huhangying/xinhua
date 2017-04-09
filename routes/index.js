@@ -630,6 +630,16 @@ router.route('/faq/:id')
     .patch(urlencodedParser, Faq.UpdateById);
 
 
+//---------------- FAQ
+var SurveyStatusLog = require('../db/controller/surveyStatusLog');
+
+router.route('/surveyStatusLogs')
+    .get(SurveyStatusLog.GetAll);
+router.route('/surveyStatusLog')
+    .post(urlencodedParser, SurveyStatusLog.Add);
+router.route('/surveyStatusLog/:key')
+    .get(SurveyStatusLog.GetByKey);
+
 //===================== 图片上传
 var Uploader = require('../db/controller/upload');
 
