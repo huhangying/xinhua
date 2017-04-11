@@ -22,6 +22,22 @@ module.exports = {
             });
     },
 
+    GetEditAll: function (req, res) {
+
+        Faq.find()
+            .exec( function (err, items) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
+
+                if (!items || items.length < 1) {
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+                res.json(items);
+            });
+    },
+
     // 创建
     Add: function (req, res) {
 

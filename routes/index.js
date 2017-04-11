@@ -623,6 +623,8 @@ var Faq = require('../db/controller/faq');
 
 router.route('/faqs')
     .get(Faq.GetAll);
+router.route('/faqs/edit')
+    .get(Faq.GetEditAll);
 router.route('/faq')
     .post(urlencodedParser, Faq.Add);
 router.route('/faq/:id')
