@@ -25,6 +25,7 @@ module.exports = {
     GetEditAll: function (req, res) {
 
         Faq.find()
+            .sort({order: 1})
             .exec( function (err, items) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
