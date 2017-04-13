@@ -560,6 +560,9 @@ var Diagnose = require('../db/controller/diagnose');
 router.route('/diagnose/:doctor/:user')
     .get(Diagnose.GetByUserAndDoctor);
 
+router.route('/diagnoses/currentmonth/:doctor')
+    .get(Diagnose.GetCurrentMonthFinishedByDoctor);
+
 router.route('/diagnoses/history/:user')
     .get(Diagnose.GetUserHistoryList);
 router.route('/diagnose/history/latest/:user')

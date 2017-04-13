@@ -46,6 +46,37 @@ module.exports = {
         }
     },
 
+    // 获取药师当月门诊完成数
+    GetCurrentMonthFinishedByDoctor: function (req, res) {
+
+        if (req.params && req.params.doctor) {
+
+            var _date = +new Date(req.params.date);
+            var firstDay = new moment(moment().format('YYYY-MM-01 00:00:00'));
+            //console.log(firstDay);
+
+            var lastDay = firstDay.add(1, 'months').date(1).subtract(1, 'minutes');
+            //console.log(lastDay);
+
+            Diagnose.find({
+                doctor: req.params.doctor,
+                status: 3,
+                updatedAt: {$gte: firstDay, $lt: lastDay }
+            })
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
     // 获取用户的门诊历史记录
     GetUserHistoryList: function (req, res) {
 
