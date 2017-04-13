@@ -51,17 +51,14 @@ module.exports = {
 
         if (req.params && req.params.doctor) {
 
-            var _date = +new Date(req.params.date);
             var firstDay = new moment(moment().format('YYYY-MM-01 00:00:00'));
-            //console.log(firstDay);
-
-            var lastDay = firstDay.add(1, 'months').date(1).subtract(1, 'minutes');
+            // var lastDay = firstDay.add(1, 'months').subtract(1, 'minutes');
+            var lastDay = firstDay.clone().endOf('month');
             //console.log(lastDay);
-
             Diagnose.find({
                 doctor: req.params.doctor,
-                status: 3,
-                updatedAt: {$gte: firstDay, $lt: lastDay }
+                updatedAt: {$gte: firstDay, $lt: lastDay},
+                status: 3
             })
                 .exec(function (err, items) {
                     if (err) {
