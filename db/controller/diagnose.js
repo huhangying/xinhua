@@ -55,21 +55,17 @@ module.exports = {
             // var lastDay = firstDay.add(1, 'months').subtract(1, 'minutes');
             var lastDay = firstDay.clone().endOf('month');
             //console.log(lastDay);
-            Diagnose.find({
+            Diagnose.count({
                 doctor: req.params.doctor,
                 updatedAt: {$gte: firstDay, $lt: lastDay},
                 status: 3
             })
-                .exec(function (err, items) {
+                .exec(function (err, count) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
                     }
 
-                    if (!items || items.length < 1) {
-                        return Status.returnStatus(res, Status.NULL);
-                    }
-
-                    res.json(items);
+                    res.json(count);
                 });
         }
     },
