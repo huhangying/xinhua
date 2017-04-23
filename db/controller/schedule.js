@@ -10,7 +10,7 @@ module.exports = {
     GetAll: function (req, res) {
 
         Schedule.find({date: {$gte: (new Date())}})
-            .sort({created: 1})
+            .sort({date: 1})
             .exec(function (err, items) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
@@ -123,6 +123,27 @@ module.exports = {
         }
     },
 
+
+    // 根据 ID 和 period id 获取详细信息
+    GetByDoctorPeriodDate: function (req, res) {
+
+        if (req.params && req.params.period && req.params.did && req.params.date) {
+
+            var result = Schedule.findOne({doctor: req.params.did, date: req.params.date, period: req.params.period})
+                .exec(function (err, item) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!item) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(item);
+                });
+        }
+    },
+
     // 根据ID获取详细信息
     GetById: function (req, res) {
 
@@ -162,20 +183,46 @@ module.exports = {
             return Status.returnStatus(res, Status.MISSING_PARAM);
         }
 
-        // 不存在，创建
-        Schedule.create({
 
-            doctor: schedule.doctor,
-            period: schedule.period,
-            date: schedule.date,
-            limit: schedule.limit
-        }, function (err, raw) {
-            if (err) {
-                return Status.returnStatus(res, Status.ERROR, err);
-            }
+        Schedule.findOne({doctor: schedule.doctor, date: schedule.date, period: schedule.period})
+            .exec(function (err, item) {
+                if (err) {
+                    return Status.returnStatus(res, Status.ERROR, err);
+                }
 
-            return res.send(raw);
-        });
+                if (!item) {
+                    // 不存在，创建
+                    Schedule.create({
+
+                        doctor: schedule.doctor,
+                        period: schedule.period,
+                        date: schedule.date,
+                        limit: schedule.limit
+                    }, function (err, raw) {
+                        if (err) {
+                            return Status.returnStatus(res, Status.ERROR, err);
+                        }
+
+                        return res.send(raw);
+                    });
+                }
+
+                if (!item.apply) {
+                    item.apply = true;
+                    //
+                    item.save(function (err, raw) {
+                        if (err) {
+                            return Status.returnStatus(res, Status.ERROR, err);
+                        }
+                        return res.json(raw);
+                    });
+                }
+                else {
+                    // 已经存在
+                    return Status.returnStatus(res, Status.NULL);
+                }
+
+            });
 
     },
 

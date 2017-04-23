@@ -250,6 +250,8 @@ router.route('/schedule/:id')
 
 router.route('/schedules/find/doctors/:departmentid')
     .get(Schedule.FindScheduleDoctorsByDepartmentId);
+router.route('/schedule/find/:did/:period/:date')
+    .get(Schedule.GetByDoctorPeriodDate);
 
 //---------------- 门诊时间端
 var Period = require('../db/controller/period');
