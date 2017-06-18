@@ -45,18 +45,17 @@ module.exports = {
     // 根据 doctor & type & user 获取Survey list
     GetSurveysByUserType: function (req, res) {
 
-        var readonly = false;
-        if (req.params.readonly == 1) {
-            readonly = true;
+        var searchCriteria = {
+            user: req.params.user,
+            doctor: req.params.doctor,
+            type: req.params.type,
+            finished: req.params.readonly == 1
+        };
+        if (req.params.readonly != 1) {
+            searchCriteria.availableBy = { $gt: new Date() };
         }
+
         if (req.params && req.params.doctor && req.params.type && req.params.user) {
-            var searchCriteria = {
-                user: req.params.user,
-                doctor: req.params.doctor,
-                type: req.params.type,
-                availableBy: { $gt: new Date() },
-                finished: readonly
-            };
 
             Survey.find(searchCriteria)
                 .sort({order: 1})
@@ -74,59 +73,20 @@ module.exports = {
         }
     },
 
-    // 关闭所有该药师和该用户相关的surveys（set finished=true for type in [1,2,5]）
-    CloseAllRelativeSurveys: function (req, res) {
-
-        if (req.params && req.params.doctor && req.params.user) {
-
-            Survey.update(
-                {
-                    user: req.params.user,
-                    doctor: req.params.doctor,
-                    finished: false,
-                    type: { $in: [1, 2, 5]}
-
-                },
-                {
-                    $set: {
-                        finished: true
-                    }
-
-                },
-                {
-                    multi: true
-                })
-                .exec(function (err, items) {
-                    if (err) {
-                        return Status.returnStatus(res, Status.ERROR, err);
-                    }
-
-                    if (!items || items.length < 1) {
-                        return Status.returnStatus(res, Status.NULL);
-                    }
-
-                    res.json(items);
-                });
-        }
-    },
-
-
     // 根据 doctor & type & user and list to retrieve details
     GetSurveysByUserTypeAndList: function (req, res) {
 
-        var readonly = false;
-        if (req.params.readonly == 1) {
-            readonly = true;
+        var searchCriteria = {
+            user: req.params.user,
+            doctor: req.params.doctor,
+            type: req.params.type,
+            finished: req.params.readonly == 1
+        };
+        if (req.params.readonly != 1) {
+            searchCriteria.availableBy = { $gt: new Date() };
         }
-        if (req.params && req.params.doctor && req.params.type && req.params.user && req.params.list) {
-            var searchCriteria = {
-                user: req.params.user,
-                doctor: req.params.doctor,
-                type: req.params.type,
-                availableBy: { $gt: new Date() },
-                finished: readonly
-            };
 
+        if (req.params && req.params.doctor && req.params.type && req.params.user && req.params.list) {
             Survey.find(searchCriteria)
                 .sort({order: 1})
                 .exec(function (err, items) {
@@ -197,7 +157,43 @@ module.exports = {
                 });
         }
     },
-    
+
+    // 关闭所有该药师和该用户相关的surveys（set finished=true for type in [1,2,5]）
+    CloseAllRelativeSurveys: function (req, res) {
+
+        if (req.params && req.params.doctor && req.params.user) {
+
+            Survey.update(
+                {
+                    user: req.params.user,
+                    doctor: req.params.doctor,
+                    finished: false,
+                    type: { $in: [1, 2, 5]}
+
+                },
+                {
+                    $set: {
+                        finished: true
+                    }
+
+                },
+                {
+                    multi: true
+                })
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
     // 创建
     Add: function (req, res) {
 
