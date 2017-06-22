@@ -41,6 +41,26 @@ module.exports = {
         }
     },
 
+    // 根据医生ID 和 病患ID，判断relationship是否存在
+    CheckIfRelationshipExisted: function (req, res) {
+
+        if (req.params && req.params.did && req.params.uid) {
+
+            Relationship.findOne({doctor: req.params.did, user: req.params.uid, apply: true})
+                .exec(function (err, item) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!item) {
+                        return res.json({existed: false});
+                    }
+
+                    res.json({existed: true});
+                });
+        }
+    },
+
     // 根据医生ID 获取相关的关系组
     GetByDoctorId: function (req, res) {
 

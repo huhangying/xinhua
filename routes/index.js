@@ -117,6 +117,8 @@ router.route('/relationship/:id')
     .get(Relationship.GetById)
     .patch(urlencodedParser, Relationship.UpdateById)
     .delete(Relationship.DeleteById);
+router.route('/relationship/:did/:uid')
+    .get(Relationship.CheckIfRelationshipExisted);
 
 router.route('/relationship')
     .post(urlencodedParser, Relationship.FindOrAdd);
