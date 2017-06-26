@@ -54,17 +54,18 @@ module.exports = {
                     }));
 
                     //delete chatroom and related chats
-                    promises.push(Chatroom.find({user: req.params.id}, function (err, items) {
+                    promises.push(Chatroom.find({user: req.params.id}).exec(function (err, items) {
                         if (items && items.length > 0){
                             for (var i=0; i<items.length; i++) {
+                                var _chatroom = items[i]._id || '';
 
                                 Chat.remove({chatroom: items[i]._id}, function (err) {
                                     if (err) return console.error(err);
                                     // removed!
-                                    log.push('Chat ' + items[i]._id + ' removed.');
+                                    log.push('Chat ' + _chatroom + ' removed.');
                                 });
-                                log.push('Chatroom ' + items[i].chatroom + ' removed.');
                                 items[i].remove();
+                                log.push('Chatroom ' + _chatroom + ' removed.');
                             }
                         }
                     }));
