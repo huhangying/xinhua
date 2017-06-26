@@ -78,5 +78,6 @@ Relationship.getFocusDoctors = function(userId) {
         });
 
     return deferred.promise;
-}
+};
+
 module.exports =  Relationship;
