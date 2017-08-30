@@ -33,7 +33,7 @@ var _Diagnose = new Schema({
                 dosage: {
                     intervalDay: { type: Number, default: 1, min: 0 }, // 每几天
                     frequency: { type: Number, required: true },
-                    count: { type: Number, min: 1 },
+                    count: { type: Number, min: 0 },
                     way: { type: String, trim: true } // 饭前/饭后/隔几小时
                 },
                 notices: [
