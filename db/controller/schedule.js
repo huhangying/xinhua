@@ -206,20 +206,22 @@ module.exports = {
                         return res.send(raw);
                     });
                 }
-
-                if (!item.apply) {
-                    item.apply = true;
-                    //
-                    item.save(function (err, raw) {
-                        if (err) {
-                            return Status.returnStatus(res, Status.ERROR, err);
-                        }
-                        return res.json(raw);
-                    });
-                }
                 else {
-                    // 已经存在
-                    return Status.returnStatus(res, Status.NULL);
+                    // 存在，更新
+                    if (!item.apply) {
+                        item.apply = true;
+                        //
+                        item.save(function (err, raw) {
+                            if (err) {
+                                return Status.returnStatus(res, Status.ERROR, err);
+                            }
+                            return res.json(raw);
+                        });
+                    }
+                    else {
+                        // 已经存在
+                        return Status.returnStatus(res, Status.NULL);
+                    }
                 }
 
             });
