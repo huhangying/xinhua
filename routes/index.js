@@ -541,6 +541,9 @@ router.route('/feedbacks')
 router.route('/feedbacks/user/:type/:uid')
     .get(UserFeedback.GetByUserId);
 
+router.route('/feedbacks/user/:type/:uid/:did')
+    .get(UserFeedback.GetByUserIdDoctorId);
+
 router.route('/feedbacks/doctor/:type/:did')
     .get(UserFeedback.GetByDoctorId);
 router.route('/feedbacks/unread/:type/:did')

@@ -68,6 +68,29 @@ module.exports = {
         }
     },
 
+    GetByUserIdDoctorId: function (req, res) {
+
+        if (req.params && req.params.uid && req.params.did && req.params.type) {
+
+            UserFeedback.find({user: req.params.uid, doctor: req.params.did, type: req.params.type })
+                .populate({
+                    path: 'doctor',
+                    select: 'name title'})
+                .sort({created: -1})
+                .exec(function (err, items) {
+                    if (err) {
+                        return Status.returnStatus(res, Status.ERROR, err);
+                    }
+
+                    if (!items || items.length < 1) {
+                        return Status.returnStatus(res, Status.NULL);
+                    }
+
+                    res.json(items);
+                });
+        }
+    },
+
     // 根据药师 ID, 类型 获取相关类型的反馈
     GetByDoctorId: function (req, res) {
 
