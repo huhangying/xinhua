@@ -548,8 +548,8 @@ router.route('/feedbacks/unread/:type/:did')
 router.route('/feedback/unreadcount/:type/:did')
     .get(UserFeedback.GetUnreadCountByDoctorId);
 
-router.route('/feedbacks/unread/:type/user/:uid')
-    .get(UserFeedback.GetUnreadByUserId);
+router.route('/feedbacks/unread/:type/:did/:uid')
+    .get(UserFeedback.GetUnreadByDoctorIdUserId);
 
 router.route('/feedback')
     .post(urlencodedParser, UserFeedback.Add);

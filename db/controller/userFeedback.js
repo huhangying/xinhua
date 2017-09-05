@@ -113,11 +113,11 @@ module.exports = {
     },
 
     // 根据病患 ID, 类型 获取相关的反馈
-    GetUnreadByUserId: function (req, res) {
+    GetUnreadByDoctorIdUserId: function (req, res) {
 
-        if (req.params && req.params.uid && req.params.type) {
+        if (req.params && req.params.did && req.params.uid && req.params.type) {
 
-            UserFeedback.find({ user: req.params.uid, type: req.params.type, status: 2 }) // only 2 and 0 for now.
+            UserFeedback.find({ doctor: req.params.did, user: req.params.uid, type: req.params.type, status: 2 }) // only 2 and 0 for now.
                 .populate({
                     path: 'doctor',
                     select: 'name title'
