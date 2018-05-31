@@ -130,19 +130,40 @@ router.route('/relationships/doctor/:id/userdetails')  // 用于药师用户管�
     .get(Relationship.GetUserDetailsByDoctorId);
 
 
+//---------------- 医院
+var Hospital = require('../db/controller/hospital');
+
+router.route('/hospitals')
+  .get(Hospital.GetAll);
+
+router.route('/hospital')
+  .post(urlencodedParser, Hospital.Add);
+
+router.route('/hospital/:id')
+  .get(Hospital.GetById)
+  .delete(Hospital.DeleteById)
+  .patch(urlencodedParser, Hospital.UpdateById);
+
+router.route('/hospital/hid/:hid')
+  .get(Hospital.GetByHid)
+
+
 //---------------- 医院科室
 var Department = require('../db/controller/department');
 
 router.route('/departments')
-    .get(Department.GetAll);
+  .get(Department.GetAll);
+
+router.route('/departments/:hid')
+  .get(Department.GetAllByHid);
 
 router.route('/department')
-    .post(urlencodedParser, Department.Add);
+  .post(urlencodedParser, Department.Add);
 
 router.route('/department/:id')
-    .get(Department.GetById)
-    .delete(Department.DeleteById)
-    .patch(urlencodedParser, Department.UpdateById);
+  .get(Department.GetById)
+  .delete(Department.DeleteById)
+  .patch(urlencodedParser, Department.UpdateById);
 
 
 //---------------- 疾病类别

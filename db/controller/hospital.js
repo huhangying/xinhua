@@ -1,32 +1,15 @@
 /**
- * Created by hhu on 2016/5/9.
+ * Created by hhu on 2018/5/31.
  */
 
-var Department = require('../model/department.js');
+var Hospital = require('../model/hospital.js');
 
 module.exports = {
 
 
   GetAll: function (req, res) {
 
-    Department.find()
-      .sort({order: 1})
-      .exec( function (err, items) {
-        if (err) {
-          return Status.returnStatus(res, Status.ERROR, err);
-        }
-
-        if (!items || items.length < 1) {
-          return Status.returnStatus(res, Status.NULL);
-        }
-
-        res.json(items);
-      });
-  },
-
-  GetAllByHid: function (req, res) {
-
-    Department.find({hid: req.params.hid, apply: true})
+    Hospital.find()
       .sort({order: 1})
       .exec( function (err, items) {
         if (err) {
@@ -46,7 +29,27 @@ module.exports = {
 
     if (req.params && req.params.id) {
 
-      var result = Department.findOne({_id: req.params.id, apply: true})
+      var result = Hospital.findOne({_id: req.params.id, apply: true})
+        .exec(function (err, item) {
+          if (err) {
+            return Status.returnStatus(res, Status.ERROR, err);
+          }
+
+          if (!item) {
+            return Status.returnStatus(res, Status.NULL);
+          }
+
+          res.json(item);
+        });
+    }
+  },
+
+  // 根据HID获取详细信息
+  GetByHid: function (req, res) {
+
+    if (req.params && req.params.hid) {
+
+      var result = Hospital.findOne({hid: req.params.hid})
         .exec(function (err, item) {
           if (err) {
             return Status.returnStatus(res, Status.ERROR, err);
@@ -62,24 +65,20 @@ module.exports = {
   },
 
 
-  // 创建医院科室
+  // 创建医院
   Add: function (req, res) {
 
-    // 获取department请求数据（json）
-    var department = req.body;
-    if (!department) return res.sendStatus(400);
+    // 获取hospital请求数据（json）
+    var hospital = req.body;
+    if (!hospital) return res.sendStatus(400);
 
     // name
-    if (!department.name) {
+    if (!hospital.name) {
       return Status.returnStatus(res, Status.NO_NAME);
     }
 
-    // hid
-    if (!department.hid) {
-      return Status.returnStatus(res, Status.NO_HID);
-    }
 
-    Department.find({name: department.name}) // check if existed
+    Hospital.find({hid: hospital.hid}) // check if existed
       .exec(function (err, items) {
         if (err) {
           return Status.returnStatus(res, Status.ERROR, err);
@@ -89,14 +88,13 @@ module.exports = {
           return Status.returnStatus(res, Status.EXISTED);
         }
 
-        Department.create({
+        Hospital.create({
 
-          hid: department.hid,
-          name: department.name,
-          desc: department.desc,
-          order: department.order,
-          assetFolder: department.assetFolder,
-          apply: department.apply || true
+          hid: hospital.hid,
+          name: hospital.name,
+          desc: hospital.desc,
+          order: hospital.order,
+          apply: hospital.apply || true
         }, function (err, raw) {
           if (err) {
             return Status.returnStatus(res, Status.ERROR, err);
@@ -111,12 +109,12 @@ module.exports = {
   UpdateById: function (req, res) {
     if (req.params && req.params.id) { // params.id is doctor's user ID
       var id = req.params.id;
-      // 获取user数据（json）
-      var department = req.body;
-      if (!department) return res.sendStatus(400);
+      // 获取hospital数据（json）
+      var hospital = req.body;
+      if (!hospital) return res.sendStatus(400);
 
 
-      Department.findById(id, function (err, item) {
+      Hospital.findById(id, function (err, item) {
         if (err) {
           return Status.returnStatus(res, Status.ERROR, err);
         }
@@ -125,22 +123,17 @@ module.exports = {
           return Status.returnStatus(res, Status.NULL);
         }
 
-        if (department.hid)
-          item.hid = department.hid;
-        if (department.name)
-          item.name = department.name;
-        if (department.desc)
-          item.desc = department.desc;
-        if (department.order)
-          item.order = department.order;
-        if (department.assetFolder || department.assetFolder == '')
-          item.assetFolder = department.assetFolder;
-        if (department.apply || department.apply === false)
-          item.apply = department.apply;
+        if (hospital.hid)
+          item.hid = hospital.hid;
+        if (hospital.name)
+          item.name = hospital.name;
+        if (hospital.desc)
+          item.desc = hospital.desc;
+        if (hospital.order)
+          item.order = hospital.order;
+        if (hospital.apply || hospital.apply === false)
+          item.apply = hospital.apply;
 
-        console.log(JSON.stringify(item));
-
-        //
         item.save(function (err, raw) {
           if (err) {
             return Status.returnStatus(res, Status.ERROR, err);
@@ -156,7 +149,7 @@ module.exports = {
     if (req.params && req.params.id) { // params.id is doctor's user ID
       var id = req.params.id;
 
-      Department.findById(id, function (err, item) {
+      Hospital.findById(id, function (err, item) {
         if (err) {
           return Status.returnStatus(res, Status.ERROR, err);
         }
@@ -165,8 +158,6 @@ module.exports = {
           return Status.returnStatus(res, Status.NULL);
         }
 
-        //console.log(JSON.stringify(item))
-        //
         item.remove(function (err, raw) {
           if (err) {
             return Status.returnStatus(res, Status.ERROR, err);
@@ -174,7 +165,6 @@ module.exports = {
 
           res.json(raw);
         });
-
       });
     }
   },
