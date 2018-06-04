@@ -4,7 +4,7 @@
 var Schema = global.mongoose.Schema;
 
 var _Diagnose = new Schema({
-
+    hid: { type: String },
         doctor: { type: Schema.Types.ObjectId, ref: 'doctor', required: true },
         user: { type: Schema.Types.ObjectId, ref: 'user', required: true },
 

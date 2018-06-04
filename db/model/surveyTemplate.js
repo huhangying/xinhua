@@ -4,7 +4,7 @@
 var Schema = global.mongoose.Schema;
 
 var _SurveyTemplate = new Schema({
-
+    hid: { type: String },
         name: { type: String, required: true, trim: true }, // Survey section name
         department: { type: Schema.Types.ObjectId, ref: 'department', required: true },
         type: { type: Number, required: true, min: 0, max: 6 },

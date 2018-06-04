@@ -8,8 +8,11 @@ module.exports = {
 
 
     GetAll: function (req, res) {
-
-        Const.find()
+      var query = {};
+      if (req.query.hid) {
+        query.hid = req.query.hid;
+      }
+        Const.find(query)
             .exec( function (err, items) {
                 if (err) {
                     return Status.returnStatus(res, Status.ERROR, err);
@@ -27,8 +30,11 @@ module.exports = {
     GetByName: function (req, res) {
 
         if (req.params && req.params.name) {
-
-            Const.findOne({name: req.params.name})
+          var query = {name: req.params.name};
+          if (req.query.hid) {
+            query.hid = req.query.hid;
+          }
+            Const.findOne(query)
                 .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);

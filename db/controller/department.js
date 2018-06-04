@@ -8,25 +8,12 @@ module.exports = {
 
 
   GetAll: function (req, res) {
+    var query = {};
+    if (req.query.hid) {
+      query.hid = req.query.hid;
+    }
 
-    Department.find()
-      .sort({order: 1})
-      .exec( function (err, items) {
-        if (err) {
-          return Status.returnStatus(res, Status.ERROR, err);
-        }
-
-        if (!items || items.length < 1) {
-          return Status.returnStatus(res, Status.NULL);
-        }
-
-        res.json(items);
-      });
-  },
-
-  GetAllByHid: function (req, res) {
-
-    Department.find({hid: req.params.hid, apply: true})
+    Department.find(query)
       .sort({order: 1})
       .exec( function (err, items) {
         if (err) {

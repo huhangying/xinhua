@@ -2,6 +2,7 @@
  * 内部使用, 相当于 cached singleton objects
  * Created by harry on 16/12/3.
  */
+  //todo: 支持多医院
 
 var _ConstService = require('../db/controller/const');
 var _constList = [];

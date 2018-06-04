@@ -8,8 +8,11 @@ var $q = require('q');
 module.exports = {
 
     GetAll: function (req, res) {
-
-        Schedule.find({date: {$gte: (new Date())}})
+      var query = {date: {$gte: (new Date())}};
+      if (req.query.hid) {
+        query.hid = req.query.hid;
+      }
+        Schedule.find(query)
             .sort({date: 1})
             .exec(function (err, items) {
                 if (err) {
@@ -25,10 +28,11 @@ module.exports = {
     },
 
     GetAllPopulated: function (req, res) {
-
-        Schedule.find({
-            date: {$gte: (new Date())}
-        })
+      var query = {date: {$gte: (new Date())}};
+      if (req.query.hid) {
+        query.hid = req.query.hid;
+      }
+        Schedule.find(query)
             .populate('period')
             .sort({created: 1})
             .exec(function (err, items) {
@@ -193,7 +197,7 @@ module.exports = {
                 if (!item) {
                     // 不存在，创建
                     Schedule.create({
-
+                      hid: schedule.hid,
                         doctor: schedule.doctor,
                         period: schedule.period,
                         date: schedule.date,
@@ -246,6 +250,8 @@ module.exports = {
                         return Status.returnStatus(res, Status.NULL);
                     }
 
+                    if (schedule.hid)
+                        item.hid = schedule.hid;
                     if (schedule.period)
                         item.period = schedule.period;
                     if (schedule.doctor)

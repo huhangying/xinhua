@@ -11,6 +11,12 @@ var _User = new Schema({
     role: { type: Number, default: 1, min:0, max:1 }, // 0: registered; 1: authorized;
     created: {type : Date, default: Date.now},
     updated: {type : Date, default: Date.now},
+  associates: [
+    {
+      hid: { type: String },
+      huid: { type: String }
+    }
+  ],
     icon: String,
     gender: String,
     height: { type: String },

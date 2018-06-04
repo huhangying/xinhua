@@ -4,7 +4,7 @@
 var Schema = global.mongoose.Schema;
 
 var _Schedule = new Schema({
-
+  hid: { type: String },
     doctor: {type: Schema.Types.ObjectId, ref: 'doctor', required: true }, // 药师
     period: {type: Schema.Types.ObjectId, ref: 'period', required: true },
     date: {type: Date, required: true }, // 日期

@@ -9,39 +9,46 @@ module.exports = {
 
 
     GetAllDoctors: function (req, res) {
-        var number = 999; // set max return numbers
+      var number = 999; // set max return numbers
 
-        if (req.params && req.params.number) {
-            number = _.parseInt(req.params.number);
-            //console.log(number);
-        }
+      var query = {role: { $lt: 2 }, apply: true};
+      if (req.query.hid) {
+        query.hid = req.query.hid;
+      }
+      if (req.params && req.params.number) {
+        number = _.parseInt(req.params.number);
+        //console.log(number);
+      }
 
-        Doctor.find({role: { $lt: 2 }, apply: true})
-            .sort({order: 1, updated: -1})
-            .limit(number)
-            .exec(function (err, items) {
-                if (err) {
-                    return Status.returnStatus(res, Status.ERROR, err);
-                }
+      Doctor.find(query)
+        .sort({order: 1, updated: -1})
+        .limit(number)
+        .exec(function (err, items) {
+          if (err) {
+            return Status.returnStatus(res, Status.ERROR, err);
+          }
 
-                if (!items || items.length < 1) {
-                    return Status.returnStatus(res, Status.NULL);
-                }
+          if (!items || items.length < 1) {
+            return Status.returnStatus(res, Status.NULL);
+          }
 
-                res.json(items);
-            });
+          res.json(items);
+        });
     },
 
     // for CMS
     GetAll: function (req, res) {
-        var number = 999; // set max return numbers
-
+      var number = 999; // set max return numbers
+      var query = {};
+      if (req.query.hid) {
+        query.hid = req.query.hid;
+      }
         if (req.params && req.params.number) {
             number = _.parseInt(req.params.number);
             //console.log(number);
         }
 
-        Doctor.find()
+        Doctor.find(query)
             .sort({order: 1, updated: -1})
             .limit(number)
             .exec(function (err, items) {
@@ -79,32 +86,31 @@ module.exports = {
         return deferred.promise;
     },
     
-    // 查找未关注药师
-    GetAllNotFocus: function (req, res) {
+  // 查找未关注药师
+  GetAllNotFocus: function (req, res) {
 
-        if (req.params && req.params.user) {
-
-            Relationship.getFocusDoctors(req.params.user).then(function(doctors) {
-                Doctor.find({ _id: { "$nin": doctors }, role: { $lt: 2 }, apply: true })
-                    .sort({order: 1, updated: -1})
-                    //.limit(number)
-                    .exec(function (err, items) {
-                        if (err) {
-                            return Status.returnStatus(res, Status.ERROR, err);
-                        }
-
-                        if (!items || items.length < 1) {
-                            return Status.returnStatus(res, Status.NULL);
-                        }
-
-                        res.json(items);
-                    });
-            });
-
+    if (req.params && req.params.user) {
+      Relationship.getFocusDoctors(req.params.user).then(function(doctors) {
+        var query = { _id: { "$nin": doctors }, role: { $lt: 2 }, apply: true };
+        if (req.query.hid) {
+          query.hid = req.query.hid;
         }
+        Doctor.find(query)
+          .sort({order: 1, updated: -1})
+          //.limit(number)
+          .exec(function (err, items) {
+            if (err) {
+              return Status.returnStatus(res, Status.ERROR, err);
+            }
+            if (!items || items.length < 1) {
+              return Status.returnStatus(res, Status.NULL);
+            }
 
-
-    },
+            res.json(items);
+          });
+      });
+    }
+  },
 
     //
     GetAndSkip: function (req, res) {
@@ -121,7 +127,11 @@ module.exports = {
         var skip = _.parseInt(req.params.skip);
         //console.log('number: ' + number + ', skip: ' + skip);
 
-        Doctor.find({role: { $lt: 2 }, apply: true})
+      var query = {role: { $lt: 2 }, apply: true};
+      if (req.query.hid) {
+        query.hid = req.query.hid;
+      }
+        Doctor.find(query)
             .sort({order: 1, updated: -1})
             .skip(skip)
             .limit(number)
@@ -162,7 +172,11 @@ module.exports = {
     GetByCell: function (req, res) {
 
         if (req.params && req.params.cell) {
-            Doctor.findOne({cell: req.params.cell, apply: true})
+          var query = {cell: req.params.cell, apply: true};
+          if (req.query.hid) {
+            query.hid = req.query.hid;
+          }
+            Doctor.findOne(query)
                 .exec(function (err, item) {
                     if (err) {
                         return Status.returnStatus(res, Status.ERROR, err);
@@ -327,7 +341,8 @@ module.exports = {
 
                     Doctor.create({
                         user_id: uid,
-                        password: Util.encrypt(doctor.password),
+                      hid: doctor.hid,
+                      password: Util.encrypt(doctor.password),
                         role: doctor.role,
                         name: doctor.name,
                         department: doctor.department,
@@ -381,6 +396,8 @@ module.exports = {
                 if (!item){
                     return Status.returnStatus(res, Status.NULL);
                 }
+              if (doctor.hid)
+                item.hid = doctor.hid;
 
                 if (doctor.password)
                     item.password = Util.encrypt(doctor.password);
@@ -487,7 +504,13 @@ module.exports = {
         if (!login.password) {
             return Status.returnStatus(res, Status.NO_PASSWORD);
         }
-        Doctor.find({user_id: login.user_id, apply: true},
+
+      var query = {user_id: login.user_id, apply: true};
+      if (req.query.hid) {
+        query.hid = req.query.hid;
+      }
+
+        Doctor.find(query,
             {_id: 1, user_id: 1, password: 1, name: 1, icon: 1, title: 1, department: 1, role: 1}, // select fields
             function(err, items){
                 if (err) {

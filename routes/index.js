@@ -130,7 +130,7 @@ router.route('/relationships/doctor/:id/userdetails')  // 用于药师用户管�
     .get(Relationship.GetUserDetailsByDoctorId);
 
 
-//---------------- 医院
+//---------------- 医院+
 var Hospital = require('../db/controller/hospital');
 
 router.route('/hospitals')
@@ -153,9 +153,6 @@ var Department = require('../db/controller/department');
 
 router.route('/departments')
   .get(Department.GetAll);
-
-router.route('/departments/:hid')
-  .get(Department.GetAllByHid);
 
 router.route('/department')
   .post(urlencodedParser, Department.Add);
