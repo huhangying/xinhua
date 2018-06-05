@@ -5,6 +5,7 @@ var Schema = global.mongoose.Schema;
 
 var _ArticleSearch = new Schema({
 
+    hid: { type: String },
         name: { type: String, required: true, trim: true }, // page section name
         cat: { type: String }, // 类别
         title: { type: String, required: true },
